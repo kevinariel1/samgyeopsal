@@ -154,7 +154,8 @@
           "type": "tracing",
           "prompt": "Trace the letter ㄱ with your finger on the screen!",
           "soundToPlay": "g",
-          "options": ["I traced ㄱ!"],
+          "targetCharacter": "ㄱ",
+          "options": ["Trace ㄱ with your finger to complete!"],
           "correctIndex": 0,
           "explanation": "Super job! ㄱ is a top horizontal stroke followed by a vertical drop."
         }

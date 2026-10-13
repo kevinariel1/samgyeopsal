@@ -4,6 +4,7 @@ import '../../core/constants/app_colors.dart';
 import '../../data/models/quiz_model.dart';
 import '../providers/app_providers.dart';
 import '../widgets/audio_button.dart';
+import '../widgets/hangul_tracing_widget.dart';
 
 class QuizScreen extends ConsumerStatefulWidget {
   final QuizModel quiz;
@@ -24,6 +25,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   int? _selectedOption;
   bool _answered = false;
   int _correctAnswers = 0;
+  bool _isTracingActive = false;
 
   void _submitAnswer(int index) {
     if (_answered) return;
@@ -49,6 +51,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         _currentIndex++;
         _selectedOption = null;
         _answered = false;
+        _isTracingActive = false;
       });
     } else {
       _finishQuiz();
@@ -132,13 +135,15 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     final question = widget.quiz.questions[_currentIndex];
     final total = widget.quiz.questions.length;
     final progress = (_currentIndex + 1) / total;
+    final isTracingQuestion = question.type == QuestionType.tracing;
 
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.unitTitle} Quiz'),
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
+          physics: _isTracingActive ? const NeverScrollableScrollPhysics() : null,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -149,7 +154,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 child: LinearProgressIndicator(
                   value: progress,
                   minHeight: 10,
-                  backgroundColor: theme.dividerColor.withOpacity(0.2),
+                  backgroundColor: theme.dividerColor.withValues(alpha: 0.2),
                   valueColor: const AlwaysStoppedAnimation(AppColors.secondary),
                 ),
               ),
@@ -208,85 +213,36 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              // Options list
-              Expanded(
-                child: ListView.separated(
-                  itemCount: question.options.length,
-                  separatorBuilder: (_, _) => const SizedBox(height: 12),
-                  itemBuilder: (context, idx) {
-                    final optionText = question.options[idx];
-                    final isSelected = _selectedOption == idx;
-                    final isCorrect = idx == question.correctIndex;
 
-                    Color cardColor = theme.cardTheme.color ?? Colors.white;
-                    Color borderColor = AppColors.lightCardBorder;
-                    Color textColor = theme.textTheme.bodyLarge?.color ?? Colors.black;
-
-                    if (_answered) {
-                      if (isCorrect) {
-                        cardColor = AppColors.success.withOpacity(0.15);
-                        borderColor = AppColors.success;
-                        textColor = AppColors.success;
-                      } else if (isSelected) {
-                        cardColor = AppColors.error.withOpacity(0.15);
-                        borderColor = AppColors.error;
-                        textColor = AppColors.error;
-                      }
-                    }
-
-                    return InkWell(
-                      borderRadius: BorderRadius.circular(18),
-                      onTap: () => _submitAnswer(idx),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                        decoration: BoxDecoration(
-                          color: cardColor,
-                          borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: borderColor, width: 2),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 32,
-                              height: 32,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: borderColor, width: 1.5),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  String.fromCharCode(65 + idx),
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: textColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: Text(
-                                optionText,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: textColor,
-                                ),
-                              ),
-                            ),
-                            if (_answered && isCorrect)
-                              const Icon(Icons.check_circle_rounded, color: AppColors.success)
-                            else if (_answered && isSelected)
-                              const Icon(Icons.cancel_rounded, color: AppColors.error),
-                          ],
-                        ),
-                      ),
-                    );
+              // Tracing Canvas OR Multiple Choice Options
+              if (isTracingQuestion) ...[
+                HangulTracingWidget(
+                  key: ValueKey('quiz_tracing_${question.id}_${question.effectiveTargetCharacter}'),
+                  character: question.effectiveTargetCharacter,
+                  showHeader: false,
+                  onTracingActive: (active) {
+                    setState(() {
+                      _isTracingActive = active;
+                    });
+                  },
+                  onCompleted: () {
+                    _submitAnswer(question.correctIndex);
                   },
                 ),
-              ),
+              ] else ...[
+                for (int idx = 0; idx < question.options.length; idx++) ...[
+                  if (idx > 0) const SizedBox(height: 12),
+                  _buildOptionCard(
+                    theme: theme,
+                    question: question,
+                    idx: idx,
+                  ),
+                ],
+              ],
+
               // Feedback and Next Button
               if (_answered) ...[
+                const SizedBox(height: 16),
                 Container(
                   padding: const EdgeInsets.all(14),
                   margin: const EdgeInsets.only(bottom: 12),
@@ -294,7 +250,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                     color: (_selectedOption == question.correctIndex
                             ? AppColors.success
                             : AppColors.error)
-                        .withOpacity(0.12),
+                        .withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Row(
@@ -332,6 +288,81 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               ],
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOptionCard({
+    required ThemeData theme,
+    required QuizQuestionModel question,
+    required int idx,
+  }) {
+    final optionText = question.options[idx];
+    final isSelected = _selectedOption == idx;
+    final isCorrect = idx == question.correctIndex;
+
+    Color cardColor = theme.cardTheme.color ?? Colors.white;
+    Color borderColor = AppColors.lightCardBorder;
+    Color textColor = theme.textTheme.bodyLarge?.color ?? Colors.black;
+
+    if (_answered) {
+      if (isCorrect) {
+        cardColor = AppColors.success.withValues(alpha: 0.15);
+        borderColor = AppColors.success;
+        textColor = AppColors.success;
+      } else if (isSelected) {
+        cardColor = AppColors.error.withValues(alpha: 0.15);
+        borderColor = AppColors.error;
+        textColor = AppColors.error;
+      }
+    }
+
+    return InkWell(
+      borderRadius: BorderRadius.circular(18),
+      onTap: () => _submitAnswer(idx),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        decoration: BoxDecoration(
+          color: cardColor,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: borderColor, width: 2),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: borderColor, width: 1.5),
+              ),
+              child: Center(
+                child: Text(
+                  String.fromCharCode(65 + idx),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                optionText,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: textColor,
+                ),
+              ),
+            ),
+            if (_answered && isCorrect)
+              const Icon(Icons.check_circle_rounded, color: AppColors.success)
+            else if (_answered && isSelected)
+              const Icon(Icons.cancel_rounded, color: AppColors.error),
+          ],
         ),
       ),
     );

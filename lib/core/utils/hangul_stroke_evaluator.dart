@@ -44,6 +44,8 @@ class HangulCharacterDefinition {
   final List<Offset> mandatoryCorners;
   final List<Offset> forbiddenCutZones;
   final List<StrokeGuideStep> guideSteps;
+  final Offset expectedStart;
+  final Offset expectedEnd;
   final int maxStrokesAllowed;
   final bool isOpenShape;
 
@@ -54,6 +56,8 @@ class HangulCharacterDefinition {
     required this.mandatoryCorners,
     required this.forbiddenCutZones,
     required this.guideSteps,
+    required this.expectedStart,
+    required this.expectedEnd,
     this.maxStrokesAllowed = 2,
     this.isOpenShape = true,
   });
@@ -65,6 +69,8 @@ class HangulStrokeEvaluator {
       character: 'ㄱ',
       maxStrokesAllowed: 2,
       isOpenShape: true,
+      expectedStart: Offset(0.28, 0.32),
+      expectedEnd: Offset(0.72, 0.72),
       templatePaths: [
         [
           Offset(0.28, 0.32),
@@ -101,6 +107,8 @@ class HangulStrokeEvaluator {
       character: 'ㄴ',
       maxStrokesAllowed: 2,
       isOpenShape: true,
+      expectedStart: Offset(0.30, 0.28),
+      expectedEnd: Offset(0.72, 0.72),
       templatePaths: [
         [
           Offset(0.30, 0.28),
@@ -137,6 +145,8 @@ class HangulStrokeEvaluator {
       character: 'ㄷ',
       maxStrokesAllowed: 3,
       isOpenShape: true,
+      expectedStart: Offset(0.30, 0.30),
+      expectedEnd: Offset(0.70, 0.72),
       templatePaths: [
         [
           Offset(0.30, 0.30),
@@ -184,6 +194,8 @@ class HangulStrokeEvaluator {
       character: 'ㄹ',
       maxStrokesAllowed: 4,
       isOpenShape: true,
+      expectedStart: Offset(0.30, 0.28),
+      expectedEnd: Offset(0.70, 0.72),
       templatePaths: [
         [
           Offset(0.30, 0.28),
@@ -240,6 +252,8 @@ class HangulStrokeEvaluator {
       character: 'ㅏ',
       maxStrokesAllowed: 2,
       isOpenShape: true,
+      expectedStart: Offset(0.48, 0.20),
+      expectedEnd: Offset(0.74, 0.50),
       templatePaths: [
         [
           Offset(0.48, 0.20),
@@ -280,6 +294,8 @@ class HangulStrokeEvaluator {
       character: 'ㅗ',
       maxStrokesAllowed: 2,
       isOpenShape: true,
+      expectedStart: Offset(0.50, 0.24),
+      expectedEnd: Offset(0.76, 0.56),
       templatePaths: [
         [
           Offset(0.50, 0.24),
@@ -324,6 +340,8 @@ class HangulStrokeEvaluator {
           character: char,
           maxStrokesAllowed: 3,
           isOpenShape: true,
+          expectedStart: const Offset(0.35, 0.35),
+          expectedEnd: const Offset(0.65, 0.65),
           templatePaths: [
             [
               const Offset(0.35, 0.35),
@@ -352,7 +370,7 @@ class HangulStrokeEvaluator {
 
   static List<List<Offset>> getTemplatePaths(String char) => getDefinition(char).templatePaths;
 
-  /// Strict handwriting verifier preventing dot-skips, loop exploits, and missing segments
+  /// Strict handwriting verifier preventing coloring/scribbling, dot-skips, loop exploits, and backwards strokes
   static StrokeEvaluationResult evaluate({
     required String character,
     required List<List<Offset>> strokes,
@@ -363,8 +381,7 @@ class HangulStrokeEvaluator {
     // Filter out accidental empty sub-strokes
     final activeStrokes = strokes.where((s) => s.isNotEmpty).toList();
 
-    // 1. Dotted Tap Exploit Check (Screenshot 4)
-    // If the learner lifts their finger repeatedly and leaves many short dots
+    // 1. Dotted Tap Exploit Check
     if (activeStrokes.length > def.maxStrokesAllowed) {
       return StrokeEvaluationResult(
         isAccurate: false,
@@ -390,8 +407,7 @@ class HangulStrokeEvaluator {
         .map((p) => Offset(p.dx / canvasSize.width, p.dy / canvasSize.height))
         .toList();
 
-    // 2. Closed Loop Exploit Check (Screenshot 3)
-    // If character is an open shape (like ㄱ, ㄴ, ㄷ), verify start and end aren't closed into a loop
+    // 2. Closed Loop Exploit Check (Check before endpoints so loops get immediate specific feedback)
     if (def.isOpenShape) {
       for (final stroke in activeStrokes) {
         if (stroke.length >= 8) {
@@ -409,7 +425,124 @@ class HangulStrokeEvaluator {
       }
     }
 
-    // 3. Mandatory Corner Check
+    // 3. Anti-Coloring / Anti-Scribble Path Length Check
+    // Calculate total drawn distance vs ideal stroke length
+    double idealLength = 0.0;
+    for (final seg in def.segments) {
+      idealLength += (seg.end - seg.start).distance;
+    }
+
+    double totalDrawnLength = 0.0;
+    for (final stroke in activeStrokes) {
+      for (int i = 1; i < stroke.length; i++) {
+        final p1 = Offset(stroke[i - 1].dx / canvasSize.width, stroke[i - 1].dy / canvasSize.height);
+        final p2 = Offset(stroke[i].dx / canvasSize.width, stroke[i].dy / canvasSize.height);
+        totalDrawnLength += (p2 - p1).distance;
+      }
+    }
+
+    // If learner colored in or scribbled repeatedly (drawn distance > 1.55x ideal length)
+    if (totalDrawnLength > idealLength * 1.55) {
+      return const StrokeEvaluationResult(
+        isAccurate: false,
+        accuracyScore: 0.35,
+        feedbackMessage:
+            'Don\'t color back-and-forth! Write with one smooth, clean stroke like a pen.',
+      );
+    }
+
+    // 4. Direction Oscillations (Zigzag Comb Detector) & Stationary Scrubbing (Blob Detector)
+    for (final stroke in activeStrokes) {
+      if (stroke.length < 6) continue;
+      final normStroke = stroke
+          .map((p) => Offset(p.dx / canvasSize.width, p.dy / canvasSize.height))
+          .toList();
+
+      // Spatially resample with step 0.02 (approx 6-8px) to eliminate high-frequency digitizer jitter
+      final resampled = <Offset>[normStroke.first];
+      for (final p in normStroke) {
+        if ((p - resampled.last).distance >= 0.02) {
+          resampled.add(p);
+        }
+      }
+      if ((normStroke.last - resampled.last).distance > 0.008) {
+        resampled.add(normStroke.last);
+      }
+
+      if (resampled.length >= 6) {
+        // A. Blob / Stationary scrubbing detector:
+        // If a window of 6 resampled steps (~0.10+ path length) has a net displacement < 0.035
+        for (int i = 0; i <= resampled.length - 6; i++) {
+          final windowStart = resampled[i];
+          final windowEnd = resampled[i + 5];
+          if ((windowStart - windowEnd).distance < 0.035) {
+            return StrokeEvaluationResult(
+              isAccurate: false,
+              accuracyScore: 0.35,
+              feedbackMessage:
+                  'Don\'t scrub or color in one spot! Glide smoothly to write "$character".',
+            );
+          }
+        }
+
+        // B. Reversal counter (Zigzag teeth along horizontal or vertical segments)
+        int xReversals = 0;
+        int yReversals = 0;
+        double? lastDxSign;
+        double? lastDySign;
+
+        for (int i = 1; i < resampled.length; i++) {
+          final d = resampled[i] - resampled[i - 1];
+          if (d.dx.abs() > 0.012) {
+            final s = d.dx.sign;
+            if (lastDxSign != null && s != lastDxSign) {
+              xReversals++;
+            }
+            lastDxSign = s;
+          }
+          if (d.dy.abs() > 0.012) {
+            final s = d.dy.sign;
+            if (lastDySign != null && s != lastDySign) {
+              yReversals++;
+            }
+            lastDySign = s;
+          }
+        }
+
+        if (xReversals > 3 || yReversals > 3) {
+          return const StrokeEvaluationResult(
+            isAccurate: false,
+            accuracyScore: 0.35,
+            feedbackMessage:
+                'Zigzag scribble detected! Glide forward smoothly without scrubbing.',
+          );
+        }
+      }
+    }
+
+    // 5. Stroke Flow & Direction Check (Start & End Points)
+    final firstPoint = normPoints.first;
+    final lastPoint = normPoints.last;
+
+    if ((firstPoint - def.expectedStart).distance > 0.19) {
+      return StrokeEvaluationResult(
+        isAccurate: false,
+        accuracyScore: 0.4,
+        feedbackMessage:
+            'Start writing at guide marker (1) and follow the arrow!',
+      );
+    }
+
+    if ((lastPoint - def.expectedEnd).distance > 0.19) {
+      return StrokeEvaluationResult(
+        isAccurate: false,
+        accuracyScore: 0.4,
+        feedbackMessage:
+            'Follow the stroke all the way to the end of "$character"!',
+      );
+    }
+
+    // 6. Mandatory Corner Check
     const cornerTolerance = 0.11;
     for (final corner in def.mandatoryCorners) {
       bool cornerReached = false;
@@ -430,7 +563,7 @@ class HangulStrokeEvaluator {
       }
     }
 
-    // 4. Forbidden Cut Zone Check (Diagonal Hypotenuse)
+    // 7. Forbidden Cut Zone Check (Diagonal Hypotenuse)
     const cutZoneTolerance = 0.085;
     for (final cutZone in def.forbiddenCutZones) {
       int cutPoints = 0;
@@ -449,8 +582,7 @@ class HangulStrokeEvaluator {
       }
     }
 
-    // 5. Segment-by-Segment Completeness Check (Screenshots 1 & 2)
-    // Every single segment (e.g. horizontal bar AND vertical stem) must have >= 65% continuous coverage!
+    // 8. Segment-by-Segment Completeness Check
     const segmentTolerance = 0.095;
     for (final segment in def.segments) {
       const sampleSteps = 10;
@@ -486,7 +618,7 @@ class HangulStrokeEvaluator {
       }
     }
 
-    // 6. Stray points penalty
+    // 9. Stray points penalty
     final allCheckpoints = def.templatePaths.expand((p) => p).toList();
     const maxStrayDistance = 0.20;
     int strayCount = 0;

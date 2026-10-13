@@ -40,6 +40,7 @@ class QuizQuestionModel {
   final List<String> options;
   final int correctIndex;
   final String explanation;
+  final String? targetCharacter;
 
   const QuizQuestionModel({
     required this.id,
@@ -49,7 +50,24 @@ class QuizQuestionModel {
     required this.options,
     required this.correctIndex,
     required this.explanation,
+    this.targetCharacter,
   });
+
+  /// Resolves the character to trace, checking targetCharacter first,
+  /// then regex matching the prompt for Hangul characters, defaulting to 'ㄱ'.
+  String get effectiveTargetCharacter {
+    if (targetCharacter != null && targetCharacter!.isNotEmpty) {
+      return targetCharacter!;
+    }
+    final match = RegExp(r'[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF]').firstMatch(prompt);
+    if (match != null) {
+      return match.group(0)!;
+    }
+    if (soundToPlay.isNotEmpty && RegExp(r'[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF]').hasMatch(soundToPlay)) {
+      return soundToPlay;
+    }
+    return 'ㄱ';
+  }
 
   factory QuizQuestionModel.fromJson(Map<String, dynamic> json) {
     final rawOptions = json['options'] as List<dynamic>? ?? [];
@@ -61,6 +79,7 @@ class QuizQuestionModel {
       options: rawOptions.map((e) => e.toString()).toList(),
       correctIndex: json['correctIndex'] as int? ?? 0,
       explanation: json['explanation'] as String? ?? '',
+      targetCharacter: json['targetCharacter'] as String?,
     );
   }
 
@@ -72,6 +91,7 @@ class QuizQuestionModel {
         'options': options,
         'correctIndex': correctIndex,
         'explanation': explanation,
+        if (targetCharacter != null) 'targetCharacter': targetCharacter,
       };
 }
 

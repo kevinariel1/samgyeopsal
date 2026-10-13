@@ -95,6 +95,68 @@ void main() {
       expect(res.feedbackMessage, contains('continuous stroke'));
     });
 
+    test('Exploit 5 (New Screenshot): REJECTS zigzag coloring / back-and-forth scribbling', () {
+      // Simulate continuous dense zigzag scrub across the horizontal bar
+      final zigzagStroke = <Offset>[];
+      for (int i = 0; i < 20; i++) {
+        final x = (0.28 + (i / 19.0) * (0.72 - 0.28)) * canvasSize.width;
+        // Oscillating up and down like comb bristles
+        final y = (0.32 + (i % 2 == 0 ? 0.08 : -0.08)) * canvasSize.height;
+        zigzagStroke.add(Offset(x, y));
+        // Backtrack
+        zigzagStroke.add(Offset(x - 5, y));
+      }
+      // Then down to corner
+      for (int i = 0; i < 10; i++) {
+        final y = (0.32 + (i / 9.0) * (0.72 - 0.32)) * canvasSize.height;
+        zigzagStroke.add(Offset(0.72 * canvasSize.width, y));
+      }
+
+      final res = HangulStrokeEvaluator.evaluate(
+        character: 'ㄱ',
+        strokes: [zigzagStroke],
+        canvasSize: canvasSize,
+      );
+
+      expect(res.isAccurate, isFalse);
+      expect(
+        res.feedbackMessage.contains('color') || res.feedbackMessage.contains('Zigzag'),
+        isTrue,
+      );
+    });
+
+    test('Exploit 6 (Screenshot Bottom Blob): REJECTS scribbling/scrubbing a blob in place', () {
+      final strokeWithBlob = <Offset>[];
+      // Normal top bar
+      for (int i = 0; i <= 10; i++) {
+        strokeWithBlob.add(Offset((0.28 + (i / 10.0) * (0.72 - 0.28)) * canvasSize.width, 0.32 * canvasSize.height));
+      }
+      // Normal vertical stem
+      for (int i = 1; i <= 8; i++) {
+        strokeWithBlob.add(Offset(0.72 * canvasSize.width, (0.32 + (i / 8.0) * (0.72 - 0.32)) * canvasSize.height));
+      }
+      // Scrubbing circles/blobs in place at bottom endpoint (0.72, 0.72)
+      for (int i = 0; i < 16; i++) {
+        final bx = (0.72 + 0.015 * (i % 2 == 0 ? 1 : -1)) * canvasSize.width;
+        final by = (0.72 + 0.015 * (i % 4 < 2 ? 1 : -1)) * canvasSize.height;
+        strokeWithBlob.add(Offset(bx, by));
+      }
+
+      final res = HangulStrokeEvaluator.evaluate(
+        character: 'ㄱ',
+        strokes: [strokeWithBlob],
+        canvasSize: canvasSize,
+      );
+
+      expect(res.isAccurate, isFalse);
+      expect(
+        res.feedbackMessage.contains('scrub') ||
+            res.feedbackMessage.contains('color') ||
+            res.feedbackMessage.contains('Zigzag'),
+        isTrue,
+      );
+    });
+
     test('Legitimate Drawing: ACCEPTS fully drawn ㄱ with corner in 1 stroke', () {
       final stroke = <Offset>[];
       // Horizontal part
@@ -108,6 +170,27 @@ void main() {
 
       final res = HangulStrokeEvaluator.evaluate(
         character: 'ㄱ',
+        strokes: [stroke],
+        canvasSize: canvasSize,
+      );
+
+      expect(res.isAccurate, isTrue);
+      expect(res.feedbackMessage, contains('Beautiful'));
+    });
+
+    test('Legitimate Drawing: ACCEPTS fully drawn ㄴ with corner in 1 stroke', () {
+      final stroke = <Offset>[];
+      // Vertical stem
+      for (int i = 0; i <= 10; i++) {
+        stroke.add(Offset(0.30 * canvasSize.width, (0.28 + (i / 10.0) * (0.72 - 0.28)) * canvasSize.height));
+      }
+      // Bottom horizontal bar
+      for (int i = 1; i <= 10; i++) {
+        stroke.add(Offset((0.30 + (i / 10.0) * (0.72 - 0.30)) * canvasSize.width, 0.72 * canvasSize.height));
+      }
+
+      final res = HangulStrokeEvaluator.evaluate(
+        character: 'ㄴ',
         strokes: [stroke],
         canvasSize: canvasSize,
       );

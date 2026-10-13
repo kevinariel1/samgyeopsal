@@ -7,12 +7,14 @@ class HangulTracingWidget extends StatefulWidget {
   final String character;
   final VoidCallback onCompleted;
   final ValueChanged<bool>? onTracingActive;
+  final bool showHeader;
 
   const HangulTracingWidget({
     super.key,
     required this.character,
     required this.onCompleted,
     this.onTracingActive,
+    this.showHeader = true,
   });
 
   @override
@@ -83,28 +85,30 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
 
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Write "${widget.character}" with your finger!',
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+        if (widget.showHeader) ...[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Write "${widget.character}" with your finger!',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  'Follow the stroke guide track below',
-                  style: theme.textTheme.bodyMedium,
-                ),
-              ],
-            ),
-            AudioButton(textToSpeak: widget.character),
-          ],
-        ),
-        const SizedBox(height: 16),
+                  Text(
+                    'Follow the stroke guide track below',
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                ],
+              ),
+              AudioButton(textToSpeak: widget.character),
+            ],
+          ),
+          const SizedBox(height: 16),
+        ],
         LayoutBuilder(
           builder: (context, constraints) {
             final canvasWidth = constraints.maxWidth;
