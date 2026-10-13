@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 class StrokeEvaluationResult {
@@ -25,19 +24,38 @@ class StrokeGuideStep {
   });
 }
 
+/// A line segment defined by start and end points
+class CharacterSegment {
+  final Offset start;
+  final Offset end;
+  final String segmentName;
+
+  const CharacterSegment({
+    required this.start,
+    required this.end,
+    required this.segmentName,
+  });
+}
+
 class HangulCharacterDefinition {
   final String character;
   final List<List<Offset>> templatePaths;
+  final List<CharacterSegment> segments;
   final List<Offset> mandatoryCorners;
   final List<Offset> forbiddenCutZones;
   final List<StrokeGuideStep> guideSteps;
+  final int maxStrokesAllowed;
+  final bool isOpenShape;
 
   const HangulCharacterDefinition({
     required this.character,
     required this.templatePaths,
+    required this.segments,
     required this.mandatoryCorners,
     required this.forbiddenCutZones,
     required this.guideSteps,
+    this.maxStrokesAllowed = 2,
+    this.isOpenShape = true,
   });
 }
 
@@ -45,20 +63,34 @@ class HangulStrokeEvaluator {
   static const Map<String, HangulCharacterDefinition> _definitions = {
     'ㄱ': HangulCharacterDefinition(
       character: 'ㄱ',
+      maxStrokesAllowed: 2,
+      isOpenShape: true,
       templatePaths: [
         [
           Offset(0.28, 0.32),
           Offset(0.50, 0.32),
-          Offset(0.72, 0.32), // Top-right corner
+          Offset(0.72, 0.32),
           Offset(0.72, 0.52),
-          Offset(0.72, 0.72), // Bottom-right end
+          Offset(0.72, 0.72),
         ],
       ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.28, 0.32),
+          end: Offset(0.72, 0.32),
+          segmentName: 'top horizontal bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.72, 0.32),
+          end: Offset(0.72, 0.72),
+          segmentName: 'downward vertical line',
+        ),
+      ],
       mandatoryCorners: [
-        Offset(0.72, 0.32), // Must visit top-right corner!
+        Offset(0.72, 0.32),
       ],
       forbiddenCutZones: [
-        Offset(0.48, 0.52), // Diagonal hypotenuse cutting corner
+        Offset(0.48, 0.52),
       ],
       guideSteps: [
         StrokeGuideStep(number: 1, position: Offset(0.24, 0.24), directionHint: '1 ➔'),
@@ -67,20 +99,34 @@ class HangulStrokeEvaluator {
     ),
     'ㄴ': HangulCharacterDefinition(
       character: 'ㄴ',
+      maxStrokesAllowed: 2,
+      isOpenShape: true,
       templatePaths: [
         [
           Offset(0.30, 0.28),
           Offset(0.30, 0.50),
-          Offset(0.30, 0.72), // Bottom-left corner
+          Offset(0.30, 0.72),
           Offset(0.52, 0.72),
-          Offset(0.72, 0.72), // Bottom-right end
+          Offset(0.72, 0.72),
         ],
       ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.30, 0.28),
+          end: Offset(0.30, 0.72),
+          segmentName: 'downward vertical line',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.72),
+          end: Offset(0.72, 0.72),
+          segmentName: 'bottom horizontal bar',
+        ),
+      ],
       mandatoryCorners: [
-        Offset(0.30, 0.72), // Must visit bottom-left corner!
+        Offset(0.30, 0.72),
       ],
       forbiddenCutZones: [
-        Offset(0.50, 0.50), // Diagonal hypotenuse
+        Offset(0.50, 0.50),
       ],
       guideSteps: [
         StrokeGuideStep(number: 1, position: Offset(0.22, 0.28), directionHint: '1 ↓'),
@@ -89,6 +135,8 @@ class HangulStrokeEvaluator {
     ),
     'ㄷ': HangulCharacterDefinition(
       character: 'ㄷ',
+      maxStrokesAllowed: 3,
+      isOpenShape: true,
       templatePaths: [
         [
           Offset(0.30, 0.30),
@@ -102,6 +150,23 @@ class HangulStrokeEvaluator {
           Offset(0.50, 0.72),
           Offset(0.70, 0.72),
         ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.30, 0.30),
+          end: Offset(0.70, 0.30),
+          segmentName: 'top bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.30),
+          end: Offset(0.30, 0.72),
+          segmentName: 'left vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.72),
+          end: Offset(0.70, 0.72),
+          segmentName: 'bottom bar',
+        ),
       ],
       mandatoryCorners: [
         Offset(0.30, 0.72),
@@ -117,6 +182,8 @@ class HangulStrokeEvaluator {
     ),
     'ㄹ': HangulCharacterDefinition(
       character: 'ㄹ',
+      maxStrokesAllowed: 4,
+      isOpenShape: true,
       templatePaths: [
         [
           Offset(0.30, 0.28),
@@ -126,6 +193,33 @@ class HangulStrokeEvaluator {
           Offset(0.30, 0.72),
           Offset(0.70, 0.72),
         ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.30, 0.28),
+          end: Offset(0.70, 0.28),
+          segmentName: 'top bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.70, 0.28),
+          end: Offset(0.70, 0.49),
+          segmentName: 'upper right drop',
+        ),
+        CharacterSegment(
+          start: Offset(0.70, 0.49),
+          end: Offset(0.30, 0.49),
+          segmentName: 'middle bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.49),
+          end: Offset(0.30, 0.72),
+          segmentName: 'lower left drop',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.72),
+          end: Offset(0.70, 0.72),
+          segmentName: 'bottom bar',
+        ),
       ],
       mandatoryCorners: [
         Offset(0.70, 0.28),
@@ -144,6 +238,8 @@ class HangulStrokeEvaluator {
     ),
     'ㅏ': HangulCharacterDefinition(
       character: 'ㅏ',
+      maxStrokesAllowed: 2,
+      isOpenShape: true,
       templatePaths: [
         [
           Offset(0.48, 0.20),
@@ -154,6 +250,18 @@ class HangulStrokeEvaluator {
           Offset(0.48, 0.50),
           Offset(0.74, 0.50),
         ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.48, 0.20),
+          end: Offset(0.48, 0.80),
+          segmentName: 'vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.48, 0.50),
+          end: Offset(0.74, 0.50),
+          segmentName: 'branch stroke to the right',
+        ),
       ],
       mandatoryCorners: [
         Offset(0.48, 0.50),
@@ -170,6 +278,8 @@ class HangulStrokeEvaluator {
     ),
     'ㅗ': HangulCharacterDefinition(
       character: 'ㅗ',
+      maxStrokesAllowed: 2,
+      isOpenShape: true,
       templatePaths: [
         [
           Offset(0.50, 0.24),
@@ -180,6 +290,18 @@ class HangulStrokeEvaluator {
           Offset(0.50, 0.56),
           Offset(0.76, 0.56),
         ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.50, 0.24),
+          end: Offset(0.50, 0.56),
+          segmentName: 'vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.24, 0.56),
+          end: Offset(0.76, 0.56),
+          segmentName: 'horizontal base',
+        ),
       ],
       mandatoryCorners: [
         Offset(0.50, 0.24),
@@ -200,6 +322,8 @@ class HangulStrokeEvaluator {
     return _definitions[char] ??
         HangulCharacterDefinition(
           character: char,
+          maxStrokesAllowed: 3,
+          isOpenShape: true,
           templatePaths: [
             [
               const Offset(0.35, 0.35),
@@ -209,6 +333,13 @@ class HangulStrokeEvaluator {
               const Offset(0.65, 0.65),
             ],
           ],
+          segments: [
+            const CharacterSegment(
+              start: Offset(0.35, 0.35),
+              end: Offset(0.65, 0.35),
+              segmentName: 'stroke',
+            ),
+          ],
           mandatoryCorners: const [Offset(0.50, 0.50)],
           forbiddenCutZones: const [],
           guideSteps: const [
@@ -217,25 +348,36 @@ class HangulStrokeEvaluator {
         );
   }
 
-  static List<StrokeGuideStep> getGuideSteps(String char) {
-    return getDefinition(char).guideSteps;
-  }
+  static List<StrokeGuideStep> getGuideSteps(String char) => getDefinition(char).guideSteps;
 
-  static List<List<Offset>> getTemplatePaths(String char) {
-    return getDefinition(char).templatePaths;
-  }
+  static List<List<Offset>> getTemplatePaths(String char) => getDefinition(char).templatePaths;
 
-  /// Strict and intelligent evaluator rejecting diagonals and missed corners
+  /// Strict handwriting verifier preventing dot-skips, loop exploits, and missing segments
   static StrokeEvaluationResult evaluate({
     required String character,
     required List<List<Offset>> strokes,
     required Size canvasSize,
   }) {
     final def = getDefinition(character);
-    final allPoints = strokes.expand((s) => s).toList();
 
-    // 1. Min points check
-    if (allPoints.length < 8) {
+    // Filter out accidental empty sub-strokes
+    final activeStrokes = strokes.where((s) => s.isNotEmpty).toList();
+
+    // 1. Dotted Tap Exploit Check (Screenshot 4)
+    // If the learner lifts their finger repeatedly and leaves many short dots
+    if (activeStrokes.length > def.maxStrokesAllowed) {
+      return StrokeEvaluationResult(
+        isAccurate: false,
+        accuracyScore: 0.2,
+        feedbackMessage:
+            'Trace in smooth, continuous stroke(s)! Don\'t lift your finger to tap dots 😊',
+      );
+    }
+
+    final allPoints = activeStrokes.expand((s) => s).toList();
+
+    // Minimum total points check
+    if (allPoints.length < 12) {
       return const StrokeEvaluationResult(
         isAccurate: false,
         accuracyScore: 0.1,
@@ -248,8 +390,27 @@ class HangulStrokeEvaluator {
         .map((p) => Offset(p.dx / canvasSize.width, p.dy / canvasSize.height))
         .toList();
 
-    // 2. Mandatory Corner Check (Rejects diagonals that cut across corners!)
-    const cornerTolerance = 0.125; // ~40px threshold
+    // 2. Closed Loop Exploit Check (Screenshot 3)
+    // If character is an open shape (like ㄱ, ㄴ, ㄷ), verify start and end aren't closed into a loop
+    if (def.isOpenShape) {
+      for (final stroke in activeStrokes) {
+        if (stroke.length >= 8) {
+          final first = Offset(stroke.first.dx / canvasSize.width, stroke.first.dy / canvasSize.height);
+          final last = Offset(stroke.last.dx / canvasSize.width, stroke.last.dy / canvasSize.height);
+          if ((first - last).distance < 0.11) {
+            return StrokeEvaluationResult(
+              isAccurate: false,
+              accuracyScore: 0.3,
+              feedbackMessage:
+                  '"$character" is an open shape, not a closed loop! Don\'t connect the ends.',
+            );
+          }
+        }
+      }
+    }
+
+    // 3. Mandatory Corner Check
+    const cornerTolerance = 0.11;
     for (final corner in def.mandatoryCorners) {
       bool cornerReached = false;
       for (final pt in normPoints) {
@@ -260,32 +421,16 @@ class HangulStrokeEvaluator {
       }
 
       if (!cornerReached) {
-        if (character == 'ㄱ') {
-          return const StrokeEvaluationResult(
-            isAccurate: false,
-            accuracyScore: 0.35,
-            feedbackMessage:
-                'You cut across! Don\'t draw a diagonal — slide across to the top-right corner, then go down!',
-          );
-        } else if (character == 'ㄴ') {
-          return const StrokeEvaluationResult(
-            isAccurate: false,
-            accuracyScore: 0.35,
-            feedbackMessage:
-                'You cut across! Go straight down to the bottom-left corner first, then turn right!',
-          );
-        } else {
-          return StrokeEvaluationResult(
-            isAccurate: false,
-            accuracyScore: 0.35,
-            feedbackMessage:
-                'You missed the corner of "$character"! Follow the arrows to make a crisp turn.',
-          );
-        }
+        return StrokeEvaluationResult(
+          isAccurate: false,
+          accuracyScore: 0.35,
+          feedbackMessage:
+              'You missed the corner of "$character"! Slide across and make a crisp turn.',
+        );
       }
     }
 
-    // 3. Forbidden Cut Zone Check (Detects cutting through hollow center)
+    // 4. Forbidden Cut Zone Check (Diagonal Hypotenuse)
     const cutZoneTolerance = 0.085;
     for (final cutZone in def.forbiddenCutZones) {
       int cutPoints = 0;
@@ -297,48 +442,57 @@ class HangulStrokeEvaluator {
       if (cutPoints >= 3) {
         return StrokeEvaluationResult(
           isAccurate: false,
-          accuracyScore: 0.4,
+          accuracyScore: 0.35,
           feedbackMessage:
-              'Diagonal shortcut detected! Follow the outside right angle to write "$character".',
+              'Diagonal shortcut detected! Follow the outside right angle of "$character".',
         );
       }
     }
 
-    // 4. Path Coverage Check
-    // Sample checkpoints from template paths
-    final allTemplateCheckpoints = def.templatePaths.expand((path) => path).toList();
-    const coverageTolerance = 0.13;
-    int coveredCheckpoints = 0;
+    // 5. Segment-by-Segment Completeness Check (Screenshots 1 & 2)
+    // Every single segment (e.g. horizontal bar AND vertical stem) must have >= 65% continuous coverage!
+    const segmentTolerance = 0.095;
+    for (final segment in def.segments) {
+      const sampleSteps = 10;
+      int coveredSteps = 0;
 
-    for (final cp in allTemplateCheckpoints) {
-      bool covered = false;
-      for (final pt in normPoints) {
-        if ((pt - cp).distance <= coverageTolerance) {
-          covered = true;
-          break;
+      for (int i = 0; i <= sampleSteps; i++) {
+        final t = i / sampleSteps.toDouble();
+        final targetPoint = Offset(
+          segment.start.dx + t * (segment.end.dx - segment.start.dx),
+          segment.start.dy + t * (segment.end.dy - segment.start.dy),
+        );
+
+        bool stepCovered = false;
+        for (final pt in normPoints) {
+          if ((pt - targetPoint).distance <= segmentTolerance) {
+            stepCovered = true;
+            break;
+          }
+        }
+        if (stepCovered) {
+          coveredSteps++;
         }
       }
-      if (covered) {
-        coveredCheckpoints++;
+
+      final segmentCoverage = coveredSteps / (sampleSteps + 1);
+      if (segmentCoverage < 0.65) {
+        return StrokeEvaluationResult(
+          isAccurate: false,
+          accuracyScore: segmentCoverage,
+          feedbackMessage:
+              'Incomplete! You missed the ${segment.segmentName} of "$character". Trace both sides fully!',
+        );
       }
     }
 
-    final coverageRatio = coveredCheckpoints / allTemplateCheckpoints.length;
-    if (coverageRatio < 0.70) {
-      return StrokeEvaluationResult(
-        isAccurate: false,
-        accuracyScore: coverageRatio,
-        feedbackMessage:
-            'Almost! Trace more along the guide outline to complete "$character".',
-      );
-    }
-
-    // 5. Stray points penalty
-    const maxStrayDistance = 0.22;
+    // 6. Stray points penalty
+    final allCheckpoints = def.templatePaths.expand((p) => p).toList();
+    const maxStrayDistance = 0.20;
     int strayCount = 0;
     for (final pt in normPoints) {
       double minDist = double.infinity;
-      for (final cp in allTemplateCheckpoints) {
+      for (final cp in allCheckpoints) {
         final d = (pt - cp).distance;
         if (d < minDist) minDist = d;
       }
@@ -348,21 +502,19 @@ class HangulStrokeEvaluator {
     }
 
     final strayRatio = strayCount / normPoints.length;
-    if (strayRatio > 0.35) {
+    if (strayRatio > 0.30) {
       return StrokeEvaluationResult(
         isAccurate: false,
-        accuracyScore: math.max(0.2, coverageRatio - strayRatio),
+        accuracyScore: 0.4,
         feedbackMessage:
-            'Too many stray lines outside the shape. Follow the faint "$character" outline!',
+            'Too many stray lines outside the stencil. Stay inside the grey track of "$character"!',
       );
     }
 
-    final finalScore = math.min(1.0, coverageRatio * (1.0 - (strayRatio * 0.4)));
-
     return StrokeEvaluationResult(
       isAccurate: true,
-      accuracyScore: finalScore,
-      feedbackMessage: 'Beautiful! You wrote "$character" with a crisp right angle! ✨',
+      accuracyScore: 0.95,
+      feedbackMessage: 'Beautiful! You wrote "$character" with full strokes & clean corners! ✨',
     );
   }
 }
