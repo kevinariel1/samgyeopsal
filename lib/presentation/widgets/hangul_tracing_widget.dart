@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/utils/hangul_stroke_evaluator.dart';
@@ -7,11 +6,13 @@ import 'audio_button.dart';
 class HangulTracingWidget extends StatefulWidget {
   final String character;
   final VoidCallback onCompleted;
+  final ValueChanged<bool>? onTracingActive;
 
   const HangulTracingWidget({
     super.key,
     required this.character,
     required this.onCompleted,
+    this.onTracingActive,
   });
 
   @override
@@ -183,38 +184,34 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
                         ),
                       );
                     }),
-                    // Active drawing canvas with EagerGestureRecognizer to prevent ScrollView hijacking
+                    // Active drawing canvas using Listener to directly capture points without arena drop
                     Positioned.fill(
-                      child: RawGestureDetector(
+                      child: Listener(
                         behavior: HitTestBehavior.opaque,
-                        gestures: {
-                          EagerGestureRecognizer:
-                              GestureRecognizerFactoryWithHandlers<EagerGestureRecognizer>(
-                            () => EagerGestureRecognizer(),
-                            (instance) {},
-                          ),
+                        onPointerDown: (event) {
+                          widget.onTracingActive?.call(true);
+                          setState(() {
+                            _currentStroke = [event.localPosition];
+                            _strokes.add(_currentStroke);
+                            _lastAttemptFailed = false;
+                          });
                         },
-                        child: GestureDetector(
-                          behavior: HitTestBehavior.opaque,
-                          onPanStart: (details) {
-                            setState(() {
-                              _currentStroke = [details.localPosition];
-                              _strokes.add(_currentStroke);
-                              _lastAttemptFailed = false;
-                            });
-                          },
-                          onPanUpdate: (details) {
-                            setState(() {
-                              _currentStroke.add(details.localPosition);
-                            });
-                          },
-                          onPanEnd: (_) {
-                            setState(() {});
-                          },
-                          child: CustomPaint(
-                            size: Size.infinite,
-                            painter: _TracingCanvasPainter(_strokes),
-                          ),
+                        onPointerMove: (event) {
+                          setState(() {
+                            _currentStroke.add(event.localPosition);
+                          });
+                        },
+                        onPointerUp: (event) {
+                          widget.onTracingActive?.call(false);
+                          setState(() {});
+                        },
+                        onPointerCancel: (event) {
+                          widget.onTracingActive?.call(false);
+                          setState(() {});
+                        },
+                        child: CustomPaint(
+                          size: Size.infinite,
+                          painter: _TracingCanvasPainter(_strokes),
                         ),
                       ),
                     ),

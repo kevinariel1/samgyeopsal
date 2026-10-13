@@ -19,6 +19,7 @@ class LessonScreen extends ConsumerStatefulWidget {
 class _LessonScreenState extends ConsumerState<LessonScreen> {
   int _activeCardIndex = 0;
   bool _tracingCompleted = false;
+  bool _isTracingActive = false;
   late String _selectedTracingChar;
 
   @override
@@ -76,6 +77,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
         title: Text(widget.lesson.title),
       ),
       body: SingleChildScrollView(
+        physics: _isTracingActive ? const NeverScrollableScrollPhysics() : null,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -223,6 +225,11 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
               HangulTracingWidget(
                 key: ValueKey(_selectedTracingChar),
                 character: _selectedTracingChar,
+                onTracingActive: (active) {
+                  setState(() {
+                    _isTracingActive = active;
+                  });
+                },
                 onCompleted: () {
                   setState(() {
                     _tracingCompleted = true;
