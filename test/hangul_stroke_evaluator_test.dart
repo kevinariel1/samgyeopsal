@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:learn_korean/core/utils/hangul_stroke_evaluator.dart';
 
 void main() {
-  group('HangulStrokeEvaluator', () {
+  group('HangulStrokeEvaluator Strict Shape & Corner Tests', () {
     const canvasSize = Size(300, 320);
 
     test('Rejects empty or too short strokes', () {
@@ -18,42 +18,119 @@ void main() {
       expect(res.feedbackMessage, contains('too short'));
     });
 
-    test('Rejects completely wrong shape (e.g. circle or diagonal in wrong area)', () {
-      // Drawing in bottom left where ㄱ has nothing
-      final wrongStrokes = [
-        List.generate(
-          15,
-          (i) => Offset(20.0 + i * 5, 250.0 + i * 2), // bottom-left region
-        ),
-      ];
+    test('REJECTS diagonal shortcut on ㄱ (screenshot 1 scenario)', () {
+      // User draws a diagonal cutting directly from (0.28, 0.32) to (0.72, 0.72)
+      final diagonalStroke = List.generate(
+        20,
+        (i) {
+          final t = i / 19.0;
+          final x = (0.28 + t * (0.72 - 0.28)) * canvasSize.width;
+          final y = (0.32 + t * (0.72 - 0.32)) * canvasSize.height;
+          return Offset(x, y);
+        },
+      );
 
       final res = HangulStrokeEvaluator.evaluate(
         character: 'ㄱ',
-        strokes: wrongStrokes,
+        strokes: [diagonalStroke],
         canvasSize: canvasSize,
       );
+
       expect(res.isAccurate, isFalse);
+      expect(res.feedbackMessage, contains('cut across'));
     });
 
-    test('Accepts accurately traced ㄱ (top bar then down)', () {
-      // Checkpoints for ㄱ are top-left to top-right to bottom-right
-      final stroke1 = [
-        const Offset(84, 96),   // near (0.28, 0.30)
-        const Offset(110, 96),
-        const Offset(144, 96),  // (0.48, 0.30)
-        const Offset(170, 96),
-        const Offset(204, 96),  // corner (0.68, 0.30)
-        const Offset(204, 130),
-        const Offset(204, 160), // (0.68, 0.50)
-        const Offset(204, 190),
-        const Offset(204, 224), // (0.68, 0.70)
-      ];
+    test('REJECTS diagonal shortcut on ㄴ (screenshot 2 scenario)', () {
+      // User draws a diagonal cutting directly across ㄴ
+      final diagonalStroke = List.generate(
+        20,
+        (i) {
+          final t = i / 19.0;
+          final x = (0.30 + t * (0.72 - 0.30)) * canvasSize.width;
+          final y = (0.28 + t * (0.72 - 0.28)) * canvasSize.height;
+          return Offset(x, y);
+        },
+      );
+
+      final res = HangulStrokeEvaluator.evaluate(
+        character: 'ㄴ',
+        strokes: [diagonalStroke],
+        canvasSize: canvasSize,
+      );
+
+      expect(res.isAccurate, isFalse);
+      expect(res.feedbackMessage, contains('cut across'));
+    });
+
+    test('ACCEPTS properly traced ㄱ with corner', () {
+      // Top bar from (0.28, 0.32) to corner (0.72, 0.32), then down to (0.72, 0.72)
+      final topBar = List.generate(
+        10,
+        (i) {
+          final t = i / 9.0;
+          return Offset(
+            (0.28 + t * (0.72 - 0.28)) * canvasSize.width,
+            0.32 * canvasSize.height,
+          );
+        },
+      );
+
+      final downStem = List.generate(
+        10,
+        (i) {
+          final t = i / 9.0;
+          return Offset(
+            0.72 * canvasSize.width,
+            (0.32 + t * (0.72 - 0.32)) * canvasSize.height,
+          );
+        },
+      );
+
+      final properG = [...topBar, ...downStem];
 
       final res = HangulStrokeEvaluator.evaluate(
         character: 'ㄱ',
-        strokes: [stroke1],
+        strokes: [properG],
         canvasSize: canvasSize,
       );
+
+      expect(res.isAccurate, isTrue);
+      expect(res.feedbackMessage, contains('Beautiful'));
+      expect(res.accuracyScore, greaterThan(0.7));
+    });
+
+    test('ACCEPTS properly traced ㄴ with corner', () {
+      // Down stem from (0.30, 0.28) to corner (0.30, 0.72), then right to (0.72, 0.72)
+      final downStem = List.generate(
+        10,
+        (i) {
+          final t = i / 9.0;
+          return Offset(
+            0.30 * canvasSize.width,
+            (0.28 + t * (0.72 - 0.28)) * canvasSize.height,
+          );
+        },
+      );
+
+      final rightBar = List.generate(
+        10,
+        (i) {
+          final t = i / 9.0;
+          return Offset(
+            (0.30 + t * (0.72 - 0.30)) * canvasSize.width,
+            0.72 * canvasSize.height,
+          );
+        },
+      );
+
+      final properN = [...downStem, ...rightBar];
+
+      final res = HangulStrokeEvaluator.evaluate(
+        character: 'ㄴ',
+        strokes: [properN],
+        canvasSize: canvasSize,
+      );
+
       expect(res.isAccurate, isTrue);
       expect(res.feedbackMessage, contains('Beautiful'));
       expect(res.accuracyScore, greaterThan(0.7));
