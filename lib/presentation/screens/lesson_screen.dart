@@ -19,6 +19,14 @@ class LessonScreen extends ConsumerStatefulWidget {
 class _LessonScreenState extends ConsumerState<LessonScreen> {
   int _activeCardIndex = 0;
   bool _tracingCompleted = false;
+  late String _selectedTracingChar;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedTracingChar = widget.lesson.tracingTarget ??
+        (widget.lesson.cards.isNotEmpty ? widget.lesson.cards.first.korean : 'ㄱ');
+  }
 
   void _finishLesson() async {
     await ref.read(progressProvider.notifier).completeLesson(widget.lesson.id);
@@ -166,16 +174,55 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
               const SizedBox(height: 32),
             ],
             // Section 3: Tracing & Writing
-            if (widget.lesson.tracingTarget != null) ...[
-              Text(
-                '3. Finger Writing Practice',
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w900,
-                ),
+            if (widget.lesson.tracingTarget != null || widget.lesson.cards.isNotEmpty) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '3. Finger Writing Practice',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  Text(
+                    'Select Letter',
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 10),
+              if (widget.lesson.cards.length > 1)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Wrap(
+                    spacing: 10,
+                    children: widget.lesson.cards.map((card) {
+                      final isSelected = card.korean == _selectedTracingChar;
+                      return ChoiceChip(
+                        label: Text(
+                          '${card.korean} (${card.romanization})',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: isSelected ? AppColors.primary : null,
+                          ),
+                        ),
+                        selected: isSelected,
+                        selectedColor: AppColors.primaryContainer,
+                        onSelected: (val) {
+                          if (val) {
+                            setState(() {
+                              _selectedTracingChar = card.korean;
+                            });
+                          }
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
               HangulTracingWidget(
-                character: widget.lesson.tracingTarget!,
+                key: ValueKey(_selectedTracingChar),
+                character: _selectedTracingChar,
                 onCompleted: () {
                   setState(() {
                     _tracingCompleted = true;
