@@ -1,0 +1,310 @@
+[
+  {
+    "id": "unit_1",
+    "title": "Unit 1: The First 4 Consonants",
+    "subtitle": "Hangul Baby Steps",
+    "description": "Meet the simplest building blocks of Korean: ㄱ, ㄴ, ㄷ, ㄹ.",
+    "order": 1,
+    "unlockRequirement": 0,
+    "lessons": [
+      {
+        "id": "lesson_1_1",
+        "unitId": "unit_1",
+        "title": "Meet ㄱ (Giyeok) & ㄴ (Nieun)",
+        "order": 1,
+        "introduction": "Korean letters look like pictures of sounds! Let's meet your very first two letters.",
+        "cards": [
+          {
+            "id": "card_g",
+            "korean": "ㄱ",
+            "romanization": "g / k",
+            "meaning": "Corner / Gun shape",
+            "sound": "g",
+            "mnemonic": "Looks like an elbow or a corner. Makes a soft 'g' sound as in 'go'.",
+            "exampleWord": "고양이 (Goyang-i - Cat)",
+            "iconName": "pets"
+          },
+          {
+            "id": "card_n",
+            "korean": "ㄴ",
+            "romanization": "n",
+            "meaning": "Nose shape",
+            "sound": "n",
+            "mnemonic": "Looks like the side of a Nose! Makes the 'n' sound as in 'nest'.",
+            "exampleWord": "나비 (Nabi - Butterfly)",
+            "iconName": "flutter_dash"
+          }
+        ],
+        "story": {
+          "title": "Baby Bear's First Letters",
+          "storyPages": [
+            {
+              "text": "Baby Bear found a wooden corner stick shaped like 'ㄱ' in the forest.",
+              "koreanHighlight": "ㄱ",
+              "sound": "g",
+              "icon": "forest"
+            },
+            {
+              "text": "A tiny butterfly landed right on his Nose, which looked like 'ㄴ'!",
+              "koreanHighlight": "ㄴ",
+              "sound": "n",
+              "icon": "face"
+            },
+            {
+              "text": "Now Baby Bear remembers: Corner is 'ㄱ' (g) and Nose is 'ㄴ' (n)!",
+              "koreanHighlight": "ㄱ ㄴ",
+              "sound": "g n",
+              "icon": "favorite"
+            }
+          ]
+        },
+        "tracingTarget": "ㄱ"
+      },
+      {
+        "id": "lesson_1_2",
+        "unitId": "unit_1",
+        "title": "Meet ㄷ (Digeut) & ㄹ (Rieul)",
+        "order": 2,
+        "introduction": "You mastered ㄱ and ㄴ! Now let's meet two friendly steps forward: ㄷ and ㄹ.",
+        "cards": [
+          {
+            "id": "card_d",
+            "korean": "ㄷ",
+            "romanization": "d / t",
+            "meaning": "Door shape",
+            "sound": "d",
+            "mnemonic": "Looks like an open Doorway! Makes the 'd' sound as in 'door'.",
+            "exampleWord": "다람쥐 (Daramjwi - Squirrel)",
+            "iconName": "meeting_room"
+          },
+          {
+            "id": "card_r",
+            "korean": "ㄹ",
+            "romanization": "r / l",
+            "meaning": "Rattlesnake / Road",
+            "sound": "r",
+            "mnemonic": "Curvy like a winding Road or snake! Makes an 'r' / 'l' sound.",
+            "exampleWord": "라디오 (Radio - Radio)",
+            "iconName": "alt_route"
+          }
+        ],
+        "story": {
+          "title": "The Door and the Winding Road",
+          "storyPages": [
+            {
+              "text": "Baby Bear opened the Door 'ㄷ' to start his morning adventure.",
+              "koreanHighlight": "ㄷ",
+              "sound": "d",
+              "icon": "door_front"
+            },
+            {
+              "text": "He walked down the winding Road 'ㄹ' toward the sparkling river.",
+              "koreanHighlight": "ㄹ",
+              "sound": "r",
+              "icon": "hiking"
+            }
+          ]
+        },
+        "tracingTarget": "ㄷ"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_1",
+      "unitId": "unit_1",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "multiple_choice",
+          "prompt": "Which letter looks like a Nose and sounds like 'n'?",
+          "soundToPlay": "n",
+          "options": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
+          "correctIndex": 1,
+          "explanation": "ㄴ represents the tongue touching the roof of mouth, shaped like a Nose ('n')."
+        },
+        {
+          "id": "q2",
+          "type": "listening",
+          "prompt": "Listen to the sound and choose the matching Korean consonant:",
+          "soundToPlay": "g",
+          "options": ["ㄴ", "ㄹ", "ㄱ", "ㄷ"],
+          "correctIndex": 2,
+          "explanation": "You heard 'g' which is ㄱ (Giyeok)!"
+        },
+        {
+          "id": "q3",
+          "type": "multiple_choice",
+          "prompt": "Which letter looks like an open Door ('d')?",
+          "soundToPlay": "d",
+          "options": ["ㄷ", "ㄱ", "ㄴ", "ㄹ"],
+          "correctIndex": 0,
+          "explanation": "ㄷ is shaped like a Door and produces the 'd' sound."
+        },
+        {
+          "id": "q4",
+          "type": "matching",
+          "prompt": "What sound does ㄹ (winding road) make?",
+          "soundToPlay": "r",
+          "options": ["k / g", "m", "r / l", "p"],
+          "correctIndex": 2,
+          "explanation": "ㄹ sounds like a light flap 'r' or 'l'."
+        },
+        {
+          "id": "q5",
+          "type": "tracing",
+          "prompt": "Trace the letter ㄱ with your finger on the screen!",
+          "soundToPlay": "g",
+          "options": ["I traced ㄱ!"],
+          "correctIndex": 0,
+          "explanation": "Super job! ㄱ is a top horizontal stroke followed by a vertical drop."
+        }
+      ]
+    }
+  },
+  {
+    "id": "unit_2",
+    "title": "Unit 2: Basic Vowels (ㅏ, ㅓ, ㅗ, ㅜ)",
+    "subtitle": "Breathing Life with Vowels",
+    "description": "Consonants need vowels to speak! Learn the primary 4 vowel sounds.",
+    "order": 2,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_2_1",
+        "unitId": "unit_2",
+        "title": "Bright Vowels: ㅏ (a) & ㅗ (o)",
+        "order": 1,
+        "introduction": "Vowels are made of the Sky (•), Earth (ㅡ), and Person (ㅣ).",
+        "cards": [
+          {
+            "id": "card_a",
+            "korean": "ㅏ",
+            "romanization": "a",
+            "meaning": "Ah / Outward branch",
+            "sound": "a",
+            "mnemonic": "A person pointing right towards the bright sun: 'Ah!'.",
+            "exampleWord": "아이 (Ai - Child)",
+            "iconName": "wb_sunny"
+          },
+          {
+            "id": "card_o",
+            "korean": "ㅗ",
+            "romanization": "o",
+            "meaning": "Oh / Sun rising over ground",
+            "sound": "o",
+            "mnemonic": "The sun rising above the horizon line: 'Oh! sunrise!'.",
+            "exampleWord": "오이 (Oi - Cucumber)",
+            "iconName": "wb_twilight"
+          }
+        ],
+        "story": {
+          "title": "Sunrise with Baby Bear",
+          "storyPages": [
+            {
+              "text": "The sun pops up above the earth: 'ㅗ' (o)!",
+              "koreanHighlight": "ㅗ",
+              "sound": "o",
+              "icon": "wb_sunny"
+            },
+            {
+              "text": "Baby Bear smiles and shouts: 'ㅏ' (a)!",
+              "koreanHighlight": "ㅏ",
+              "sound": "a",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "ㅏ"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_2",
+      "unitId": "unit_2",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "prompt": "Which vowel sounds like 'ah' in 'father'?",
+          "soundToPlay": "a",
+          "options": ["ㅗ", "ㅏ", "ㅜ", "ㅓ"],
+          "correctIndex": 1,
+          "explanation": "ㅏ produces the open 'ah' sound!"
+        }
+      ]
+    }
+  },
+  {
+    "id": "unit_3",
+    "title": "Unit 3: Syllable Blocks (가, 나, 다, 라)",
+    "subtitle": "Combining Consonant + Vowel",
+    "description": "In Korean, letters snap together into cute syllable boxes like LEGO blocks!",
+    "order": 3,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_3_1",
+        "unitId": "unit_3",
+        "title": "Building Blocks: ㄱ + ㅏ = 가",
+        "order": 1,
+        "introduction": "Watch magic happen: snap consonant 'ㄱ' and vowel 'ㅏ' side-by-side to make '가' (Ga)!",
+        "cards": [
+          {
+            "id": "card_ga",
+            "korean": "가",
+            "romanization": "ga",
+            "meaning": "Go",
+            "sound": "ga",
+            "mnemonic": "ㄱ (g) + ㅏ (a) = 가 (ga). Means 'Go'!",
+            "exampleWord": "가방 (Gabang - Bag)",
+            "iconName": "directions_walk"
+          },
+          {
+            "id": "card_na",
+            "korean": "나",
+            "romanization": "na",
+            "meaning": "I / Me",
+            "sound": "na",
+            "mnemonic": "ㄴ (n) + ㅏ (a) = 나 (na). Means 'I' or 'Me'!",
+            "exampleWord": "나무 (Namu - Tree)",
+            "iconName": "nature"
+          }
+        ],
+        "story": {
+          "title": "Let's Go Together!",
+          "storyPages": [
+            {
+              "text": "Baby Bear packed his bag to go: '가' (Ga)!",
+              "koreanHighlight": "가",
+              "sound": "ga",
+              "icon": "backpack"
+            },
+            {
+              "text": "He pointed happily at himself: '나' (Na - Me)!",
+              "koreanHighlight": "나",
+              "sound": "na",
+              "icon": "person"
+            }
+          ]
+        },
+        "tracingTarget": "가"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_3",
+      "unitId": "unit_3",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "prompt": "What syllable do you get when you combine 'ㄱ' (g) and 'ㅏ' (a)?",
+          "soundToPlay": "ga",
+          "options": ["나", "가", "다", "라"],
+          "correctIndex": 1,
+          "explanation": "ㄱ + ㅏ = 가 (Ga)!"
+        }
+      ]
+    }
+  }
+]
