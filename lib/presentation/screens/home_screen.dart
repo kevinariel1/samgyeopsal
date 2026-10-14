@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/app_colors.dart';
+import '../../core/services/quiz_session_service.dart';
 import '../../data/models/unit_model.dart';
 import '../providers/app_providers.dart';
 import 'lesson_screen.dart';
@@ -134,6 +135,7 @@ class HomeScreen extends ConsumerWidget {
                         final isUnlocked = progress.isUnitUnlocked(unit, units);
                         final quizScore = progress.unitQuizScores[unit.id];
                         final isPassed = progress.isUnitPassed(unit.id);
+                        final lastAttempt = progress.getLastAttempt(unit.id);
 
                         return _UnitCard(
                           unit: unit,
@@ -148,19 +150,43 @@ class HomeScreen extends ConsumerWidget {
                               ),
                             );
                           },
-                          onOpenQuiz: () {
+                          onTakeQuiz: () {
                             if (unit.quiz != null) {
+                              final sessionQuiz = QuizSessionService.generateRetakeSession(
+                                quizBank: unit.quiz!,
+                                previousAttempt: lastAttempt,
+                              );
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) => QuizScreen(
-                                    quiz: unit.quiz!,
+                                    quiz: sessionQuiz,
                                     unitTitle: unit.title,
+                                    mode: QuizMode.take,
                                   ),
                                 ),
                               );
                             }
                           },
+                          onReviewQuiz: lastAttempt != null && unit.quiz != null
+                              ? () {
+                                  final reviewQuiz = QuizSessionService.reconstructReviewSession(
+                                    quizBank: unit.quiz!,
+                                    previousAttempt: lastAttempt,
+                                  );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => QuizScreen(
+                                        quiz: reviewQuiz,
+                                        unitTitle: unit.title,
+                                        mode: QuizMode.review,
+                                        previousAttempt: lastAttempt,
+                                      ),
+                                    ),
+                                  );
+                                }
+                              : null,
                         );
                       },
                     ),
@@ -196,7 +222,8 @@ class _UnitCard extends ConsumerWidget {
   final int? quizScore;
   final bool isPassed;
   final Function(dynamic) onOpenLesson;
-  final VoidCallback onOpenQuiz;
+  final VoidCallback onTakeQuiz;
+  final VoidCallback? onReviewQuiz;
 
   const _UnitCard({
     required this.unit,
@@ -204,7 +231,8 @@ class _UnitCard extends ConsumerWidget {
     required this.quizScore,
     required this.isPassed,
     required this.onOpenLesson,
-    required this.onOpenQuiz,
+    required this.onTakeQuiz,
+    this.onReviewQuiz,
   });
 
   @override
@@ -339,16 +367,42 @@ class _UnitCard extends ConsumerWidget {
               );
             }),
             const SizedBox(height: 10),
-            ElevatedButton.icon(
-              onPressed: onOpenQuiz,
-              icon: const Icon(Icons.assignment_turned_in_rounded),
-              label: Text(
-                isPassed ? 'Review Unit Quiz ($quizScore%)' : 'Take Mastery Quiz (Pass >= 80%)',
+            if (quizScore != null || onReviewQuiz != null) ...[
+              ElevatedButton.icon(
+                onPressed: onTakeQuiz,
+                icon: const Icon(Icons.refresh_rounded),
+                label: Text(
+                  isPassed ? 'Retake Quiz (Fresh Rotation)' : 'Retake Mastery Quiz',
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: isPassed ? AppColors.secondary : AppColors.primary,
+                ),
               ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: isPassed ? AppColors.secondary : AppColors.primary,
+              if (onReviewQuiz != null) ...[
+                const SizedBox(height: 8),
+                OutlinedButton.icon(
+                  onPressed: onReviewQuiz,
+                  icon: const Icon(Icons.history_edu_rounded),
+                  label: Text('Review Previous Quiz ($quizScore%)'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: isPassed ? AppColors.secondary : AppColors.primary,
+                    side: BorderSide(
+                      color: isPassed ? AppColors.secondary : AppColors.primary,
+                      width: 1.5,
+                    ),
+                  ),
+                ),
+              ],
+            ] else ...[
+              ElevatedButton.icon(
+                onPressed: onTakeQuiz,
+                icon: const Icon(Icons.assignment_turned_in_rounded),
+                label: const Text('Take Mastery Quiz (Pass >= 80%)'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                ),
               ),
-            ),
+            ],
           ] else ...[
             Container(
               padding: const EdgeInsets.all(12),

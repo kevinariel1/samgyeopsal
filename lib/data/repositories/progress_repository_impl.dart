@@ -1,5 +1,6 @@
 import '../../core/services/storage_service.dart';
 import '../../domain/repositories/progress_repository.dart';
+import '../models/quiz_attempt_model.dart';
 import '../models/user_progress_model.dart';
 
 class ProgressRepositoryImpl implements ProgressRepository {
@@ -49,6 +50,27 @@ class ProgressRepositoryImpl implements ProgressRepository {
     final bonusXp = scorePercent >= 80 ? earnedXp : (earnedXp / 2).round();
     final updated = current.copyWith(
       unitQuizScores: updatedScores,
+      totalXp: current.totalXp + bonusXp,
+      lastActiveDate: DateTime.now().toIso8601String().substring(0, 10),
+    );
+    await saveProgress(updated);
+  }
+
+  @override
+  Future<void> recordQuizAttempt(QuizAttemptModel attempt, {int earnedXp = 50}) async {
+    final current = await getProgress();
+    final prevScore = current.unitQuizScores[attempt.unitId] ?? 0;
+    final updatedScores = Map<String, int>.from(current.unitQuizScores);
+    if (attempt.scorePercent > prevScore) {
+      updatedScores[attempt.unitId] = attempt.scorePercent;
+    }
+    final updatedAttempts = Map<String, QuizAttemptModel>.from(current.lastQuizAttempts);
+    updatedAttempts[attempt.unitId] = attempt;
+
+    final bonusXp = attempt.scorePercent >= 80 ? earnedXp : (earnedXp / 2).round();
+    final updated = current.copyWith(
+      unitQuizScores: updatedScores,
+      lastQuizAttempts: updatedAttempts,
       totalXp: current.totalXp + bonusXp,
       lastActiveDate: DateTime.now().toIso8601String().substring(0, 10),
     );

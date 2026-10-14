@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/services/audio_service.dart';
 import '../../core/services/storage_service.dart';
+import '../../data/models/quiz_attempt_model.dart';
 import '../../data/models/unit_model.dart';
 import '../../data/models/user_progress_model.dart';
 import '../../data/repositories/curriculum_repository_impl.dart';
@@ -53,6 +54,12 @@ class ProgressNotifier extends AsyncNotifier<UserProgressModel> {
   Future<void> recordQuizResult(String unitId, int scorePercent) async {
     final repo = ref.read(progressRepositoryProvider);
     await repo.recordQuizResult(unitId, scorePercent);
+    state = AsyncValue.data(await repo.getProgress());
+  }
+
+  Future<void> recordQuizAttempt(QuizAttemptModel attempt) async {
+    final repo = ref.read(progressRepositoryProvider);
+    await repo.recordQuizAttempt(attempt);
     state = AsyncValue.data(await repo.getProgress());
   }
 

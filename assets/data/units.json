@@ -158,6 +158,89 @@
           "options": ["Trace ㄱ with your finger to complete!"],
           "correctIndex": 0,
           "explanation": "Super job! ㄱ is a top horizontal stroke followed by a vertical drop."
+        },
+        {
+          "id": "q6",
+          "type": "listening",
+          "prompt": "Listen carefully. Which consonant matches this sound?",
+          "soundToPlay": "d",
+          "options": ["ㄷ", "ㄴ", "ㄱ", "ㄹ"],
+          "correctIndex": 0,
+          "explanation": "You heard the 'd' sound, which is ㄷ (Digeut - Door)!"
+        },
+        {
+          "id": "q7",
+          "type": "listening",
+          "prompt": "Listen to the audio. Which letter corresponds to this sound?",
+          "soundToPlay": "n",
+          "options": ["ㄹ", "ㄴ", "ㄷ", "ㄱ"],
+          "correctIndex": 1,
+          "explanation": "You heard the 'n' sound, which corresponds to ㄴ (Nieun - Nose)!"
+        },
+        {
+          "id": "q8",
+          "type": "multiple_choice",
+          "prompt": "Which consonant is shaped like a corner or gun, representing the back of the tongue?",
+          "soundToPlay": "g",
+          "options": ["ㄴ", "ㄷ", "ㄱ", "ㄹ"],
+          "correctIndex": 2,
+          "explanation": "ㄱ (Giyeok) represents the tongue blocking the throat at a 90-degree corner!"
+        },
+        {
+          "id": "q9",
+          "type": "matching",
+          "prompt": "In the word '고양이' (Goyang-i - Cat), what is the starting consonant sound?",
+          "soundToPlay": "g",
+          "options": ["d", "g / k", "n", "r / l"],
+          "correctIndex": 1,
+          "explanation": "고양이 begins with 'ㄱ', making the soft 'g' sound!"
+        },
+        {
+          "id": "q10",
+          "type": "multiple_choice",
+          "prompt": "Which letter represents a winding road or rattlesnake?",
+          "soundToPlay": "r",
+          "options": ["ㄷ", "ㄹ", "ㄱ", "ㄴ"],
+          "correctIndex": 1,
+          "explanation": "ㄹ (Rieul) has a zig-zag snake or winding road shape!"
+        },
+        {
+          "id": "q11",
+          "type": "matching",
+          "prompt": "Match the word '나비' (Nabi - Butterfly) with its starting letter:",
+          "soundToPlay": "n",
+          "options": ["ㄱ", "ㄷ", "ㄹ", "ㄴ"],
+          "correctIndex": 3,
+          "explanation": "나비 (Butterfly) starts with 'ㄴ' (n)!"
+        },
+        {
+          "id": "q12",
+          "type": "tracing",
+          "prompt": "Trace the letter ㄴ (Nieun) with your finger on the screen!",
+          "soundToPlay": "n",
+          "targetCharacter": "ㄴ",
+          "options": ["Trace ㄴ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Awesome! ㄴ starts from the top vertical stroke and turns right horizontally."
+        },
+        {
+          "id": "q13",
+          "type": "tracing",
+          "prompt": "Trace the letter ㄷ (Digeut) with your finger on the screen!",
+          "soundToPlay": "d",
+          "targetCharacter": "ㄷ",
+          "options": ["Trace ㄷ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Great work! ㄷ is drawn with a top horizontal stroke, then an L-shaped base."
+        },
+        {
+          "id": "q14",
+          "type": "multiple_choice",
+          "prompt": "Which consonant starts the Korean word '다람쥐' (Daramjwi - Squirrel)?",
+          "soundToPlay": "d",
+          "options": ["ㄷ", "ㄹ", "ㄴ", "ㄱ"],
+          "correctIndex": 0,
+          "explanation": "다람쥐 begins with ㄷ (d)!"
         }
       ]
     }
@@ -231,6 +314,89 @@
           "options": ["ㅗ", "ㅏ", "ㅜ", "ㅓ"],
           "correctIndex": 1,
           "explanation": "ㅏ produces the open 'ah' sound!"
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "prompt": "Which vowel represents the sun rising ABOVE the horizon line?",
+          "soundToPlay": "o",
+          "options": ["ㅗ", "ㅜ", "ㅏ", "ㅓ"],
+          "correctIndex": 0,
+          "explanation": "ㅗ represents the bright sun pointing upward above the earth horizon ('o')!"
+        },
+        {
+          "id": "q2_3",
+          "type": "listening",
+          "prompt": "Listen to the vowel sound and choose the correct letter:",
+          "soundToPlay": "o",
+          "options": ["ㅏ", "ㅗ", "ㅓ", "ㅜ"],
+          "correctIndex": 1,
+          "explanation": "You heard 'o' as in 'open' or 'boat', which is ㅗ!"
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "prompt": "Which vowel has a horizontal ground with a vertical line pointing DOWN under the earth?",
+          "soundToPlay": "u",
+          "options": ["ㅗ", "ㅏ", "ㅜ", "ㅡ"],
+          "correctIndex": 2,
+          "explanation": "ㅜ points downward beneath the horizon, making the 'oo' sound as in 'moon'!"
+        },
+        {
+          "id": "q2_5",
+          "type": "listening",
+          "prompt": "Listen carefully. Which vowel matches this sound?",
+          "soundToPlay": "a",
+          "options": ["ㅓ", "ㅏ", "ㅗ", "ㅣ"],
+          "correctIndex": 1,
+          "explanation": "You heard the open 'ah' sound, which is ㅏ!"
+        },
+        {
+          "id": "q2_6",
+          "type": "matching",
+          "prompt": "What sound does the vowel ㅓ make?",
+          "soundToPlay": "eo",
+          "options": ["ah", "eo / uh", "oo", "oh"],
+          "correctIndex": 1,
+          "explanation": "ㅓ has an inward stroke pointing left, sounding like 'eo' or 'uh' as in 'sun'!"
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "prompt": "In Korean vowel philosophy, what does the vertical standing line (ㅣ) represent?",
+          "soundToPlay": "i",
+          "options": ["The Sky (Sun)", "The Earth (Flat ground)", "The Person (Standing human)", "Water"],
+          "correctIndex": 2,
+          "explanation": "In Hangul, • is Sky/Sun, ㅡ is Earth/Ground, and ㅣ is the upright standing Person!"
+        },
+        {
+          "id": "q2_8",
+          "type": "matching",
+          "prompt": "Which vowel starts the Korean word '오이' (Oi - Cucumber)?",
+          "soundToPlay": "o",
+          "options": ["ㅏ", "ㅗ", "ㅜ", "ㅓ"],
+          "correctIndex": 1,
+          "explanation": "오이 starts with ㅗ ('o')!"
+        },
+        {
+          "id": "q2_9",
+          "type": "tracing",
+          "prompt": "Trace the vowel ㅏ (Ah) with your finger on the screen!",
+          "soundToPlay": "a",
+          "targetCharacter": "ㅏ",
+          "options": ["Trace ㅏ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Splendid! Vertical line first from top to bottom, then the middle short stroke to the right."
+        },
+        {
+          "id": "q2_10",
+          "type": "tracing",
+          "prompt": "Trace the vowel ㅗ (Oh) with your finger on the screen!",
+          "soundToPlay": "o",
+          "targetCharacter": "ㅗ",
+          "options": ["Trace ㅗ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Well done! Short top vertical stroke first, then the long horizontal base line."
         }
       ]
     }
@@ -304,6 +470,89 @@
           "options": ["나", "가", "다", "라"],
           "correctIndex": 1,
           "explanation": "ㄱ + ㅏ = 가 (Ga)!"
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "prompt": "What does the syllable '나' (ㄴ + ㅏ) mean in Korean?",
+          "soundToPlay": "na",
+          "options": ["You", "I / Me", "Go", "Tree"],
+          "correctIndex": 1,
+          "explanation": "나 (Na) is the Korean word for 'I' or 'Me'!"
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "prompt": "Which syllable block combines the consonant 'ㄷ' (d) and vowel 'ㅏ' (a)?",
+          "soundToPlay": "da",
+          "options": ["가", "나", "다", "라"],
+          "correctIndex": 2,
+          "explanation": "ㄷ + ㅏ snaps together to form '다' (Da)!"
+        },
+        {
+          "id": "q3_4",
+          "type": "listening",
+          "prompt": "Listen to the syllable sound and choose the matching block:",
+          "soundToPlay": "ga",
+          "options": ["나", "가", "다", "라"],
+          "correctIndex": 1,
+          "explanation": "You heard '가' (Ga)!"
+        },
+        {
+          "id": "q3_5",
+          "type": "listening",
+          "prompt": "Listen to the audio. Which syllable block is being spoken?",
+          "soundToPlay": "na",
+          "options": ["다", "가", "나", "마"],
+          "correctIndex": 2,
+          "explanation": "You heard '나' (Na)!"
+        },
+        {
+          "id": "q3_6",
+          "type": "matching",
+          "prompt": "Combine 'ㄹ' (r/l) and 'ㅏ' (a). Which syllable is formed?",
+          "soundToPlay": "ra",
+          "options": ["바", "사", "라", "자"],
+          "correctIndex": 2,
+          "explanation": "ㄹ + ㅏ combines into '라' (Ra/La)!"
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "prompt": "The word '가방' (bag) begins with which syllable block?",
+          "soundToPlay": "ga",
+          "options": ["나", "가", "다", "라"],
+          "correctIndex": 1,
+          "explanation": "가방 (bag) starts with 가 (ga)!"
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "prompt": "The word '나무' (tree) begins with which syllable block?",
+          "soundToPlay": "na",
+          "options": ["가", "나", "다", "마"],
+          "correctIndex": 1,
+          "explanation": "나무 (tree) starts with 나 (na)!"
+        },
+        {
+          "id": "q3_9",
+          "type": "tracing",
+          "prompt": "Trace the syllable block 가 (Ga) with your finger!",
+          "soundToPlay": "ga",
+          "targetCharacter": "가",
+          "options": ["Trace 가 to complete!"],
+          "correctIndex": 0,
+          "explanation": "Brilliant! You wrote consonant ㄱ on the left, and vowel ㅏ on the right!"
+        },
+        {
+          "id": "q3_10",
+          "type": "tracing",
+          "prompt": "Trace the syllable block 나 (Na) with your finger!",
+          "soundToPlay": "na",
+          "targetCharacter": "나",
+          "options": ["Trace 나 to complete!"],
+          "correctIndex": 0,
+          "explanation": "Outstanding! ㄴ sits on the left and ㅏ stands on the right to form 나!"
         }
       ]
     }

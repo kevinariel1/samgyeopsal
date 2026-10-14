@@ -6,15 +6,23 @@ import 'audio_button.dart';
 class HangulTracingWidget extends StatefulWidget {
   final String character;
   final VoidCallback onCompleted;
+  final VoidCallback? onFailed;
   final ValueChanged<bool>? onTracingActive;
   final bool showHeader;
+  final bool showGuides;
+  final bool showGrid;
+  final bool enabled;
 
   const HangulTracingWidget({
     super.key,
     required this.character,
     required this.onCompleted,
+    this.onFailed,
     this.onTracingActive,
     this.showHeader = true,
+    this.showGuides = true,
+    this.showGrid = true,
+    this.enabled = true,
   });
 
   @override
@@ -47,10 +55,12 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
   }
 
   void _verify(Size canvasSize) {
+    if (!widget.enabled) return;
+
     if (_strokes.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Give it a try! Trace the letter with your finger first 😊'),
+          content: Text('Give it a try! Write the letter with your finger first 😊'),
           backgroundColor: AppColors.primary,
           duration: Duration(seconds: 2),
         ),
@@ -74,6 +84,8 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
         _hasTraced = true;
       });
       widget.onCompleted();
+    } else {
+      widget.onFailed?.call();
     }
   }
 
@@ -99,7 +111,9 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
                     ),
                   ),
                   Text(
-                    'Follow the stroke guide track below',
+                    widget.showGuides
+                        ? 'Follow the stroke guide track below'
+                        : 'Draw the character from memory',
                     style: theme.textTheme.bodyMedium,
                   ),
                 ],
@@ -138,79 +152,87 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
                 borderRadius: BorderRadius.circular(28),
                 child: Stack(
                   children: [
-                    // Grid background crosshairs
-                    CustomPaint(
-                      size: Size.infinite,
-                      painter: _GridGuidePainter(),
-                    ),
-                    // Stencil template track precisely matching the evaluator coordinates
-                    CustomPaint(
-                      size: Size.infinite,
-                      painter: _TemplateGuidePainter(
-                        templatePaths: templatePaths,
-                        isDark: theme.brightness == Brightness.dark,
+                    // Grid background crosshairs (only if showGrid and showGuides)
+                    if (widget.showGrid && widget.showGuides)
+                      CustomPaint(
+                        size: Size.infinite,
+                        painter: _GridGuidePainter(),
                       ),
-                    ),
+                    // Stencil template track & center guide line
+                    if (widget.showGuides)
+                      CustomPaint(
+                        size: Size.infinite,
+                        painter: _TemplateGuidePainter(
+                          templatePaths: templatePaths,
+                          isDark: theme.brightness == Brightness.dark,
+                        ),
+                      ),
                     // Numbered stroke guide arrows overlay
-                    ...guideSteps.map((step) {
-                      final px = step.position.dx * canvasWidth;
-                      final py = step.position.dy * canvasHeight;
-                      return Positioned(
-                        left: px - 18,
-                        top: py - 18,
-                        child: IgnorePointer(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: AppColors.secondary,
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withValues(alpha: 0.12),
-                                  blurRadius: 4,
+                    if (widget.showGuides)
+                      ...guideSteps.map((step) {
+                        final px = step.position.dx * canvasWidth;
+                        final py = step.position.dy * canvasHeight;
+                        return Positioned(
+                          left: px - 18,
+                          top: py - 18,
+                          child: IgnorePointer(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: AppColors.secondary,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha: 0.12),
+                                    blurRadius: 4,
+                                  ),
+                                ],
+                              ),
+                              child: Text(
+                                step.directionHint,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
                                 ),
-                              ],
-                            ),
-                            child: Text(
-                              step.directionHint,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
+                        );
+                      }),
                     // Active drawing canvas using Listener to directly capture points
                     Positioned.fill(
-                      child: Listener(
-                        behavior: HitTestBehavior.opaque,
-                        onPointerDown: (event) {
-                          widget.onTracingActive?.call(true);
-                          setState(() {
-                            _currentStroke = [event.localPosition];
-                            _strokes.add(_currentStroke);
-                            _lastAttemptFailed = false;
-                          });
-                        },
-                        onPointerMove: (event) {
-                          setState(() {
-                            _currentStroke.add(event.localPosition);
-                          });
-                        },
-                        onPointerUp: (event) {
-                          widget.onTracingActive?.call(false);
-                          setState(() {});
-                        },
-                        onPointerCancel: (event) {
-                          widget.onTracingActive?.call(false);
-                          setState(() {});
-                        },
-                        child: CustomPaint(
-                          size: Size.infinite,
-                          painter: _TracingCanvasPainter(_strokes),
+                      child: IgnorePointer(
+                        ignoring: !widget.enabled || _lastAttemptFailed || _hasTraced,
+                        child: Listener(
+                          behavior: HitTestBehavior.opaque,
+                          onPointerDown: (event) {
+                            if (!widget.enabled || _lastAttemptFailed || _hasTraced) return;
+                            widget.onTracingActive?.call(true);
+                            setState(() {
+                              _currentStroke = [event.localPosition];
+                              _strokes.add(_currentStroke);
+                              _lastAttemptFailed = false;
+                            });
+                          },
+                          onPointerMove: (event) {
+                            if (!widget.enabled || _lastAttemptFailed || _hasTraced) return;
+                            setState(() {
+                              _currentStroke.add(event.localPosition);
+                            });
+                          },
+                          onPointerUp: (event) {
+                            widget.onTracingActive?.call(false);
+                            setState(() {});
+                          },
+                          onPointerCancel: (event) {
+                            widget.onTracingActive?.call(false);
+                            setState(() {});
+                          },
+                          child: CustomPaint(
+                            size: Size.infinite,
+                            painter: _TracingCanvasPainter(_strokes),
+                          ),
                         ),
                       ),
                     ),
@@ -290,7 +312,7 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
               children: [
                 Expanded(
                   child: OutlinedButton.icon(
-                    onPressed: _clear,
+                    onPressed: widget.enabled && !_hasTraced && !_lastAttemptFailed ? _clear : null,
                     icon: const Icon(Icons.refresh_rounded),
                     label: const Text('Clear Canvas'),
                     style: OutlinedButton.styleFrom(
@@ -304,7 +326,9 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () => _verify(canvasSize),
+                    onPressed: widget.enabled && !_hasTraced && !_lastAttemptFailed
+                        ? () => _verify(canvasSize)
+                        : null,
                     icon: const Icon(Icons.star_rounded, color: Colors.white),
                     label: const Text('Verify Writing'),
                     style: ElevatedButton.styleFrom(

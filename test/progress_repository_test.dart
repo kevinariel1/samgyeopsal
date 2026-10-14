@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:learn_korean/core/services/storage_service.dart';
+import 'package:learn_korean/data/models/quiz_attempt_model.dart';
 import 'package:learn_korean/data/models/unit_model.dart';
 import 'package:learn_korean/data/models/user_progress_model.dart';
 import 'package:learn_korean/data/repositories/progress_repository_impl.dart';
@@ -120,6 +121,27 @@ void main() {
       await repository.recordQuizResult('unit_1', 90);
       p = await repository.getProgress();
       expect(p.unitQuizScores['unit_1'], equals(90));
+    });
+
+    test('Recording quiz attempt persists attempt details and score', () async {
+      final attempt = QuizAttemptModel(
+        unitId: 'unit_1',
+        quizId: 'quiz_unit_1',
+        scorePercent: 80,
+        completedAt: '2026-10-14T12:00:00Z',
+        questionIds: ['q1', 'q2', 'q3'],
+        selectedOptionIndices: {'q1': 1, 'q2': 2, 'q3': 0},
+      );
+
+      await repository.recordQuizAttempt(attempt);
+      final p = await repository.getProgress();
+
+      expect(p.unitQuizScores['unit_1'], equals(80));
+      expect(p.lastQuizAttempts['unit_1'], isNotNull);
+      final savedAttempt = p.getLastAttempt('unit_1')!;
+      expect(savedAttempt.scorePercent, equals(80));
+      expect(savedAttempt.questionIds, equals(['q1', 'q2', 'q3']));
+      expect(savedAttempt.selectedOptionIndices['q1'], equals(1));
     });
   });
 }

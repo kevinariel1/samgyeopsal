@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/app_colors.dart';
+import '../../data/models/quiz_attempt_model.dart';
 import '../../data/models/quiz_model.dart';
 import '../providers/app_providers.dart';
 import '../widgets/audio_button.dart';
 import '../widgets/hangul_tracing_widget.dart';
 
+enum QuizMode {
+  take,
+  review,
+}
+
 class QuizScreen extends ConsumerStatefulWidget {
   final QuizModel quiz;
   final String unitTitle;
+  final QuizMode mode;
+  final QuizAttemptModel? previousAttempt;
 
   const QuizScreen({
     super.key,
     required this.quiz,
     required this.unitTitle,
+    this.mode = QuizMode.take,
+    this.previousAttempt,
   });
 
   @override
@@ -26,14 +36,36 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   bool _answered = false;
   int _correctAnswers = 0;
   bool _isTracingActive = false;
+  final Map<String, int> _userAnswers = {};
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.mode == QuizMode.review && widget.previousAttempt != null) {
+      _userAnswers.addAll(widget.previousAttempt!.selectedOptionIndices);
+      _loadQuestionForReview(0);
+    }
+  }
+
+  void _loadQuestionForReview(int index) {
+    if (widget.quiz.questions.isEmpty) return;
+    final question = widget.quiz.questions[index];
+    setState(() {
+      _currentIndex = index;
+      _selectedOption = _userAnswers[question.id];
+      _answered = true;
+      _isTracingActive = false;
+    });
+  }
 
   void _submitAnswer(int index) {
-    if (_answered) return;
+    if (_answered || widget.mode == QuizMode.review) return;
     final currentQ = widget.quiz.questions[_currentIndex];
     final isCorrect = index == currentQ.correctIndex;
 
     setState(() {
       _selectedOption = index;
+      _userAnswers[currentQ.id] = index;
       _answered = true;
       if (isCorrect) {
         _correctAnswers++;
@@ -45,14 +77,34 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     }
   }
 
+  void _prevQuestion() {
+    if (_currentIndex > 0) {
+      if (widget.mode == QuizMode.review) {
+        _loadQuestionForReview(_currentIndex - 1);
+      } else {
+        setState(() {
+          _currentIndex--;
+          final q = widget.quiz.questions[_currentIndex];
+          _selectedOption = _userAnswers[q.id];
+          _answered = _selectedOption != null;
+          _isTracingActive = false;
+        });
+      }
+    }
+  }
+
   void _nextQuestion() {
     if (_currentIndex < widget.quiz.questions.length - 1) {
-      setState(() {
-        _currentIndex++;
-        _selectedOption = null;
-        _answered = false;
-        _isTracingActive = false;
-      });
+      if (widget.mode == QuizMode.review) {
+        _loadQuestionForReview(_currentIndex + 1);
+      } else {
+        setState(() {
+          _currentIndex++;
+          _selectedOption = null;
+          _answered = false;
+          _isTracingActive = false;
+        });
+      }
     } else {
       _finishQuiz();
     }
@@ -63,9 +115,22 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     final scorePercent = total == 0 ? 100 : ((_correctAnswers / total) * 100).round();
     final isPassed = scorePercent >= widget.quiz.passingScorePercent;
 
-    await ref
-        .read(progressProvider.notifier)
-        .recordQuizResult(widget.quiz.unitId, scorePercent);
+    if (widget.mode == QuizMode.review) {
+      Navigator.pop(context);
+      return;
+    }
+
+    // Persist attempt and updated progress
+    final attempt = QuizAttemptModel(
+      unitId: widget.quiz.unitId,
+      quizId: widget.quiz.id,
+      scorePercent: scorePercent,
+      completedAt: DateTime.now().toIso8601String(),
+      questionIds: widget.quiz.questions.map((q) => q.id).toList(),
+      selectedOptionIndices: _userAnswers,
+    );
+
+    await ref.read(progressProvider.notifier).recordQuizAttempt(attempt);
 
     if (!mounted) return;
 
@@ -132,14 +197,15 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final question = widget.quiz.questions[_currentIndex];
+    final isReview = widget.mode == QuizMode.review;
     final total = widget.quiz.questions.length;
-    final progress = (_currentIndex + 1) / total;
+    final question = widget.quiz.questions[_currentIndex];
+    final progress = total == 0 ? 1.0 : (_currentIndex + 1) / total;
     final isTracingQuestion = question.type == QuestionType.tracing;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.unitTitle} Quiz'),
+        title: Text(isReview ? '${widget.unitTitle} Review' : '${widget.unitTitle} Quiz'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -148,6 +214,35 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // Review Banner
+              if (isReview) ...[
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                  margin: const EdgeInsets.only(bottom: 14),
+                  decoration: BoxDecoration(
+                    color: AppColors.secondary.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: AppColors.secondary.withValues(alpha: 0.3)),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.history_rounded, color: AppColors.secondary, size: 20),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Previous Attempt Review • Score: ${widget.previousAttempt?.scorePercent ?? 0}%',
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.secondary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+
               // Progress Bar
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
@@ -155,7 +250,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   value: progress,
                   minHeight: 10,
                   backgroundColor: theme.dividerColor.withValues(alpha: 0.2),
-                  valueColor: const AlwaysStoppedAnimation(AppColors.secondary),
+                  valueColor: AlwaysStoppedAnimation(
+                    isReview ? AppColors.primary : AppColors.secondary,
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -165,15 +262,17 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     decoration: BoxDecoration(
-                      color: AppColors.secondaryContainer,
+                      color: isReview
+                          ? AppColors.primaryContainer
+                          : AppColors.secondaryContainer,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       question.type.name.toUpperCase(),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w800,
-                        color: AppColors.secondary,
+                        color: isReview ? AppColors.primary : AppColors.secondary,
                       ),
                     ),
                   ),
@@ -216,19 +315,92 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
               // Tracing Canvas OR Multiple Choice Options
               if (isTracingQuestion) ...[
-                HangulTracingWidget(
-                  key: ValueKey('quiz_tracing_${question.id}_${question.effectiveTargetCharacter}'),
-                  character: question.effectiveTargetCharacter,
-                  showHeader: false,
-                  onTracingActive: (active) {
-                    setState(() {
-                      _isTracingActive = active;
-                    });
-                  },
-                  onCompleted: () {
-                    _submitAnswer(question.correctIndex);
-                  },
-                ),
+                if (isReview) ...[
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: theme.cardTheme.color,
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(
+                        color: (_selectedOption == question.correctIndex
+                                ? AppColors.success
+                                : AppColors.error)
+                            .withValues(alpha: 0.4),
+                        width: 2,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          question.effectiveTargetCharacter,
+                          style: const TextStyle(
+                            fontSize: 72,
+                            fontWeight: FontWeight.w900,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: (_selectedOption == question.correctIndex
+                                    ? AppColors.success
+                                    : AppColors.error)
+                                .withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                _selectedOption == question.correctIndex
+                                    ? Icons.check_circle_rounded
+                                    : Icons.cancel_rounded,
+                                color: _selectedOption == question.correctIndex
+                                    ? AppColors.success
+                                    : AppColors.error,
+                                size: 18,
+                              ),
+                              const SizedBox(width: 6),
+                              Text(
+                                _selectedOption == question.correctIndex
+                                    ? 'Writing Verified in Past Session'
+                                    : 'Writing Inaccurate in Past Session',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: _selectedOption == question.correctIndex
+                                      ? AppColors.success
+                                      : AppColors.error,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ] else ...[
+                  HangulTracingWidget(
+                    key: ValueKey('quiz_tracing_${question.id}_${question.effectiveTargetCharacter}'),
+                    character: question.effectiveTargetCharacter,
+                    showHeader: false,
+                    showGuides: false,
+                    showGrid: false,
+                    enabled: !_answered,
+                    onTracingActive: (active) {
+                      setState(() {
+                        _isTracingActive = active;
+                      });
+                    },
+                    onCompleted: () {
+                      _submitAnswer(question.correctIndex);
+                    },
+                    onFailed: () {
+                      _submitAnswer(-1);
+                    },
+                  ),
+                ],
               ] else ...[
                 for (int idx = 0; idx < question.options.length; idx++) ...[
                   if (idx > 0) const SizedBox(height: 12),
@@ -240,7 +412,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 ],
               ],
 
-              // Feedback and Next Button
+              // Feedback and Navigation Buttons
               if (_answered) ...[
                 const SizedBox(height: 16),
                 Container(
@@ -279,12 +451,42 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                     ],
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: _nextQuestion,
-                  child: Text(
-                    _currentIndex < total - 1 ? 'Next Question' : 'See My Results',
+                if (isReview) ...[
+                  Row(
+                    children: [
+                      if (_currentIndex > 0) ...[
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: _prevQuestion,
+                            icon: const Icon(Icons.arrow_back_rounded),
+                            label: const Text('Previous'),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                      ],
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: _nextQuestion,
+                          icon: Icon(
+                            _currentIndex < total - 1
+                                ? Icons.arrow_forward_rounded
+                                : Icons.done_all_rounded,
+                          ),
+                          label: Text(
+                            _currentIndex < total - 1 ? 'Next Question' : 'Finish Review',
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                ] else ...[
+                  ElevatedButton(
+                    onPressed: _nextQuestion,
+                    child: Text(
+                      _currentIndex < total - 1 ? 'Next Question' : 'See My Results',
+                    ),
+                  ),
+                ],
               ],
             ],
           ),
@@ -301,6 +503,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     final optionText = question.options[idx];
     final isSelected = _selectedOption == idx;
     final isCorrect = idx == question.correctIndex;
+    final isReview = widget.mode == QuizMode.review;
 
     Color cardColor = theme.cardTheme.color ?? Colors.white;
     Color borderColor = AppColors.lightCardBorder;
@@ -320,7 +523,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
     return InkWell(
       borderRadius: BorderRadius.circular(18),
-      onTap: () => _submitAnswer(idx),
+      onTap: isReview ? null : () => _submitAnswer(idx),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         decoration: BoxDecoration(
@@ -358,10 +561,35 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 ),
               ),
             ),
-            if (_answered && isCorrect)
-              const Icon(Icons.check_circle_rounded, color: AppColors.success)
-            else if (_answered && isSelected)
+            if (_answered && isCorrect) ...[
+              if (isReview && isSelected)
+                const Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: Text(
+                    'Your Choice',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.success,
+                    ),
+                  ),
+                ),
+              const Icon(Icons.check_circle_rounded, color: AppColors.success),
+            ] else if (_answered && isSelected) ...[
+              if (isReview)
+                const Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: Text(
+                    'Your Choice',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.error,
+                    ),
+                  ),
+                ),
               const Icon(Icons.cancel_rounded, color: AppColors.error),
+            ],
           ],
         ),
       ),
