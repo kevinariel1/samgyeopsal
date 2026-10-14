@@ -130,7 +130,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       selectedOptionIndices: _userAnswers,
     );
 
-    await ref.read(progressProvider.notifier).recordQuizAttempt(attempt);
+    final awardedXp = await ref.read(progressProvider.notifier).recordQuizAttempt(attempt);
 
     if (!mounted) return;
 
@@ -167,6 +167,25 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: isPassed ? AppColors.success : AppColors.error,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  color: (awardedXp > 0 ? AppColors.secondary : Colors.grey)
+                      .withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  awardedXp > 0
+                      ? '+$awardedXp EXP Earned! ✨'
+                      : '0 EXP (Quiz EXP already claimed)',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: awardedXp > 0 ? AppColors.secondary : Colors.grey,
+                  ),
                 ),
               ),
               const SizedBox(height: 8),

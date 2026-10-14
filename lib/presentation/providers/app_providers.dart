@@ -51,16 +51,18 @@ class ProgressNotifier extends AsyncNotifier<UserProgressModel> {
     state = AsyncValue.data(await repo.getProgress());
   }
 
-  Future<void> recordQuizResult(String unitId, int scorePercent) async {
+  Future<int> recordQuizResult(String unitId, int scorePercent, {int totalQuizXp = 100}) async {
     final repo = ref.read(progressRepositoryProvider);
-    await repo.recordQuizResult(unitId, scorePercent);
+    final awarded = await repo.recordQuizResult(unitId, scorePercent, totalQuizXp: totalQuizXp);
     state = AsyncValue.data(await repo.getProgress());
+    return awarded;
   }
 
-  Future<void> recordQuizAttempt(QuizAttemptModel attempt) async {
+  Future<int> recordQuizAttempt(QuizAttemptModel attempt, {int totalQuizXp = 100}) async {
     final repo = ref.read(progressRepositoryProvider);
-    await repo.recordQuizAttempt(attempt);
+    final awarded = await repo.recordQuizAttempt(attempt, totalQuizXp: totalQuizXp);
     state = AsyncValue.data(await repo.getProgress());
+    return awarded;
   }
 
   Future<void> reset() async {

@@ -5,8 +5,8 @@ abstract class ProgressRepository {
   Future<UserProgressModel> getProgress();
   Future<void> saveProgress(UserProgressModel progress);
   Future<void> markLessonComplete(String lessonId, {int earnedXp = 20});
-  Future<void> recordQuizResult(String unitId, int scorePercent, {int earnedXp = 50});
-  Future<void> recordQuizAttempt(QuizAttemptModel attempt, {int earnedXp = 50});
+  Future<int> recordQuizResult(String unitId, int scorePercent, {int totalQuizXp = 100, int? earnedXp});
+  Future<int> recordQuizAttempt(QuizAttemptModel attempt, {int totalQuizXp = 100, int? earnedXp});
   Future<void> resetProgress();
 }
 

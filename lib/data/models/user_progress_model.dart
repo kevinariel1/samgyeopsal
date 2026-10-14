@@ -6,6 +6,7 @@ class UserProgressModel {
   final Set<String> completedLessonIds;
   final Map<String, int> unitQuizScores; // unitId -> score percentage
   final Map<String, QuizAttemptModel> lastQuizAttempts; // unitId -> last attempt
+  final Map<String, int> quizHighestXp; // quizId or unitId -> highest EXP earned
   final int streakDays;
   final int totalXp;
   final String lastActiveDate;
@@ -14,6 +15,7 @@ class UserProgressModel {
     required this.completedLessonIds,
     required this.unitQuizScores,
     this.lastQuizAttempts = const {},
+    this.quizHighestXp = const {},
     this.streakDays = 1,
     this.totalXp = 0,
     required this.lastActiveDate,
@@ -24,6 +26,7 @@ class UserProgressModel {
       completedLessonIds: {},
       unitQuizScores: {},
       lastQuizAttempts: {},
+      quizHighestXp: {},
       streakDays: 1,
       totalXp: 0,
       lastActiveDate: DateTime.now().toIso8601String().substring(0, 10),
@@ -41,6 +44,10 @@ class UserProgressModel {
 
   QuizAttemptModel? getLastAttempt(String unitId) {
     return lastQuizAttempts[unitId];
+  }
+
+  int getQuizHighestXp(String quizOrUnitId) {
+    return quizHighestXp[quizOrUnitId] ?? 0;
   }
 
   /// Determines if unit is unlocked.
@@ -67,6 +74,7 @@ class UserProgressModel {
     Set<String>? completedLessonIds,
     Map<String, int>? unitQuizScores,
     Map<String, QuizAttemptModel>? lastQuizAttempts,
+    Map<String, int>? quizHighestXp,
     int? streakDays,
     int? totalXp,
     String? lastActiveDate,
@@ -75,6 +83,7 @@ class UserProgressModel {
       completedLessonIds: completedLessonIds ?? this.completedLessonIds,
       unitQuizScores: unitQuizScores ?? this.unitQuizScores,
       lastQuizAttempts: lastQuizAttempts ?? this.lastQuizAttempts,
+      quizHighestXp: quizHighestXp ?? this.quizHighestXp,
       streakDays: streakDays ?? this.streakDays,
       totalXp: totalXp ?? this.totalXp,
       lastActiveDate: lastActiveDate ?? this.lastActiveDate,
@@ -85,6 +94,7 @@ class UserProgressModel {
         'completedLessonIds': completedLessonIds.toList(),
         'unitQuizScores': unitQuizScores,
         'lastQuizAttempts': lastQuizAttempts.map((k, v) => MapEntry(k, v.toMap())),
+        'quizHighestXp': quizHighestXp,
         'streakDays': streakDays,
         'totalXp': totalXp,
         'lastActiveDate': lastActiveDate,
@@ -105,10 +115,14 @@ class UserProgressModel {
       return MapEntry(k, QuizAttemptModel.fromMap(Map<String, dynamic>.from(v as Map)));
     });
 
+    final rawQuizXp = map['quizHighestXp'] as Map<String, dynamic>? ?? {};
+    final quizXp = rawQuizXp.map((k, v) => MapEntry(k, (v as num).toInt()));
+
     return UserProgressModel(
       completedLessonIds: lessons,
       unitQuizScores: scores,
       lastQuizAttempts: attempts,
+      quizHighestXp: quizXp,
       streakDays: (map['streakDays'] as num?)?.toInt() ?? 1,
       totalXp: (map['totalXp'] as num?)?.toInt() ?? 0,
       lastActiveDate: map['lastActiveDate'] as String? ??
