@@ -12,6 +12,7 @@ class HangulTracingWidget extends StatefulWidget {
   final bool showGuides;
   final bool showGrid;
   final bool enabled;
+  final bool? freehandMode;
 
   const HangulTracingWidget({
     super.key,
@@ -23,6 +24,7 @@ class HangulTracingWidget extends StatefulWidget {
     this.showGuides = true,
     this.showGrid = true,
     this.enabled = true,
+    this.freehandMode,
   });
 
   @override
@@ -68,10 +70,12 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
       return;
     }
 
+    final isFreehand = widget.freehandMode ?? !widget.showGuides;
     final evalResult = HangulStrokeEvaluator.evaluate(
       character: widget.character,
       strokes: _strokes,
       canvasSize: canvasSize,
+      freehandMode: isFreehand,
     );
 
     setState(() {

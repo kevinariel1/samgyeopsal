@@ -198,4 +198,88 @@ void main() {
     expect(find.text('Super job! ㄱ is a top horizontal stroke followed by a vertical drop.'), findsOneWidget);
     expect(find.text('See My Results'), findsOneWidget);
   });
+
+  testWidgets('Drawing character correctly freehand in quiz marks as correct answer and advances',
+      (WidgetTester tester) async {
+    const tracingQuiz = QuizModel(
+      id: 'quiz_test_freehand',
+      unitId: 'unit_1',
+      passingScorePercent: 80,
+      questions: [
+        QuizQuestionModel(
+          id: 'q_trace_freehand',
+          type: QuestionType.tracing,
+          prompt: 'Trace the letter ㄱ with your finger on the screen!',
+          soundToPlay: 'g',
+          options: ['Trace ㄱ to finish'],
+          correctIndex: 0,
+          explanation: 'Super job! ㄱ is a top horizontal stroke followed by a vertical drop.',
+          targetCharacter: 'ㄱ',
+        ),
+      ],
+    );
+
+    final mockAudio = MockAudioService();
+    final mockStorage = MemoryStorageService();
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          audioServiceProvider.overrideWithValue(mockAudio),
+          storageServiceProvider.overrideWithValue(mockStorage),
+        ],
+        child: const MaterialApp(
+          home: QuizScreen(
+            quiz: tracingQuiz,
+            unitTitle: 'Unit 1',
+          ),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    final tracingWidget = tester.widget<HangulTracingWidget>(find.byType(HangulTracingWidget));
+    expect(tracingWidget.showGuides, isFalse);
+
+    // Draw a legitimate ㄱ freehand in the canvas
+    final listenerFinder = find.descendant(
+      of: find.byType(HangulTracingWidget),
+      matching: find.byType(Listener),
+    );
+    final topLeft = tester.getTopLeft(listenerFinder.first);
+
+    final canvasSize = tester.getSize(listenerFinder.first);
+
+    // Freehand ㄱ drawn shifted around (0.20, 0.20) to (0.55, 0.55) of canvas:
+    final startX = topLeft.dx + 0.20 * canvasSize.width;
+    final endX = topLeft.dx + 0.55 * canvasSize.width;
+    final startY = topLeft.dy + 0.20 * canvasSize.height;
+    final endY = topLeft.dy + 0.55 * canvasSize.height;
+
+    final gesture = await tester.startGesture(Offset(startX, startY));
+    for (int i = 1; i <= 8; i++) {
+      await gesture.moveTo(Offset(startX + i * (endX - startX) / 8.0, startY));
+    }
+    for (int i = 1; i <= 8; i++) {
+      await gesture.moveTo(Offset(endX, startY + i * (endY - startY) / 8.0));
+    }
+    await gesture.up();
+    await tester.pumpAndSettle();
+
+    // Tap Verify Writing
+    await tester.ensureVisible(find.text('Verify Writing'));
+    await tester.tap(find.text('Verify Writing'));
+    await tester.pumpAndSettle();
+
+    // Should be accepted! Explanation is shown and See My Results is visible
+    await tester.ensureVisible(find.text('See My Results'));
+    expect(find.text('See My Results'), findsOneWidget);
+    await tester.tap(find.text('See My Results'));
+    await tester.pumpAndSettle();
+
+    // Score is 100% since answer was correct!
+    expect(find.textContaining('Your Score: 100%'), findsOneWidget);
+    expect(find.text('Mastery Achieved!'), findsOneWidget);
+  });
 }

@@ -332,6 +332,348 @@ class HangulStrokeEvaluator {
         StrokeGuideStep(number: 2, position: Offset(0.24, 0.64), directionHint: '2 ➔'),
       ],
     ),
+    'ㅓ': HangulCharacterDefinition(
+      character: 'ㅓ',
+      maxStrokesAllowed: 2,
+      isOpenShape: true,
+      expectedStart: Offset(0.26, 0.50),
+      expectedEnd: Offset(0.56, 0.80),
+      templatePaths: [
+        [
+          Offset(0.26, 0.50),
+          Offset(0.56, 0.50),
+        ],
+        [
+          Offset(0.56, 0.20),
+          Offset(0.56, 0.50),
+          Offset(0.56, 0.80),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.26, 0.50),
+          end: Offset(0.56, 0.50),
+          segmentName: 'left branch stroke',
+        ),
+        CharacterSegment(
+          start: Offset(0.56, 0.20),
+          end: Offset(0.56, 0.80),
+          segmentName: 'vertical stem',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.56, 0.50),
+      ],
+      forbiddenCutZones: [
+        Offset(0.40, 0.32),
+        Offset(0.40, 0.68),
+      ],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.26, 0.40), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.56, 0.12), directionHint: '2 ↓'),
+      ],
+    ),
+    'ㅜ': HangulCharacterDefinition(
+      character: 'ㅜ',
+      maxStrokesAllowed: 2,
+      isOpenShape: true,
+      expectedStart: Offset(0.24, 0.38),
+      expectedEnd: Offset(0.50, 0.74),
+      templatePaths: [
+        [
+          Offset(0.24, 0.38),
+          Offset(0.50, 0.38),
+          Offset(0.76, 0.38),
+        ],
+        [
+          Offset(0.50, 0.38),
+          Offset(0.50, 0.74),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.24, 0.38),
+          end: Offset(0.76, 0.38),
+          segmentName: 'horizontal ground bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.50, 0.38),
+          end: Offset(0.50, 0.74),
+          segmentName: 'downward vertical line',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.50, 0.38),
+      ],
+      forbiddenCutZones: [
+        Offset(0.36, 0.56),
+        Offset(0.64, 0.56),
+      ],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.24, 0.28), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.50, 0.82), directionHint: '2 ↓'),
+      ],
+    ),
+    '가': HangulCharacterDefinition(
+      character: '가',
+      maxStrokesAllowed: 4,
+      isOpenShape: true,
+      expectedStart: Offset(0.18, 0.28),
+      expectedEnd: Offset(0.86, 0.50),
+      templatePaths: [
+        [
+          Offset(0.18, 0.28),
+          Offset(0.42, 0.28),
+          Offset(0.42, 0.72),
+        ],
+        [
+          Offset(0.64, 0.18),
+          Offset(0.64, 0.82),
+        ],
+        [
+          Offset(0.64, 0.50),
+          Offset(0.86, 0.50),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.18, 0.28),
+          end: Offset(0.42, 0.28),
+          segmentName: 'consonant top bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.42, 0.28),
+          end: Offset(0.42, 0.72),
+          segmentName: 'consonant drop',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.18),
+          end: Offset(0.64, 0.82),
+          segmentName: 'vowel stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.50),
+          end: Offset(0.86, 0.50),
+          segmentName: 'vowel branch',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.42, 0.28),
+        Offset(0.64, 0.50),
+      ],
+      forbiddenCutZones: [
+        Offset(0.28, 0.50),
+      ],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.18, 0.20), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.42, 0.80), directionHint: '2 ↓'),
+        StrokeGuideStep(number: 3, position: Offset(0.64, 0.10), directionHint: '3 ↓'),
+        StrokeGuideStep(number: 4, position: Offset(0.86, 0.42), directionHint: '4 ➔'),
+      ],
+    ),
+    '나': HangulCharacterDefinition(
+      character: '나',
+      maxStrokesAllowed: 4,
+      isOpenShape: true,
+      expectedStart: Offset(0.20, 0.28),
+      expectedEnd: Offset(0.86, 0.50),
+      templatePaths: [
+        [
+          Offset(0.20, 0.28),
+          Offset(0.20, 0.72),
+          Offset(0.44, 0.72),
+        ],
+        [
+          Offset(0.64, 0.18),
+          Offset(0.64, 0.82),
+        ],
+        [
+          Offset(0.64, 0.50),
+          Offset(0.86, 0.50),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.20, 0.28),
+          end: Offset(0.20, 0.72),
+          segmentName: 'consonant drop',
+        ),
+        CharacterSegment(
+          start: Offset(0.20, 0.72),
+          end: Offset(0.44, 0.72),
+          segmentName: 'consonant bottom bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.18),
+          end: Offset(0.64, 0.82),
+          segmentName: 'vowel stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.50),
+          end: Offset(0.86, 0.50),
+          segmentName: 'vowel branch',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.20, 0.72),
+        Offset(0.64, 0.50),
+      ],
+      forbiddenCutZones: [
+        Offset(0.32, 0.48),
+      ],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.12, 0.28), directionHint: '1 ↓'),
+        StrokeGuideStep(number: 2, position: Offset(0.44, 0.80), directionHint: '2 ➔'),
+        StrokeGuideStep(number: 3, position: Offset(0.64, 0.10), directionHint: '3 ↓'),
+        StrokeGuideStep(number: 4, position: Offset(0.86, 0.42), directionHint: '4 ➔'),
+      ],
+    ),
+    '다': HangulCharacterDefinition(
+      character: '다',
+      maxStrokesAllowed: 5,
+      isOpenShape: true,
+      expectedStart: Offset(0.18, 0.28),
+      expectedEnd: Offset(0.86, 0.50),
+      templatePaths: [
+        [
+          Offset(0.18, 0.28),
+          Offset(0.44, 0.28),
+        ],
+        [
+          Offset(0.18, 0.28),
+          Offset(0.18, 0.72),
+          Offset(0.44, 0.72),
+        ],
+        [
+          Offset(0.64, 0.18),
+          Offset(0.64, 0.82),
+        ],
+        [
+          Offset(0.64, 0.50),
+          Offset(0.86, 0.50),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.18, 0.28),
+          end: Offset(0.44, 0.28),
+          segmentName: 'consonant top bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.18, 0.28),
+          end: Offset(0.18, 0.72),
+          segmentName: 'consonant left stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.18, 0.72),
+          end: Offset(0.44, 0.72),
+          segmentName: 'consonant bottom bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.18),
+          end: Offset(0.64, 0.82),
+          segmentName: 'vowel stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.50),
+          end: Offset(0.86, 0.50),
+          segmentName: 'vowel branch',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.18, 0.72),
+        Offset(0.64, 0.50),
+      ],
+      forbiddenCutZones: [
+        Offset(0.32, 0.48),
+      ],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.18, 0.20), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.10, 0.38), directionHint: '2 ↓'),
+        StrokeGuideStep(number: 3, position: Offset(0.44, 0.80), directionHint: '3 ➔'),
+        StrokeGuideStep(number: 4, position: Offset(0.64, 0.10), directionHint: '4 ↓'),
+        StrokeGuideStep(number: 5, position: Offset(0.86, 0.42), directionHint: '5 ➔'),
+      ],
+    ),
+    '라': HangulCharacterDefinition(
+      character: '라',
+      maxStrokesAllowed: 6,
+      isOpenShape: true,
+      expectedStart: Offset(0.18, 0.26),
+      expectedEnd: Offset(0.86, 0.50),
+      templatePaths: [
+        [
+          Offset(0.18, 0.26),
+          Offset(0.44, 0.26),
+          Offset(0.44, 0.49),
+          Offset(0.18, 0.49),
+          Offset(0.18, 0.72),
+          Offset(0.44, 0.72),
+        ],
+        [
+          Offset(0.64, 0.18),
+          Offset(0.64, 0.82),
+        ],
+        [
+          Offset(0.64, 0.50),
+          Offset(0.86, 0.50),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.18, 0.26),
+          end: Offset(0.44, 0.26),
+          segmentName: 'consonant top bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.44, 0.26),
+          end: Offset(0.44, 0.49),
+          segmentName: 'upper right drop',
+        ),
+        CharacterSegment(
+          start: Offset(0.44, 0.49),
+          end: Offset(0.18, 0.49),
+          segmentName: 'middle bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.18, 0.49),
+          end: Offset(0.18, 0.72),
+          segmentName: 'lower left drop',
+        ),
+        CharacterSegment(
+          start: Offset(0.18, 0.72),
+          end: Offset(0.44, 0.72),
+          segmentName: 'bottom bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.18),
+          end: Offset(0.64, 0.82),
+          segmentName: 'vowel stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.50),
+          end: Offset(0.86, 0.50),
+          segmentName: 'vowel branch',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.44, 0.26),
+        Offset(0.18, 0.49),
+        Offset(0.18, 0.72),
+        Offset(0.64, 0.50),
+      ],
+      forbiddenCutZones: [
+        Offset(0.30, 0.38),
+        Offset(0.30, 0.60),
+      ],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.18, 0.18), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.44, 0.56), directionHint: '2 ⟵'),
+        StrokeGuideStep(number: 3, position: Offset(0.18, 0.80), directionHint: '3 ➔'),
+        StrokeGuideStep(number: 4, position: Offset(0.64, 0.10), directionHint: '4 ↓'),
+        StrokeGuideStep(number: 5, position: Offset(0.86, 0.42), directionHint: '5 ➔'),
+      ],
+    ),
   };
 
   static HangulCharacterDefinition getDefinition(String char) {
@@ -370,11 +712,16 @@ class HangulStrokeEvaluator {
 
   static List<List<Offset>> getTemplatePaths(String char) => getDefinition(char).templatePaths;
 
-  /// Strict handwriting verifier preventing coloring/scribbling, dot-skips, loop exploits, and backwards strokes
+  /// Strict handwriting verifier preventing coloring/scribbling, dot-skips, loop exploits, and backwards strokes.
+  /// When [freehandMode] is true (e.g. during blank quizzes without stencils), coordinates are
+  /// normalized relative to the user's drawn bounding box so that the evaluation is scale and
+  /// translation invariant, while still strictly enforcing character geometry, stroke count,
+  /// stroke direction, corners, and segments.
   static StrokeEvaluationResult evaluate({
     required String character,
     required List<List<Offset>> strokes,
     required Size canvasSize,
+    bool freehandMode = false,
   }) {
     final def = getDefinition(character);
 
@@ -386,8 +733,9 @@ class HangulStrokeEvaluator {
       return StrokeEvaluationResult(
         isAccurate: false,
         accuracyScore: 0.2,
-        feedbackMessage:
-            'Trace in smooth, continuous stroke(s)! Don\'t lift your finger to tap dots 😊',
+        feedbackMessage: freehandMode
+            ? 'Write in smooth, continuous stroke(s)! Don\'t tap dots 😊'
+            : 'Trace in smooth, continuous stroke(s)! Don\'t lift your finger to tap dots 😊',
       );
     }
 
@@ -402,17 +750,86 @@ class HangulStrokeEvaluator {
       );
     }
 
-    // Convert all points to normalized (0.0 to 1.0)
-    final normPoints = allPoints
+    // Convert raw points to normalized canvas space (0.0 to 1.0)
+    final rawNormPoints = allPoints
         .map((p) => Offset(p.dx / canvasSize.width, p.dy / canvasSize.height))
         .toList();
+
+    // Calculate user's drawn bounding box
+    double uMinX = double.infinity, uMaxX = -double.infinity;
+    double uMinY = double.infinity, uMaxY = -double.infinity;
+    for (final p in rawNormPoints) {
+      if (p.dx < uMinX) uMinX = p.dx;
+      if (p.dx > uMaxX) uMaxX = p.dx;
+      if (p.dy < uMinY) uMinY = p.dy;
+      if (p.dy > uMaxY) uMaxY = p.dy;
+    }
+    final uWidth = uMaxX - uMinX;
+    final uHeight = uMaxY - uMinY;
+
+    if (freehandMode && (uWidth < 0.05 && uHeight < 0.05)) {
+      return StrokeEvaluationResult(
+        isAccurate: false,
+        accuracyScore: 0.1,
+        feedbackMessage: 'Your drawing is too small! Write "$character" larger so it is clearly readable 😊',
+      );
+    }
+
+    // Calculate template canonical bounding box
+    final allTemplatePoints = def.templatePaths.expand((p) => p).toList();
+    double tMinX = double.infinity, tMaxX = -double.infinity;
+    double tMinY = double.infinity, tMaxY = -double.infinity;
+    for (final p in allTemplatePoints) {
+      if (p.dx < tMinX) tMinX = p.dx;
+      if (p.dx > tMaxX) tMaxX = p.dx;
+      if (p.dy < tMinY) tMinY = p.dy;
+      if (p.dy > tMaxY) tMaxY = p.dy;
+    }
+    final tWidth = (tMaxX - tMinX).clamp(0.10, 1.0);
+    final tHeight = (tMaxY - tMinY).clamp(0.10, 1.0);
+    final tCenterX = (tMinX + tMaxX) / 2;
+    final tCenterY = (tMinY + tMaxY) / 2;
+    final uCenterX = (uMinX + uMaxX) / 2;
+    final uCenterY = (uMinY + uMaxY) / 2;
+
+    // Translation & scale alignment parameters
+    double scaleX = 1.0;
+    double scaleY = 1.0;
+    if (freehandMode) {
+      final tAspect = tWidth / tHeight;
+      final uAspect = (uWidth > 0.01 && uHeight > 0.01) ? (uWidth / uHeight) : tAspect;
+      // Allow natural human handwriting aspect-ratio deviation (0.45x to 2.2x)
+      final aspectDeviation = (uAspect / tAspect).clamp(0.45, 2.2);
+
+      if (tHeight >= tWidth) {
+        scaleY = (uHeight > 0.02) ? (tHeight / uHeight) : 1.0;
+        scaleX = scaleY * tAspect * aspectDeviation;
+      } else {
+        scaleX = (uWidth > 0.02) ? (tWidth / uWidth) : 1.0;
+        scaleY = (scaleX / tAspect) / aspectDeviation;
+      }
+
+      scaleX = scaleX.clamp(0.3, 5.0);
+      scaleY = scaleY.clamp(0.3, 5.0);
+    }
+
+    Offset alignPoint(Offset p) {
+      if (!freehandMode) return p;
+      return Offset(
+        tCenterX + (p.dx - uCenterX) * scaleX,
+        tCenterY + (p.dy - uCenterY) * scaleY,
+      );
+    }
+
+    // Points normalized and aligned with the canonical template
+    final normPoints = rawNormPoints.map(alignPoint).toList();
 
     // 2. Closed Loop Exploit Check (Check before endpoints so loops get immediate specific feedback)
     if (def.isOpenShape) {
       for (final stroke in activeStrokes) {
         if (stroke.length >= 8) {
-          final first = Offset(stroke.first.dx / canvasSize.width, stroke.first.dy / canvasSize.height);
-          final last = Offset(stroke.last.dx / canvasSize.width, stroke.last.dy / canvasSize.height);
+          final first = alignPoint(Offset(stroke.first.dx / canvasSize.width, stroke.first.dy / canvasSize.height));
+          final last = alignPoint(Offset(stroke.last.dx / canvasSize.width, stroke.last.dy / canvasSize.height));
           if ((first - last).distance < 0.11) {
             return StrokeEvaluationResult(
               isAccurate: false,
@@ -426,7 +843,6 @@ class HangulStrokeEvaluator {
     }
 
     // 3. Anti-Coloring / Anti-Scribble Path Length Check
-    // Calculate total drawn distance vs ideal stroke length
     double idealLength = 0.0;
     for (final seg in def.segments) {
       idealLength += (seg.end - seg.start).distance;
@@ -435,19 +851,19 @@ class HangulStrokeEvaluator {
     double totalDrawnLength = 0.0;
     for (final stroke in activeStrokes) {
       for (int i = 1; i < stroke.length; i++) {
-        final p1 = Offset(stroke[i - 1].dx / canvasSize.width, stroke[i - 1].dy / canvasSize.height);
-        final p2 = Offset(stroke[i].dx / canvasSize.width, stroke[i].dy / canvasSize.height);
+        final p1 = alignPoint(Offset(stroke[i - 1].dx / canvasSize.width, stroke[i - 1].dy / canvasSize.height));
+        final p2 = alignPoint(Offset(stroke[i].dx / canvasSize.width, stroke[i].dy / canvasSize.height));
         totalDrawnLength += (p2 - p1).distance;
       }
     }
 
-    // If learner colored in or scribbled repeatedly (drawn distance > 1.55x ideal length)
-    if (totalDrawnLength > idealLength * 1.55) {
+    final maxAllowedLengthMultiplier = freehandMode ? 1.95 : 1.55;
+    if (totalDrawnLength > idealLength * maxAllowedLengthMultiplier) {
       return const StrokeEvaluationResult(
         isAccurate: false,
         accuracyScore: 0.35,
         feedbackMessage:
-            'Don\'t color back-and-forth! Write with one smooth, clean stroke like a pen.',
+            'Don\'t color back-and-forth! Write with smooth, clean strokes like a pen.',
       );
     }
 
@@ -455,7 +871,7 @@ class HangulStrokeEvaluator {
     for (final stroke in activeStrokes) {
       if (stroke.length < 6) continue;
       final normStroke = stroke
-          .map((p) => Offset(p.dx / canvasSize.width, p.dy / canvasSize.height))
+          .map((p) => alignPoint(Offset(p.dx / canvasSize.width, p.dy / canvasSize.height)))
           .toList();
 
       // Spatially resample with step 0.02 (approx 6-8px) to eliminate high-frequency digitizer jitter
@@ -471,7 +887,6 @@ class HangulStrokeEvaluator {
 
       if (resampled.length >= 6) {
         // A. Blob / Stationary scrubbing detector:
-        // If a window of 6 resampled steps (~0.10+ path length) has a net displacement < 0.035
         for (int i = 0; i <= resampled.length - 6; i++) {
           final windowStart = resampled[i];
           final windowEnd = resampled[i + 5];
@@ -485,7 +900,7 @@ class HangulStrokeEvaluator {
           }
         }
 
-        // B. Reversal counter (Zigzag teeth along horizontal or vertical segments)
+        // B. Reversal counter (Zigzag teeth)
         int xReversals = 0;
         int yReversals = 0;
         double? lastDxSign;
@@ -509,7 +924,8 @@ class HangulStrokeEvaluator {
           }
         }
 
-        if (xReversals > 3 || yReversals > 3) {
+        final maxReversals = freehandMode ? 4 : 3;
+        if (xReversals > maxReversals || yReversals > maxReversals) {
           return const StrokeEvaluationResult(
             isAccurate: false,
             accuracyScore: 0.35,
@@ -524,26 +940,60 @@ class HangulStrokeEvaluator {
     final firstPoint = normPoints.first;
     final lastPoint = normPoints.last;
 
-    if ((firstPoint - def.expectedStart).distance > 0.19) {
+    final startEndTolerance = freehandMode ? 0.32 : 0.19;
+
+    final validStarts = [def.expectedStart];
+    if (freehandMode) {
+      for (final p in def.templatePaths) {
+        if (p.isNotEmpty) validStarts.add(p.first);
+      }
+    }
+
+    bool startValid = false;
+    for (final start in validStarts) {
+      if ((firstPoint - start).distance <= startEndTolerance) {
+        startValid = true;
+        break;
+      }
+    }
+
+    if (!startValid) {
       return StrokeEvaluationResult(
         isAccurate: false,
         accuracyScore: 0.4,
-        feedbackMessage:
-            'Start writing at guide marker (1) and follow the arrow!',
+        feedbackMessage: freehandMode
+            ? 'Start writing "$character" from the correct starting position!'
+            : 'Start writing at guide marker (1) and follow the arrow!',
       );
     }
 
-    if ((lastPoint - def.expectedEnd).distance > 0.19) {
+    final validEnds = [def.expectedEnd];
+    if (freehandMode) {
+      for (final p in def.templatePaths) {
+        if (p.isNotEmpty) validEnds.add(p.last);
+      }
+    }
+
+    bool endValid = false;
+    for (final end in validEnds) {
+      if ((lastPoint - end).distance <= startEndTolerance) {
+        endValid = true;
+        break;
+      }
+    }
+
+    if (!endValid) {
       return StrokeEvaluationResult(
         isAccurate: false,
         accuracyScore: 0.4,
-        feedbackMessage:
-            'Follow the stroke all the way to the end of "$character"!',
+        feedbackMessage: freehandMode
+            ? 'Follow the stroke all the way to the end of "$character"!'
+            : 'Follow the stroke all the way to the end of "$character"!',
       );
     }
 
     // 6. Mandatory Corner Check
-    const cornerTolerance = 0.11;
+    final cornerTolerance = freehandMode ? 0.22 : 0.11;
     for (final corner in def.mandatoryCorners) {
       bool cornerReached = false;
       for (final pt in normPoints) {
@@ -564,7 +1014,8 @@ class HangulStrokeEvaluator {
     }
 
     // 7. Forbidden Cut Zone Check (Diagonal Hypotenuse)
-    const cutZoneTolerance = 0.085;
+    final cutZoneTolerance = freehandMode ? 0.080 : 0.085;
+    final maxCutPoints = freehandMode ? 4 : 3;
     for (final cutZone in def.forbiddenCutZones) {
       int cutPoints = 0;
       for (final pt in normPoints) {
@@ -572,7 +1023,7 @@ class HangulStrokeEvaluator {
           cutPoints++;
         }
       }
-      if (cutPoints >= 3) {
+      if (cutPoints >= maxCutPoints) {
         return StrokeEvaluationResult(
           isAccurate: false,
           accuracyScore: 0.35,
@@ -583,7 +1034,8 @@ class HangulStrokeEvaluator {
     }
 
     // 8. Segment-by-Segment Completeness Check
-    const segmentTolerance = 0.095;
+    final segmentTolerance = freehandMode ? 0.18 : 0.095;
+    final minCoverage = freehandMode ? 0.50 : 0.65;
     for (final segment in def.segments) {
       const sampleSteps = 10;
       int coveredSteps = 0;
@@ -608,19 +1060,21 @@ class HangulStrokeEvaluator {
       }
 
       final segmentCoverage = coveredSteps / (sampleSteps + 1);
-      if (segmentCoverage < 0.65) {
+      if (segmentCoverage < minCoverage) {
         return StrokeEvaluationResult(
           isAccurate: false,
           accuracyScore: segmentCoverage,
-          feedbackMessage:
-              'Incomplete! You missed the ${segment.segmentName} of "$character". Trace both sides fully!',
+          feedbackMessage: freehandMode
+              ? 'Incomplete! Make sure to write the full shape of "$character".'
+              : 'Incomplete! You missed the ${segment.segmentName} of "$character". Trace both sides fully!',
         );
       }
     }
 
     // 9. Stray points penalty
     final allCheckpoints = def.templatePaths.expand((p) => p).toList();
-    const maxStrayDistance = 0.20;
+    final maxStrayDistance = freehandMode ? 0.30 : 0.20;
+    final maxStrayRatio = freehandMode ? 0.38 : 0.30;
     int strayCount = 0;
     for (final pt in normPoints) {
       double minDist = double.infinity;
@@ -634,12 +1088,13 @@ class HangulStrokeEvaluator {
     }
 
     final strayRatio = strayCount / normPoints.length;
-    if (strayRatio > 0.30) {
+    if (strayRatio > maxStrayRatio) {
       return StrokeEvaluationResult(
         isAccurate: false,
         accuracyScore: 0.4,
-        feedbackMessage:
-            'Too many stray lines outside the stencil. Stay inside the grey track of "$character"!',
+        feedbackMessage: freehandMode
+            ? 'Too many extra or stray marks. Draw cleanly when writing "$character"!'
+            : 'Too many stray lines outside the stencil. Stay inside the grey track of "$character"!',
       );
     }
 

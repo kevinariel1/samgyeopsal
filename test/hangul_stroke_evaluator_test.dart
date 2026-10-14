@@ -198,5 +198,108 @@ void main() {
       expect(res.isAccurate, isTrue);
       expect(res.feedbackMessage, contains('Beautiful'));
     });
+
+    group('Freehand Mode (Blank Quiz Canvas - Scale & Translation Invariant)', () {
+      test('ACCEPTS legitimate ㄱ drawn shifted and scaled down in freehandMode', () {
+        // User draws ㄱ in top-left region (0.10 to 0.35), smaller than template
+        final stroke = <Offset>[];
+        // Horizontal bar from (0.10, 0.15) to (0.35, 0.15)
+        for (int i = 0; i <= 10; i++) {
+          stroke.add(Offset((0.10 + (i / 10.0) * 0.25) * canvasSize.width, 0.15 * canvasSize.height));
+        }
+        // Vertical stem from (0.35, 0.15) to (0.35, 0.40)
+        for (int i = 1; i <= 10; i++) {
+          stroke.add(Offset(0.35 * canvasSize.width, (0.15 + (i / 10.0) * 0.25) * canvasSize.height));
+        }
+
+        // In strict mode (with stencil guides), this would fail because it's in the top-left
+        final strictRes = HangulStrokeEvaluator.evaluate(
+          character: 'ㄱ',
+          strokes: [stroke],
+          canvasSize: canvasSize,
+          freehandMode: false,
+        );
+        expect(strictRes.isAccurate, isFalse, reason: 'Strict mode requires following stencil');
+
+        // In freehand mode (quiz without guides), this must PASS!
+        final freehandRes = HangulStrokeEvaluator.evaluate(
+          character: 'ㄱ',
+          strokes: [stroke],
+          canvasSize: canvasSize,
+          freehandMode: true,
+        );
+        expect(freehandRes.isAccurate, isTrue, reason: 'Freehand mode should normalize and accept correct shape');
+        expect(freehandRes.feedbackMessage, contains('Beautiful'));
+      });
+
+      test('ACCEPTS legitimate 가 drawn centered in freehandMode', () {
+        // Consonant ㄱ: (0.25, 0.30) -> (0.45, 0.30) -> (0.45, 0.65)
+        final stroke1 = <Offset>[];
+        for (int i = 0; i <= 8; i++) {
+          stroke1.add(Offset((0.25 + (i / 8.0) * 0.20) * canvasSize.width, 0.30 * canvasSize.height));
+        }
+        for (int i = 1; i <= 8; i++) {
+          stroke1.add(Offset(0.45 * canvasSize.width, (0.30 + (i / 8.0) * 0.35) * canvasSize.height));
+        }
+
+        // Vowel vertical stem: (0.60, 0.25) -> (0.60, 0.75)
+        final stroke2 = <Offset>[];
+        for (int i = 0; i <= 10; i++) {
+          stroke2.add(Offset(0.60 * canvasSize.width, (0.25 + (i / 10.0) * 0.50) * canvasSize.height));
+        }
+
+        // Vowel branch: (0.60, 0.50) -> (0.75, 0.50)
+        final stroke3 = <Offset>[];
+        for (int i = 0; i <= 6; i++) {
+          stroke3.add(Offset((0.60 + (i / 6.0) * 0.15) * canvasSize.width, 0.50 * canvasSize.height));
+        }
+
+        final res = HangulStrokeEvaluator.evaluate(
+          character: '가',
+          strokes: [stroke1, stroke2, stroke3],
+          canvasSize: canvasSize,
+          freehandMode: true,
+        );
+        expect(res.isAccurate, isTrue);
+      });
+
+      test('REJECTS wrong character ㄴ when ㄱ is expected even in freehandMode', () {
+        // User draws ㄴ instead of ㄱ
+        final stroke = <Offset>[];
+        for (int i = 0; i <= 10; i++) {
+          stroke.add(Offset(0.20 * canvasSize.width, (0.20 + (i / 10.0) * 0.30) * canvasSize.height));
+        }
+        for (int i = 1; i <= 10; i++) {
+          stroke.add(Offset((0.20 + (i / 10.0) * 0.30) * canvasSize.width, 0.50 * canvasSize.height));
+        }
+
+        final res = HangulStrokeEvaluator.evaluate(
+          character: 'ㄱ',
+          strokes: [stroke],
+          canvasSize: canvasSize,
+          freehandMode: true,
+        );
+        expect(res.isAccurate, isFalse);
+      });
+
+      test('REJECTS diagonal shortcut in freehandMode', () {
+        // Stroke directly cutting hypotenuse across corner
+        final stroke = <Offset>[];
+        for (int i = 0; i <= 15; i++) {
+          stroke.add(Offset(
+            (0.20 + (i / 15.0) * 0.35) * canvasSize.width,
+            (0.20 + (i / 15.0) * 0.35) * canvasSize.height,
+          ));
+        }
+
+        final res = HangulStrokeEvaluator.evaluate(
+          character: 'ㄱ',
+          strokes: [stroke],
+          canvasSize: canvasSize,
+          freehandMode: true,
+        );
+        expect(res.isAccurate, isFalse);
+      });
+    });
   });
 }

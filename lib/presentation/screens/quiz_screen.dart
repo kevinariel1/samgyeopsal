@@ -141,15 +141,16 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       backgroundColor: Colors.transparent,
       builder: (ctx) {
         final theme = Theme.of(ctx);
-        return Container(
-          padding: const EdgeInsets.all(28),
-          decoration: BoxDecoration(
-            color: theme.cardTheme.color,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
+        return SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(28),
+            decoration: BoxDecoration(
+              color: theme.cardTheme.color,
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
               Text(
                 isPassed ? '🏆' : '🌱',
                 style: const TextStyle(fontSize: 64),
@@ -189,9 +190,10 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               ),
             ],
           ),
-        );
-      },
-    );
+        ),
+      );
+    },
+  );
   }
 
   @override
