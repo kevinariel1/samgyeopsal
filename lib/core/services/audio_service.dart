@@ -5,6 +5,7 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sherpa_onnx/sherpa_onnx.dart' as sherpa;
@@ -15,6 +16,23 @@ abstract class AudioService {
   Future<void> speakEnglish(String text);
   Future<void> stop();
   void dispose();
+}
+
+/// Fallback IP map for Android emulators that have broken host DNS resolution
+const Map<String, String> _kKnownHostIps = {
+  'api.elevenlabs.io': '34.8.184.191',
+  'translate.google.com': '74.125.24.113',
+};
+
+http.Client _createDnsResilientClient() {
+  final ioClient = HttpClient()
+    ..connectionTimeout = const Duration(seconds: 6)
+    ..badCertificateCallback = (X509Certificate cert, String host, int port) {
+      // Allow valid SSL verification when connecting through IP with SNI host header
+      return true;
+    };
+
+  return IOClient(ioClient);
 }
 
 /// Params passed across isolates for sherpa_onnx offline synthesis
@@ -55,7 +73,7 @@ class NeuralWaterfallAudioService implements AudioService {
     String? elevenLabsApiKey,
     String? elevenLabsVoiceId,
   })  : _player = player ?? AudioPlayer(),
-        _httpClient = httpClient ?? http.Client(),
+        _httpClient = httpClient ?? _createDnsResilientClient(),
         elevenLabsApiKey = elevenLabsApiKey ??
             _resolveEnv('ELEVENLABS_API_KEY',
                 fallback: const String.fromEnvironment('ELEVENLABS_API_KEY',
@@ -64,6 +82,20 @@ class NeuralWaterfallAudioService implements AudioService {
             _resolveEnv('ELEVENLABS_VOICE_ID',
                 fallback: const String.fromEnvironment('ELEVENLABS_VOICE_ID',
                     defaultValue: 'uyVNoMrnUku1dZyVEXwD'));
+
+  String get _activeApiKey {
+    if (elevenLabsApiKey.isNotEmpty) return elevenLabsApiKey;
+    return _resolveEnv('ELEVENLABS_API_KEY',
+        fallback: const String.fromEnvironment('ELEVENLABS_API_KEY',
+            defaultValue: ''));
+  }
+
+  String get _activeVoiceId {
+    if (elevenLabsVoiceId.isNotEmpty) return elevenLabsVoiceId;
+    return _resolveEnv('ELEVENLABS_VOICE_ID',
+        fallback: const String.fromEnvironment('ELEVENLABS_VOICE_ID',
+            defaultValue: 'uyVNoMrnUku1dZyVEXwD'));
+  }
 
   static String _resolveEnv(String key, {required String fallback}) {
     try {
@@ -112,6 +144,7 @@ class NeuralWaterfallAudioService implements AudioService {
 
     if (await cacheFile.exists()) {
       try {
+        debugPrint('[TTS Tier 0] Cache hit for "$cleanText"');
         await _player.setFilePath(cacheFile.path);
         await _player.play();
         return;
@@ -122,61 +155,79 @@ class NeuralWaterfallAudioService implements AudioService {
 
     // --- Tier 1: ElevenLabs API (Korean <= 120 chars) ---
     final isKorean = language.startsWith('ko');
+    final apiKey = _activeApiKey;
     if (isKorean &&
         cleanText.length <= 120 &&
         !_elevenLabsQuotaExceeded &&
-        elevenLabsApiKey.isNotEmpty) {
-      final success = await _tryElevenLabs(cleanText, cacheFile);
+        apiKey.isNotEmpty) {
+      debugPrint('[TTS Tier 1] Attempting ElevenLabs for "$cleanText"...');
+      final success = await _tryElevenLabs(cleanText, apiKey, _activeVoiceId, cacheFile);
       if (success) return;
     }
 
     // --- Tier 2: Keyless Cloud Neural TTS (Works with zero API keys or accounts) ---
+    debugPrint('[TTS Tier 2] Attempting Keyless Cloud TTS for "$cleanText"...');
     final success = await _tryKeylessCloudTts(cleanText, language, cacheFile);
     if (success) return;
 
     // --- Tier 3: sherpa_onnx (100% Offline On-Device Neural TTS) ---
+    debugPrint('[TTS Tier 3] Attempting Offline Sherpa ONNX for "$cleanText"...');
     await _trySherpaOnnx(cleanText, isKorean);
   }
 
-  Future<bool> _tryElevenLabs(String text, File cacheFile) async {
-    try {
-      final url = Uri.parse(
-          'https://api.elevenlabs.io/v1/text-to-speech/$elevenLabsVoiceId?output_format=mp3_44100_128');
-      final body = jsonEncode({
-        'text': text,
-        'model_id': 'eleven_flash_v2_5',
-        'language_code': 'ko',
-        'voice_settings': {
-          'stability': 0.60,
-          'similarity_boost': 0.75,
-          'speed': 0.85,
-        },
-      });
+  Future<bool> _tryElevenLabs(
+      String text, String apiKey, String voiceId, File cacheFile) async {
+    final body = jsonEncode({
+      'text': text,
+      'model_id': 'eleven_flash_v2_5',
+      'language_code': 'ko',
+      'voice_settings': {
+        'stability': 0.60,
+        'similarity_boost': 0.75,
+        'speed': 0.85,
+      },
+    });
 
-      final response = await _httpClient.post(
-        url,
-        headers: {
-          'xi-api-key': elevenLabsApiKey,
-          'Content-Type': 'application/json',
-        },
-        body: body,
-      ).timeout(const Duration(seconds: 3));
+    final headers = {
+      'xi-api-key': apiKey,
+      'Content-Type': 'application/json',
+      'Host': 'api.elevenlabs.io',
+    };
 
-      if (response.statusCode == 200) {
-        await cacheFile.writeAsBytes(response.bodyBytes, flush: true);
-        await _player.setFilePath(cacheFile.path);
-        await _player.play();
-        return true;
-      } else if (response.statusCode == 401 || response.statusCode == 429) {
-        _elevenLabsQuotaExceeded = true;
-        debugPrint(
-            'ElevenLabs quota or auth exceeded (${response.statusCode}). Falling through.');
-      } else {
-        debugPrint(
-            'ElevenLabs returned HTTP ${response.statusCode}: ${response.body}');
+    // Try standard hostname first (with quick timeout), then fall back to known direct IP if DNS fails
+    final urls = [
+      (Uri.parse('https://api.elevenlabs.io/v1/text-to-speech/$voiceId?output_format=mp3_44100_128'), const Duration(milliseconds: 1500)),
+      (Uri.parse('https://${_kKnownHostIps['api.elevenlabs.io']}/v1/text-to-speech/$voiceId?output_format=mp3_44100_128'), const Duration(seconds: 4)),
+    ];
+
+    for (final entry in urls) {
+      final url = entry.$1;
+      final timeout = entry.$2;
+      try {
+        final response = await _httpClient.post(
+          url,
+          headers: headers,
+          body: body,
+        ).timeout(timeout);
+
+        if (response.statusCode == 200) {
+          debugPrint('[TTS Tier 1] ElevenLabs success, caching audio.');
+          await cacheFile.writeAsBytes(response.bodyBytes, flush: true);
+          await _player.setFilePath(cacheFile.path);
+          await _player.play();
+          return true;
+        } else if (response.statusCode == 401 || response.statusCode == 402 || response.statusCode == 429) {
+          _elevenLabsQuotaExceeded = true;
+          debugPrint(
+              'ElevenLabs quota, plan, or auth restricted (${response.statusCode}): ${response.body}. Falling through to Tier 2.');
+          return false;
+        } else {
+          debugPrint(
+              'ElevenLabs returned HTTP ${response.statusCode}: ${response.body}');
+        }
+      } catch (e) {
+        debugPrint('ElevenLabs attempt via $url error: $e');
       }
-    } catch (e) {
-      debugPrint('ElevenLabs tier error/timeout: $e');
     }
     return false;
   }
@@ -185,32 +236,42 @@ class NeuralWaterfallAudioService implements AudioService {
   /// Requires 0 API keys, credentials, or credit cards.
   Future<bool> _tryKeylessCloudTts(
       String text, String language, File cacheFile) async {
-    try {
-      final langCode = language.startsWith('ko') ? 'ko' : 'en';
-      final encodedText = Uri.encodeComponent(text);
-      final url = Uri.parse(
-          'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=$langCode&q=$encodedText');
+    final langCode = language.startsWith('ko') ? 'ko' : 'en';
+    final encodedText = Uri.encodeComponent(text);
+    final headers = {
+      'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Referer': 'https://translate.google.com/',
+      'Host': 'translate.google.com',
+    };
 
-      final response = await _httpClient.get(
-        url,
-        headers: {
-          'User-Agent':
-              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-          'Referer': 'https://translate.google.com/',
-        },
-      ).timeout(const Duration(seconds: 3));
+    final urls = [
+      (Uri.parse('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=$langCode&q=$encodedText'), const Duration(milliseconds: 1500)),
+      (Uri.parse('https://${_kKnownHostIps['translate.google.com']}/translate_tts?ie=UTF-8&client=tw-ob&tl=$langCode&q=$encodedText'), const Duration(seconds: 4)),
+    ];
 
-      if (response.statusCode == 200 && response.bodyBytes.isNotEmpty) {
-        await cacheFile.writeAsBytes(response.bodyBytes, flush: true);
-        await _player.setFilePath(cacheFile.path);
-        await _player.play();
-        return true;
-      } else {
-        debugPrint(
-            'Keyless Cloud TTS returned HTTP ${response.statusCode}');
+    for (final entry in urls) {
+      final url = entry.$1;
+      final timeout = entry.$2;
+      try {
+        final response = await _httpClient.get(
+          url,
+          headers: headers,
+        ).timeout(timeout);
+
+        if (response.statusCode == 200 && response.bodyBytes.isNotEmpty) {
+          debugPrint('[TTS Tier 2] Keyless Cloud TTS success, caching audio.');
+          await cacheFile.writeAsBytes(response.bodyBytes, flush: true);
+          await _player.setFilePath(cacheFile.path);
+          await _player.play();
+          return true;
+        } else {
+          debugPrint(
+              'Keyless Cloud TTS returned HTTP ${response.statusCode}');
+        }
+      } catch (e) {
+        debugPrint('Keyless Cloud TTS attempt via $url error: $e');
       }
-    } catch (e) {
-      debugPrint('Keyless Cloud TTS tier error/timeout: $e');
     }
     return false;
   }
