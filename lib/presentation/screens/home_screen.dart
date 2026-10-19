@@ -4,6 +4,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/services/quiz_session_service.dart';
 import '../../data/models/unit_model.dart';
 import '../providers/app_providers.dart';
+import 'hangul_guide_screen.dart';
 import 'lesson_screen.dart';
 import 'progress_screen.dart';
 import 'quiz_screen.dart';
@@ -21,6 +22,16 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Hangul Baby 🌱'),
         actions: [
+          IconButton(
+            tooltip: 'Hangul Alphabet Guide',
+            icon: const Icon(Icons.menu_book_rounded, color: AppColors.primary, size: 26),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const HangulGuideScreen()),
+              );
+            },
+          ),
           IconButton(
             tooltip: 'Progress Dashboard',
             icon: const Icon(Icons.emoji_events_rounded, color: AppColors.starGold, size: 28),
