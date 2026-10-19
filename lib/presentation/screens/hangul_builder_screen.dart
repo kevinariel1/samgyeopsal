@@ -266,13 +266,19 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     );
 
     if (builtSyllable == currentChallenge.targetSyllable) {
+      if (!_challengeSolved) {
+        ref.read(progressProvider.notifier).awardPracticeXp(
+              10,
+              badgeId: 'badge_syllable_architect',
+            );
+      }
       setState(() {
         if (!_challengeSolved) {
           _score += 10;
         }
         _challengeSolved = true;
         _challengeFeedback =
-            '🎉 Awesome! You built "${currentChallenge.targetSyllable}" (${currentChallenge.romanization})!';
+            '🎉 Awesome! You built "${currentChallenge.targetSyllable}" (${currentChallenge.romanization})! (+10 XP)';
       });
       _speak(builtSyllable);
     } else {

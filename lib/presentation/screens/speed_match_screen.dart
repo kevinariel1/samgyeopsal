@@ -100,11 +100,18 @@ class _SpeedMatchScreenState extends ConsumerState<SpeedMatchScreen> {
     _moves++;
 
     if (_selectedHangul == _selectedRomanHangulKey) {
+      final isClearingMove = _matchedHangul.length + 1 == _leftHangul.length;
       setState(() {
         _matchedHangul.add(_selectedHangul!);
         _selectedHangul = null;
         _selectedRomanHangulKey = null;
       });
+      if (isClearingMove) {
+        ref.read(progressProvider.notifier).awardPracticeXp(
+              15,
+              badgeId: 'badge_speed_matcher',
+            );
+      }
     } else {
       setState(() {
         _hasErrorFlash = true;

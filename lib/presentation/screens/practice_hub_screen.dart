@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import 'daily_flashcards_screen.dart';
 import 'hangul_builder_screen.dart';
+import 'sound_detective_screen.dart';
 import 'speed_match_screen.dart';
 import 'writing_studio_screen.dart';
 
@@ -10,8 +11,6 @@ class PracticeHubScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Practice Hub 🎮'),
@@ -47,7 +46,7 @@ class PracticeHubScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 4),
                       Text(
-                        'Build syllable blocks, practice writing, or play quick memory games at your own pace.',
+                        'Build syllable blocks, train your ear, practice writing, or play quick memory games!',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 13,
@@ -73,6 +72,22 @@ class PracticeHubScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const HangulBuilderScreen()),
+              );
+            },
+          ),
+          const SizedBox(height: 16),
+          _PracticeActivityCard(
+            title: 'Sound Detective 🎧',
+            subtitle: 'Minimal Pairs Ear Trainer',
+            description:
+                'Train your ear to distinguish tricky Korean sounds like Soft (ㄱ), Airy (ㅋ), and Tense Twins (ㄲ), or ㅏ vs ㅓ!',
+            badgeText: 'EAR TRAINER',
+            icon: Icons.headphones_rounded,
+            accentColor: const Color(0xFF00B4D8),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const SoundDetectiveScreen()),
               );
             },
           ),

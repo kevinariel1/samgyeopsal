@@ -65,6 +65,12 @@ class ProgressNotifier extends AsyncNotifier<UserProgressModel> {
     return awarded;
   }
 
+  Future<void> awardPracticeXp(int earnedXp, {String? badgeId}) async {
+    final repo = ref.read(progressRepositoryProvider);
+    await repo.awardPracticeXp(earnedXp, badgeId: badgeId);
+    state = AsyncValue.data(await repo.getProgress());
+  }
+
   Future<void> reset() async {
     final repo = ref.read(progressRepositoryProvider);
     await repo.resetProgress();

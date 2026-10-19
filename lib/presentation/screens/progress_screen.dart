@@ -123,6 +123,61 @@ class ProgressScreen extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: 28),
+                // Achievement Badges Showcase
+                Text(
+                  'Achievement Badges 🏅',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                  childAspectRatio: 1.55,
+                  children: [
+                    _BadgeCard(
+                      emoji: '🐣',
+                      title: 'First Step',
+                      subtitle: 'Finish 1st Lesson',
+                      unlocked: progress.completedLessonsCount >= 1,
+                    ),
+                    _BadgeCard(
+                      emoji: '🧩',
+                      title: 'Block Builder',
+                      subtitle: 'Solve a Syllable Puzzle',
+                      unlocked: progress.hasBadge('badge_syllable_architect'),
+                    ),
+                    _BadgeCard(
+                      emoji: '🎧',
+                      title: 'Ear Detective',
+                      subtitle: 'Spot a Minimal Pair',
+                      unlocked: progress.hasBadge('badge_ear_detective'),
+                    ),
+                    _BadgeCard(
+                      emoji: '✍️',
+                      title: 'Calligrapher',
+                      subtitle: 'Verify in Studio',
+                      unlocked: progress.hasBadge('badge_calligraphy_artist'),
+                    ),
+                    _BadgeCard(
+                      emoji: '⚡',
+                      title: 'Speed Matcher',
+                      subtitle: 'Clear a Match Board',
+                      unlocked: progress.hasBadge('badge_speed_matcher'),
+                    ),
+                    _BadgeCard(
+                      emoji: '🎓',
+                      title: 'Hangul Master',
+                      subtitle: 'Pass 8+ Units',
+                      unlocked: progress.passedUnitsCount >= 8,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 28),
                 // Unit Score Breakdown
                 Text(
                   'Unit Quiz Scores',
@@ -221,6 +276,72 @@ class ProgressScreen extends ConsumerWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _BadgeCard extends StatelessWidget {
+  final String emoji;
+  final String title;
+  final String subtitle;
+  final bool unlocked;
+
+  const _BadgeCard({
+    required this.emoji,
+    required this.title,
+    required this.subtitle,
+    required this.unlocked,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: unlocked
+            ? AppColors.accentYellow.withOpacity(0.18)
+            : theme.cardTheme.color?.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: unlocked ? AppColors.starGold : AppColors.lightCardBorder,
+          width: unlocked ? 2 : 1.2,
+        ),
+      ),
+      child: Row(
+        children: [
+          Opacity(
+            opacity: unlocked ? 1.0 : 0.35,
+            child: Text(emoji, style: const TextStyle(fontSize: 28)),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 13,
+                    color: unlocked ? null : Colors.grey,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  unlocked ? subtitle : '🔒 $subtitle',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: unlocked ? AppColors.secondary : Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

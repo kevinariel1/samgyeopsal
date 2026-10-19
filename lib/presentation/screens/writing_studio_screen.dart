@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/app_colors.dart';
+import '../providers/app_providers.dart';
 import '../widgets/hangul_tracing_widget.dart';
 
-class WritingStudioScreen extends StatefulWidget {
+class WritingStudioScreen extends ConsumerStatefulWidget {
   const WritingStudioScreen({super.key});
 
   @override
-  State<WritingStudioScreen> createState() => _WritingStudioScreenState();
+  ConsumerState<WritingStudioScreen> createState() => _WritingStudioScreenState();
 }
 
-class _WritingStudioScreenState extends State<WritingStudioScreen> {
+class _WritingStudioScreenState extends ConsumerState<WritingStudioScreen> {
   static const Map<String, List<String>> characterGroups = {
     'Basic Consonants': ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'],
     'Basic Vowels': ['ㅏ', 'ㅓ', 'ㅗ', 'ㅜ', 'ㅡ', 'ㅣ', 'ㅑ', 'ㅛ', 'ㅐ', 'ㅔ', 'ㅘ', 'ㅝ', 'ㅟ', 'ㅢ'],
@@ -157,6 +159,12 @@ class _WritingStudioScreenState extends State<WritingStudioScreen> {
                 setState(() => _isTracingActive = active);
               },
               onCompleted: () {
+                if (!_masteredCharacters.contains(_selectedCharacter)) {
+                  ref.read(progressProvider.notifier).awardPracticeXp(
+                        5,
+                        badgeId: 'badge_calligraphy_artist',
+                      );
+                }
                 setState(() {
                   _masteredCharacters.add(_selectedCharacter);
                 });
@@ -175,7 +183,7 @@ class _WritingStudioScreenState extends State<WritingStudioScreen> {
                   const Icon(Icons.stars_rounded, color: AppColors.secondary),
                   const SizedBox(width: 8),
                   Text(
-                    'Session Stamps Collected: ${_masteredCharacters.length}',
+                    'Session Stamps Collected: ${_masteredCharacters.length} (+5 XP each)',
                     style: const TextStyle(
                       fontWeight: FontWeight.w800,
                       color: AppColors.secondary,

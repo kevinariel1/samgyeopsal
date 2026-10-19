@@ -124,6 +124,21 @@ class ProgressRepositoryImpl implements ProgressRepository {
   }
 
   @override
+  Future<void> awardPracticeXp(int earnedXp, {String? badgeId}) async {
+    final current = await getProgress();
+    final updatedBadges = Set<String>.from(current.unlockedBadges);
+    if (badgeId != null && badgeId.isNotEmpty) {
+      updatedBadges.add(badgeId);
+    }
+    final updated = current.copyWith(
+      totalXp: current.totalXp + earnedXp,
+      unlockedBadges: updatedBadges,
+      lastActiveDate: DateTime.now().toIso8601String().substring(0, 10),
+    );
+    await saveProgress(updated);
+  }
+
+  @override
   Future<void> resetProgress() async {
     await _storageService.remove(_storageKey);
   }

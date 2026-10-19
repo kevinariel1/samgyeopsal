@@ -2023,5 +2023,697 @@
         }
       ]
     }
+  },
+  {
+    "id": "unit_10",
+    "title": "Unit 10: Everyday Korean Words (Family, Food & Home)",
+    "subtitle": "Reading Real Vocabulary with Confidence",
+    "description": "Use your Hangul mastery to read warm, everyday words for family, friends, and delicious Korean food!",
+    "order": 10,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_10_1",
+        "unitId": "unit_10",
+        "title": "Family & Friends: 엄마 (Mom), 아빠 (Dad) & 친구 (Friend)",
+        "order": 1,
+        "introduction": "Now that you know all 40 letters, let's read the warmest words in Korean: the people we love!",
+        "cards": [
+          {
+            "id": "card_eomma",
+            "korean": "엄마",
+            "romanization": "Eomma",
+            "meaning": "Mom / Mama",
+            "sound": "엄마",
+            "mnemonic": "엄 (eom, with Batchim ㅁ) + 마 (ma) = 엄마 (Eomma - Mom)! Notice how both syllables hum with the 'm' mouth letter ㅁ.",
+            "exampleWord": "우리 엄마 (Uri eomma - My mom)",
+            "iconName": "favorite"
+          },
+          {
+            "id": "card_appa",
+            "korean": "아빠",
+            "romanization": "Appa",
+            "meaning": "Dad / Papa",
+            "sound": "아빠",
+            "mnemonic": "아 (a) + 빠 (ppa, using twin ㅃ) = 아빠 (Appa - Dad)! Sounds just like 'Papa'!",
+            "exampleWord": "우리 아빠 (Uri appa - My dad)",
+            "iconName": "person"
+          },
+          {
+            "id": "card_chingu",
+            "korean": "친구",
+            "romanization": "Chingu",
+            "meaning": "Friend",
+            "sound": "친구",
+            "mnemonic": "친 (chin = close) + 구 (gu = companion) = 친구 (Chingu - Friend)!",
+            "exampleWord": "좋은 친구 (Joeun chingu - Good friend)",
+            "iconName": "sentiment_very_satisfied"
+          }
+        ],
+        "story": {
+          "title": "Baby Bear's Happy Family",
+          "storyPages": [
+            {
+              "text": "Baby Bear hugged his loving Mom ('엄마' - Eomma) and Dad ('아빠' - Appa)!",
+              "koreanHighlight": "엄마 아빠",
+              "sound": "엄마 아빠",
+              "icon": "favorite"
+            },
+            {
+              "text": "Then he ran outside to play with his best Friend: '친구' (Chingu)!",
+              "koreanHighlight": "친구",
+              "sound": "친구",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "가"
+      },
+      {
+        "id": "lesson_10_2",
+        "unitId": "unit_10",
+        "title": "Cafe & Home: 김밥 (Gimbap), 커피 (Coffee) & 집 (Home)",
+        "order": 2,
+        "introduction": "Many modern Korean cafe words sound just like English! Let's read food and place words.",
+        "cards": [
+          {
+            "id": "card_gimbap",
+            "korean": "김밥",
+            "romanization": "Gimbap",
+            "meaning": "Seaweed Rice Roll",
+            "sound": "김밥",
+            "mnemonic": "김 (gim = roasted seaweed) + 밥 (bap = cooked rice) = 김밥 (Gimbap), Korea's favorite picnic food!",
+            "exampleWord": "김밥 주세요 (Gimbap juseyo - Gimbap, please)",
+            "iconName": "restaurant"
+          },
+          {
+            "id": "card_keopi",
+            "korean": "커피",
+            "romanization": "Keopi",
+            "meaning": "Coffee",
+            "sound": "커피",
+            "mnemonic": "Korean doesn't have an 'f' letter, so 'Coffee' uses airy ㅋ (k) and airy ㅍ (p): 커 (keo) + 피 (pi) = 커피 (Keopi)!",
+            "exampleWord": "아이스 커피 (Aiseu keopi - Iced coffee)",
+            "iconName": "emoji_food_beverage"
+          },
+          {
+            "id": "card_jip",
+            "korean": "집",
+            "romanization": "Jip",
+            "meaning": "House / Home",
+            "sound": "집",
+            "mnemonic": "ㅈ (j) looks like a house roof! Add ㅣ (i) and floor ㅂ (p) to build a cozy '집' (Jip - Home)!",
+            "exampleWord": "우리 집 (Uri jip - Our home)",
+            "iconName": "door_front"
+          }
+        ],
+        "story": {
+          "title": "A Cozy Afternoon at Home",
+          "storyPages": [
+            {
+              "text": "Papa Bear sipped a warm cup of Coffee: '커피' (Keopi)!",
+              "koreanHighlight": "커피",
+              "sound": "커피",
+              "icon": "wb_sunny"
+            },
+            {
+              "text": "Baby Bear ate delicious Seaweed Rice Rolls: '김밥' (Gimbap)!",
+              "koreanHighlight": "김밥",
+              "sound": "김밥",
+              "icon": "backpack"
+            },
+            {
+              "text": "Everyone relaxed together inside their warm Home: '집' (Jip)!",
+              "koreanHighlight": "집",
+              "sound": "집",
+              "icon": "door_front"
+            }
+          ]
+        },
+        "tracingTarget": "산"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_10",
+      "unitId": "unit_10",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q10_1",
+          "type": "multiple_choice",
+          "prompt": "What does the affectionate Korean word '엄마' (Eomma) mean?",
+          "soundToPlay": "엄마",
+          "options": ["Mom / Mama", "Dad / Papa", "Friend", "House"],
+          "correctIndex": 0,
+          "explanation": "엄마 (Eomma) is the warm, everyday word for 'Mom'!"
+        },
+        {
+          "id": "q10_2",
+          "type": "multiple_choice",
+          "prompt": "What does '친구' (Chingu) mean in Korean?",
+          "soundToPlay": "친구",
+          "options": ["Coffee", "Friend", "Mountain", "Water"],
+          "correctIndex": 1,
+          "explanation": "친구 (Chingu) means 'Friend'!"
+        },
+        {
+          "id": "q10_3",
+          "type": "multiple_choice",
+          "prompt": "In '김밥' (Gimbap), '밥' means cooked rice. What does '김' (Gim) mean?",
+          "soundToPlay": "김밥",
+          "options": ["Roasted seaweed", "Water", "Bread", "Milk"],
+          "correctIndex": 0,
+          "explanation": "김 (Gim) means dried seaweed, and 밥 (Bap) means cooked rice!"
+        },
+        {
+          "id": "q10_4",
+          "type": "multiple_choice",
+          "prompt": "Read the loanword '커피' (Keo-pi) out loud! What English word is it?",
+          "soundToPlay": "커피",
+          "options": ["Cookie", "Coffee", "Camera", "Computer"],
+          "correctIndex": 1,
+          "explanation": "커피 (Keopi) is how Koreans write and say 'Coffee'!"
+        },
+        {
+          "id": "q10_5",
+          "type": "multiple_choice",
+          "prompt": "What does the 3-letter word '집' (ㅈ + ㅣ + ㅂ, Jip) mean?",
+          "soundToPlay": "집",
+          "options": ["House / Home", "Car", "Friend", "School"],
+          "correctIndex": 0,
+          "explanation": "집 (Jip) means 'House' or 'Home'!"
+        },
+        {
+          "id": "q10_6",
+          "type": "listening",
+          "prompt": "Listen to the word. Who is being called?",
+          "soundToPlay": "아빠",
+          "options": ["아빠 (Appa - Dad)", "엄마 (Eomma - Mom)", "친구 (Chingu - Friend)", "의사 (Uisa - Doctor)"],
+          "correctIndex": 0,
+          "explanation": "You heard '아빠' (Appa - Dad)!"
+        },
+        {
+          "id": "q10_7",
+          "type": "listening",
+          "prompt": "Listen carefully to the word. Which item did you hear?",
+          "soundToPlay": "김밥",
+          "options": ["김밥 (Gimbap)", "커피 (Coffee)", "우유 (Milk)", "사과 (Apple)"],
+          "correctIndex": 0,
+          "explanation": "You heard '김밥' (Gimbap - Seaweed Rice Roll)!"
+        },
+        {
+          "id": "q10_8",
+          "type": "matching",
+          "prompt": "How would you politely order Coffee ('커피') at a cafe in Seoul?",
+          "soundToPlay": "커피 주세요",
+          "options": ["커피 주세요 (Keopi juseyo)", "커피 아니요", "집 감사합니다", "친구 주세요"],
+          "correctIndex": 0,
+          "explanation": "Put 커피 in front of 주세요 (please give me): '커피 주세요!' (Coffee, please!)."
+        },
+        {
+          "id": "q10_9",
+          "type": "matching",
+          "prompt": "Match the Korean family & friend trio with their meanings:",
+          "soundToPlay": "엄마",
+          "options": [
+            "엄마 (Mom), 아빠 (Dad), 친구 (Friend)",
+            "물 (Mom), 밥 (Dad), 빵 (Friend)",
+            "산 (Mom), 집 (Dad), 차 (Friend)",
+            "개 (Mom), 코 (Dad), 이 (Friend)"
+          ],
+          "correctIndex": 0,
+          "explanation": "엄마 = Mom, 아빠 = Dad, and 친구 = Friend!"
+        },
+        {
+          "id": "q10_10",
+          "type": "multiple_choice",
+          "prompt": "Why is English 'f' in 'Coffee' written with 'ㅍ' (p) in Korean ('커피')?",
+          "soundToPlay": "커피",
+          "options": [
+            "Because Korean does not have an 'f' letter, so airy 'ㅍ' (p) is used instead",
+            "Because 커피 means tea",
+            "Because ㅍ is silent",
+            "It is a random letter"
+          ],
+          "correctIndex": 0,
+          "explanation": "Korean replaces English 'f' with the aspirated lip letter 'ㅍ' (p), so 'Coffee' becomes '커피' (Keopi)!"
+        }
+      ]
+    }
+  },
+  {
+    "id": "unit_11",
+    "title": "Unit 11: Counting in Korean (Numbers 1 to 5)",
+    "subtitle": "Hana, Dul, Set & Ordering Items",
+    "description": "Learn native Korean numbers (하나, 둘, 셋) for counting items, plus Sino-Korean numbers (일, 이, 삼)!",
+    "order": 11,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_11_1",
+        "unitId": "unit_11",
+        "title": "Native Korean Numbers: 하나 (1), 둘 (2), 셋 (3)",
+        "order": 1,
+        "introduction": "When counting things, people, or saying '1, 2, 3, Cheese!' for a photo, Koreans use Native Korean numbers: Hana, Dul, Set!",
+        "cards": [
+          {
+            "id": "card_hana",
+            "korean": "하나",
+            "romanization": "Hana",
+            "meaning": "One (1)",
+            "sound": "하나",
+            "mnemonic": "하 (ha) + 나 (na) = 하나 (Hana - One)! Easy to read with ㅎ + ㅏ and ㄴ + ㅏ.",
+            "exampleWord": "하나 주세요 (Hana juseyo - One, please!)",
+            "iconName": "looks_one"
+          },
+          {
+            "id": "card_dul",
+            "korean": "둘",
+            "romanization": "Dul",
+            "meaning": "Two (2)",
+            "sound": "둘",
+            "mnemonic": "ㄷ (d) + ㅜ (u) + Batchim ㄹ (l) = 둘 (Dul - Two)! Sounds like a 'dual' pair of two!",
+            "exampleWord": "하나, 둘 (Hana, dul - One, two)",
+            "iconName": "looks_two"
+          },
+          {
+            "id": "card_set",
+            "korean": "셋",
+            "romanization": "Set",
+            "meaning": "Three (3)",
+            "sound": "셋",
+            "mnemonic": "ㅅ (s) + ㅔ (e) + Batchim ㅅ (t) = 셋 (Set - Three)! Notice: when ㅅ sits at the bottom as a Batchim, your tongue stops on the roof of your mouth for an unreleased 't' sound!",
+            "exampleWord": "하나, 둘, 셋! (Hana, dul, set! - 1, 2, 3!)",
+            "iconName": "looks_3"
+          }
+        ],
+        "story": {
+          "title": "1, 2, 3, Smile!",
+          "storyPages": [
+            {
+              "text": "Baby Bear held up ONE shiny red apple: '하나' (Hana - 1)!",
+              "koreanHighlight": "하나",
+              "sound": "하나",
+              "icon": "wb_sunny"
+            },
+            {
+              "text": "His friend brought TWO more apples: '둘' (Dul - 2)!",
+              "koreanHighlight": "둘",
+              "sound": "둘",
+              "icon": "person"
+            },
+            {
+              "text": "They counted to THREE for a happy photo: '하나, 둘, 셋!' (Hana, dul, set - 1, 2, 3)!",
+              "koreanHighlight": "하나 둘 셋",
+              "sound": "하나 둘 셋",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "나"
+      },
+      {
+        "id": "lesson_11_2",
+        "unitId": "unit_11",
+        "title": "Four, Five & Number Twins: 넷 (4), 다섯 (5) & 일, 이, 삼 (1, 2, 3)",
+        "order": 2,
+        "introduction": "Let's learn 4 (넷) and 5 (다섯), plus a fun secret: Korean also has short 1-syllable numbers (일, 이, 삼) used for dates, money, and phone numbers!",
+        "cards": [
+          {
+            "id": "card_net_daseot",
+            "korean": "넷 / 다섯",
+            "romanization": "Net (4) / Daseot (5)",
+            "meaning": "Four (4) & Five (5)",
+            "sound": "넷, 다섯",
+            "mnemonic": "넷 (Net = 4) rhymes with 셋 (Set = 3)! And 다섯 (Da-seot = 5) has 5 letters if you count d-a-s-eo-t!",
+            "exampleWord": "넷, 다섯 (Net, daseot - Four, five)",
+            "iconName": "star"
+          },
+          {
+            "id": "card_il_i_sam",
+            "korean": "일, 이, 삼",
+            "romanization": "Il (1), I (2), Sam (3)",
+            "meaning": "Sino-Korean 1, 2, 3 (Dates, Floors & Money)",
+            "sound": "일, 이, 삼",
+            "mnemonic": "Super short 1-block numbers! 일 (Il = 1), 이 (I = 2), 삼 (Sam = 3). Used for months (1월 = January), money, and phone numbers!",
+            "exampleWord": "일층 (Il-cheung - 1st Floor)",
+            "iconName": "apartment"
+          }
+        ],
+        "story": {
+          "title": "Counting Five Golden Stars",
+          "storyPages": [
+            {
+              "text": "Baby Bear counted FOUR glowing fireflies in the woods: '넷' (Net - 4)!",
+              "koreanHighlight": "넷",
+              "sound": "넷",
+              "icon": "forest"
+            },
+            {
+              "text": "And FIVE golden stars twinkling in the sky: '다섯' (Daseot - 5)!",
+              "koreanHighlight": "다섯",
+              "sound": "다섯",
+              "icon": "favorite"
+            }
+          ]
+        },
+        "tracingTarget": "다"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_11",
+      "unitId": "unit_11",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q11_1",
+          "type": "multiple_choice",
+          "prompt": "How do you count '1, 2, 3' in Native Korean (for taking photos or counting items)?",
+          "soundToPlay": "하나 둘 셋",
+          "options": ["하나, 둘, 셋 (Hana, dul, set)", "가, 나, 다 (Ga, na, da)", "물, 밥, 빵 (Mul, bap, ppang)", "엄마, 아빠, 친구"],
+          "correctIndex": 0,
+          "explanation": "하나 (1), 둘 (2), 셋 (3) are the Native Korean numbers for 1, 2, 3!"
+        },
+        {
+          "id": "q11_2",
+          "type": "multiple_choice",
+          "prompt": "What number is '하나' (Hana)?",
+          "soundToPlay": "하나",
+          "options": ["One (1)", "Two (2)", "Three (3)", "Five (5)"],
+          "correctIndex": 0,
+          "explanation": "하나 (Hana) means 'One (1)'!"
+        },
+        {
+          "id": "q11_3",
+          "type": "multiple_choice",
+          "prompt": "In '셋' (Set - 3) and '넷' (Net - 4), what sound does 'ㅅ' make when it sits at the BOTTOM as a Batchim?",
+          "soundToPlay": "셋",
+          "options": ["An unreleased 't' stop sound", "A hissing 's' sound", "An 'm' sound", "An 'r' sound"],
+          "correctIndex": 0,
+          "explanation": "When ㅅ is at the bottom of a syllable block (Batchim) at the end of a word, the air stops at your teeth, making a clean 't' sound (Set, Net)!"
+        },
+        {
+          "id": "q11_4",
+          "type": "multiple_choice",
+          "prompt": "Which Native Korean number means 'Five (5)'?",
+          "soundToPlay": "다섯",
+          "options": ["하나 (Hana)", "둘 (Dul)", "셋 (Set)", "다섯 (Daseot)"],
+          "correctIndex": 3,
+          "explanation": "다섯 (Daseot) means 'Five (5)'!"
+        },
+        {
+          "id": "q11_5",
+          "type": "multiple_choice",
+          "prompt": "What are the Sino-Korean numbers '일, 이, 삼' (Il, I, Sam) used for?",
+          "soundToPlay": "일, 이, 삼",
+          "options": [
+            "Dates, money, phone numbers, and building floors",
+            "Saying hello and goodbye",
+            "Writing vowels",
+            "Only for animals"
+          ],
+          "correctIndex": 0,
+          "explanation": "Korean uses Sino-Korean numbers (일, 이, 삼...) for dates, money, minutes, and phone numbers!"
+        },
+        {
+          "id": "q11_6",
+          "type": "listening",
+          "prompt": "Listen to the number. Which number did you hear?",
+          "soundToPlay": "둘",
+          "options": ["하나 (1)", "둘 (2)", "셋 (3)", "넷 (4)"],
+          "correctIndex": 1,
+          "explanation": "You heard '둘' (Dul - Two)!"
+        },
+        {
+          "id": "q11_7",
+          "type": "listening",
+          "prompt": "Listen carefully. How many items is the speaker ordering in '김밥 하나 주세요'?",
+          "soundToPlay": "김밥 하나 주세요",
+          "options": ["One Gimbap, please", "Two Coffees, please", "Three Apples, please", "Five Breads, please"],
+          "correctIndex": 0,
+          "explanation": "김밥 (Gimbap) + 하나 (One) + 주세요 (Please give me) = 'One Gimbap, please!'."
+        },
+        {
+          "id": "q11_8",
+          "type": "matching",
+          "prompt": "Put the Native Korean numbers 1 to 5 in the correct order:",
+          "soundToPlay": "하나 둘 셋",
+          "options": [
+            "하나 (1) ➔ 둘 (2) ➔ 셋 (3) ➔ 넷 (4) ➔ 다섯 (5)",
+            "둘 ➔ 하나 ➔ 다섯 ➔ 셋 ➔ 넷",
+            "일 ➔ 둘 ➔ 삼 ➔ 넷 ➔ 오",
+            "가 ➔ 나 ➔ 다 ➔ 라 ➔ 마"
+          ],
+          "correctIndex": 0,
+          "explanation": "1 to 5 in Native Korean is 하나 (Hana), 둘 (Dul), 셋 (Set), 넷 (Net), 다섯 (Daseot)!"
+        },
+        {
+          "id": "q11_9",
+          "type": "matching",
+          "prompt": "Match the Sino-Korean 1, 2, 3 with their Native Korean partners:",
+          "soundToPlay": "일, 이, 삼",
+          "options": [
+            "1: 일 & 하나  |  2: 이 & 둘  |  3: 삼 & 셋",
+            "1: 삼 & 셋  |  2: 일 & 하나  |  3: 이 & 둘",
+            "1: 물  |  2: 밥  |  3: 산",
+            "1: 엄마  |  2: 아빠  |  3: 친구"
+          ],
+          "correctIndex": 0,
+          "explanation": "1 is 일/하나, 2 is 이/둘, and 3 is 삼/셋!"
+        },
+        {
+          "id": "q11_10",
+          "type": "multiple_choice",
+          "prompt": "How do you say 'Two (2)' in Sino-Korean (hint: it also means 'Tooth')?",
+          "soundToPlay": "이",
+          "options": ["일 (Il)", "이 (I)", "삼 (Sam)", "둘 (Dul)"],
+          "correctIndex": 1,
+          "explanation": "'이' (I) is Sino-Korean for 2!"
+        }
+      ]
+    }
+  },
+  {
+    "id": "unit_12",
+    "title": "Unit 12: First Sentences & Self-Introduction",
+    "subtitle": "Speaking Full Korean Sentences!",
+    "description": "Introduce yourself ('저는 ...이에요'), ask 'What is this?' ('이거 뭐예요?'), and exclaim 'It's delicious!' ('맛있어요!').",
+    "order": 12,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_12_1",
+        "unitId": "unit_12",
+        "title": "Introducing Yourself: 저는 ...이에요 (I am ...)",
+        "order": 1,
+        "introduction": "In English we say 'I am [Name]'. In Korean, the verb 'am' (이에요 / 예요) always goes at the very END of the sentence: 'I [Name] am'!",
+        "cards": [
+          {
+            "id": "card_jeoneun",
+            "korean": "저는",
+            "romanization": "Jeoneun",
+            "meaning": "I / As for me (Polite)",
+            "sound": "저는",
+            "mnemonic": "저 (Jeo = Polite 'I') + 는 (neun = topic marker 'as for'). Start any self-introduction with '저는...' (Jeoneun)!",
+            "exampleWord": "저는 학생이에요 (Jeoneun haksaeng-ieyo - I am a student)",
+            "iconName": "person"
+          },
+          {
+            "id": "card_ieyo",
+            "korean": "이에요 / 예요",
+            "romanization": "-ieyo / -yeyo",
+            "meaning": "am / is / are (Polite 'to be')",
+            "sound": "이에요, 예요",
+            "mnemonic": "Attach this right to the end of a noun! Use '-이에요' after a Batchim consonant (곰이에요 = I am a bear) and '-예요' after a vowel (친구예요 = I am a friend)!",
+            "exampleWord": "저는 아기 곰이에요! (I am Baby Bear!)",
+            "iconName": "chat"
+          }
+        ],
+        "story": {
+          "title": "Hello, I Am Baby Bear!",
+          "storyPages": [
+            {
+              "text": "Baby Bear bowed politely and pointed to himself: '저는...' (Jeoneun - As for me)!",
+              "koreanHighlight": "저는",
+              "sound": "저는",
+              "icon": "person"
+            },
+            {
+              "text": "He smiled proudly and finished his sentence: '저는 아기 곰이에요!' (I am Baby Bear)!",
+              "koreanHighlight": "아기 곰이에요",
+              "sound": "아기 곰이에요",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "가"
+      },
+      {
+        "id": "lesson_12_2",
+        "unitId": "unit_12",
+        "title": "Everyday Conversation: 이거 뭐예요? (What is this?) & 맛있어요! (Delicious!)",
+        "order": 2,
+        "introduction": "With these two magical expressions, you can point to anything in Korea to ask what it is, and compliment any meal!",
+        "cards": [
+          {
+            "id": "card_igeo_mwoyeyo",
+            "korean": "이거 뭐예요?",
+            "romanization": "Igeo mwoyeyo?",
+            "meaning": "What is this?",
+            "sound": "이거 뭐예요?",
+            "mnemonic": "이거 (Igeo = This thing) + 뭐 (mwo = what) + 예요 (yeyo = is)? Point at any menu item or object and ask: '이거 뭐예요?'",
+            "exampleWord": "이거 김밥이에요! (Igeo gimbap-ieyo - This is Gimbap!)",
+            "iconName": "help_outline"
+          },
+          {
+            "id": "card_masisseoyo",
+            "korean": "맛있어요!",
+            "romanization": "Masisseoyo!",
+            "meaning": "It's delicious! / Tasty!",
+            "sound": "맛있어요",
+            "mnemonic": "맛 (mat = flavor) + 있어요 (isseoyo = exists). Literally 'Flavor exists!' Smooth linking trick: the bottom ㅅ flows into 이 to sound like 'Ma-shi-sseo-yo'!",
+            "exampleWord": "김밥 맛있어요! (Gimbap masisseoyo! - Gimbap is delicious!)",
+            "iconName": "favorite"
+          }
+        ],
+        "story": {
+          "title": "Baby Bear's First Restaurant Visit",
+          "storyPages": [
+            {
+              "text": "Baby Bear pointed at a colorful plate and asked curiously: '이거 뭐예요?' (Igeo mwoyeyo - What is this?)",
+              "koreanHighlight": "이거 뭐예요?",
+              "sound": "이거 뭐예요",
+              "icon": "backpack"
+            },
+            {
+              "text": "Chef Owl replied warmly: '김밥이에요!' (Gimbap-ieyo - It is Gimbap!)",
+              "koreanHighlight": "김밥이에요",
+              "sound": "김밥이에요",
+              "icon": "person"
+            },
+            {
+              "text": "Baby Bear took a big bite and cheered: '와! 맛있어요!' (Wa! Masisseoyo - Wow, it's delicious!)",
+              "koreanHighlight": "맛있어요",
+              "sound": "맛있어요",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "나"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_12",
+      "unitId": "unit_12",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q12_1",
+          "type": "multiple_choice",
+          "prompt": "How do you say a polite 'I / As for me' when introducing yourself in Korean?",
+          "soundToPlay": "저는",
+          "options": ["저는 (Jeoneun)", "이거 (Igeo)", "하나 (Hana)", "김밥 (Gimbap)"],
+          "correctIndex": 0,
+          "explanation": "저는 (Jeoneun) is the polite way to say 'I / As for me'!"
+        },
+        {
+          "id": "q12_2",
+          "type": "multiple_choice",
+          "prompt": "Where does the verb 'am / is / are' (이에요 / 예요) go in a Korean sentence?",
+          "soundToPlay": "아기 곰이에요",
+          "options": [
+            "At the very END of the sentence (e.g., 'I Baby Bear am')",
+            "At the very beginning",
+            "Before the word 'I'",
+            "Korean sentences do not have verbs"
+          ],
+          "correctIndex": 0,
+          "explanation": "In Korean grammar, verbs always come at the very end of the sentence!"
+        },
+        {
+          "id": "q12_3",
+          "type": "multiple_choice",
+          "prompt": "What does the question '이거 뭐예요?' (Igeo mwoyeyo?) mean?",
+          "soundToPlay": "이거 뭐예요",
+          "options": ["What is this?", "Hello, how are you?", "Water, please!", "Thank you!"],
+          "correctIndex": 0,
+          "explanation": "이거 (This) + 뭐예요 (what is it?) = 'What is this?'!"
+        },
+        {
+          "id": "q12_4",
+          "type": "multiple_choice",
+          "prompt": "What do you say to compliment a chef when food is super tasty?",
+          "soundToPlay": "맛있어요",
+          "options": ["맛있어요! (Masisseoyo - It's delicious!)", "아니요! (Aniyo - No!)", "이거 뭐예요? (What is this?)", "둘 (Dul - Two)"],
+          "correctIndex": 0,
+          "explanation": "맛있어요! (Masisseoyo!) means 'It's delicious!'."
+        },
+        {
+          "id": "q12_5",
+          "type": "listening",
+          "prompt": "Listen to the sentence '저는 친구예요' (Jeoneun chingu-yeyo). What does it mean?",
+          "soundToPlay": "저는 친구예요",
+          "options": ["I am a friend.", "This is coffee.", "Give me water, please.", "What is this?"],
+          "correctIndex": 0,
+          "explanation": "저는 (I) + 친구 (friend) + 예요 (am) = 'I am a friend!'."
+        },
+        {
+          "id": "q12_6",
+          "type": "listening",
+          "prompt": "Listen carefully to the question. What is being asked?",
+          "soundToPlay": "이거 뭐예요",
+          "options": ["이거 뭐예요? (What is this?)", "안녕하세요? (Hello?)", "김밥 주세요 (Gimbap, please)", "맛있어요! (It's delicious!)"],
+          "correctIndex": 0,
+          "explanation": "You heard '이거 뭐예요?' (Igeo mwoyeyo? - What is this?)!"
+        },
+        {
+          "id": "q12_7",
+          "type": "matching",
+          "prompt": "Someone asks you '이거 뭐예요?' (What is this?) while pointing at Coffee ('커피'). How do you answer 'It is coffee!'?",
+          "soundToPlay": "커피예요",
+          "options": ["커피예요! (Keopi-yeyo!)", "커피 누구예요?", "저는 커피", "아니요 주세요"],
+          "correctIndex": 0,
+          "explanation": "Attach '-예요' (is) to 커피 (coffee): '커피예요!' (It is coffee!)."
+        },
+        {
+          "id": "q12_8",
+          "type": "multiple_choice",
+          "prompt": "When do we attach '-이에요' vs '-예요' to a noun?",
+          "soundToPlay": "김밥이에요",
+          "options": [
+            "Use '-이에요' after a Batchim consonant (김밥이에요) and '-예요' after a vowel (커피예요)",
+            "They are used randomly",
+            "Only use '-이에요' for numbers",
+            "Only use '-예요' in the morning"
+          ],
+          "correctIndex": 0,
+          "explanation": "Words ending in a bottom Batchim consonant take '-이에요' for smooth flow, while words ending in a vowel take '-예요'!"
+        },
+        {
+          "id": "q12_9",
+          "type": "matching",
+          "prompt": "Build the Korean sentence for: 'Gimbap is delicious!'",
+          "soundToPlay": "김밥 맛있어요",
+          "options": [
+            "김밥 맛있어요! (Gimbap masisseoyo!)",
+            "김밥 뭐예요?",
+            "김밥 아니요!",
+            "김밥 하나 둘 셋!"
+          ],
+          "correctIndex": 0,
+          "explanation": "김밥 (Gimbap) + 맛있어요 (is delicious) = '김밥 맛있어요!'."
+        },
+        {
+          "id": "q12_10",
+          "type": "listening",
+          "prompt": "Listen to the exclamation. What is the speaker saying?",
+          "soundToPlay": "맛있어요",
+          "options": ["맛있어요! (It's delicious!)", "감사합니다! (Thank you!)", "안녕하세요! (Hello!)", "미안해요! (I'm sorry!)"],
+          "correctIndex": 0,
+          "explanation": "You heard '맛있어요!' (Masisseoyo - It's delicious!)!"
+        }
+      ]
+    }
   }
 ]
+

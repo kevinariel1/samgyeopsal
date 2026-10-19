@@ -4,9 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:learn_korean/core/services/audio_service.dart';
 import 'package:learn_korean/core/services/storage_service.dart';
 import 'package:learn_korean/data/models/unit_model.dart';
+import 'package:learn_korean/data/repositories/progress_repository_impl.dart';
 import 'package:learn_korean/main.dart';
 import 'package:learn_korean/presentation/providers/app_providers.dart';
 import 'package:learn_korean/presentation/screens/hangul_builder_screen.dart';
+import 'package:learn_korean/presentation/screens/progress_screen.dart';
+import 'package:learn_korean/presentation/screens/sound_detective_screen.dart';
 import 'package:learn_korean/presentation/screens/speed_match_screen.dart';
 import 'package:learn_korean/presentation/screens/writing_studio_screen.dart';
 
@@ -54,23 +57,25 @@ void main() {
 
     expect(find.text('Practice Hub 🎮'), findsOneWidget);
     expect(find.text('Build the Hangul 🧩'), findsOneWidget);
-    expect(find.text('Writing Studio ✍️'), findsOneWidget);
+    expect(find.text('Sound Detective 🎧'), findsOneWidget);
 
-    await tester.drag(find.byType(ListView).last, const Offset(0, -300));
+    await tester.drag(find.byType(ListView).last, const Offset(0, -500));
     await tester.pumpAndSettle();
 
     expect(find.text('Speed Match ⚡'), findsOneWidget);
     expect(find.text('Smart Flashcards 🃏'), findsOneWidget);
   });
 
-  testWidgets('HangulBuilderScreen composes syllables in Workshop and verifies puzzles in Challenge mode',
+  testWidgets('HangulBuilderScreen composes syllables in Workshop and awards XP & badge in Challenge mode',
       (WidgetTester tester) async {
     final mockAudio = MockAudioService();
+    final mockStorage = MemoryStorageService();
 
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
           audioServiceProvider.overrideWithValue(mockAudio),
+          storageServiceProvider.overrideWithValue(mockStorage),
         ],
         child: const MaterialApp(
           home: HangulBuilderScreen(),
@@ -108,16 +113,78 @@ void main() {
 
     expect(find.textContaining('Awesome! You built "가"'), findsOneWidget);
     expect(find.text('Next Puzzle'), findsOneWidget);
+
+    // Verify persistent XP and badge were saved
+    final progress = await ProgressRepositoryImpl(mockStorage).getProgress();
+    expect(progress.totalXp, 10);
+    expect(progress.hasBadge('badge_syllable_architect'), isTrue);
   });
 
-  testWidgets('WritingStudioScreen switches character groups and toggles guides',
+  testWidgets('SoundDetectiveScreen plays mystery sound and awards badge on correct contrast answer',
       (WidgetTester tester) async {
     final mockAudio = MockAudioService();
+    final mockStorage = MemoryStorageService();
 
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
           audioServiceProvider.overrideWithValue(mockAudio),
+          storageServiceProvider.overrideWithValue(mockStorage),
+        ],
+        child: const MaterialApp(
+          home: SoundDetectiveScreen(),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    expect(find.text('Sound Detective 🎧'), findsOneWidget);
+    expect(find.text('Tap to Listen to the Mystery Sound'), findsOneWidget);
+
+    // First round target is index 1 ('카')
+    await tester.ensureVisible(find.text('카'));
+    await tester.tap(find.text('카'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Next Sound Challenge (+5 XP)'), findsOneWidget);
+    final progress = await ProgressRepositoryImpl(mockStorage).getProgress();
+    expect(progress.totalXp, 5);
+    expect(progress.hasBadge('badge_ear_detective'), isTrue);
+  });
+
+  testWidgets('ProgressScreen displays Achievement Badges showcase',
+      (WidgetTester tester) async {
+    final mockStorage = MemoryStorageService();
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          storageServiceProvider.overrideWithValue(mockStorage),
+        ],
+        child: const MaterialApp(
+          home: ProgressScreen(),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    expect(find.text('Achievement Badges 🏅'), findsOneWidget);
+    expect(find.text('Block Builder'), findsOneWidget);
+    expect(find.text('Ear Detective'), findsOneWidget);
+  });
+
+  testWidgets('WritingStudioScreen switches character groups and toggles guides',
+      (WidgetTester tester) async {
+    final mockAudio = MockAudioService();
+    final mockStorage = MemoryStorageService();
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          audioServiceProvider.overrideWithValue(mockAudio),
+          storageServiceProvider.overrideWithValue(mockStorage),
         ],
         child: const MaterialApp(
           home: WritingStudioScreen(),
@@ -140,11 +207,13 @@ void main() {
   testWidgets('SpeedMatchScreen renders 6 pairs and allows matching',
       (WidgetTester tester) async {
     final mockAudio = MockAudioService();
+    final mockStorage = MemoryStorageService();
 
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
           audioServiceProvider.overrideWithValue(mockAudio),
+          storageServiceProvider.overrideWithValue(mockStorage),
         ],
         child: const MaterialApp(
           home: SpeedMatchScreen(),
