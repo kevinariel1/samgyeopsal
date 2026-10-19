@@ -119,7 +119,11 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
                   ),
                 ),
               ),
-              AudioButton(textToSpeak: widget.card.korean),
+              AudioButton(
+                textToSpeak: widget.card.sound.isNotEmpty
+                    ? widget.card.sound
+                    : widget.card.korean,
+              ),
             ],
           ),
           Center(
@@ -127,13 +131,16 @@ class _FlipCardWidgetState extends State<FlipCardWidget>
               children: [
                 Hero(
                   tag: 'hangul_${widget.card.id}',
-                  child: Text(
-                    widget.card.korean,
-                    style: const TextStyle(
-                      fontSize: 108,
-                      fontWeight: FontWeight.w900,
-                      height: 1.1,
-                      color: AppColors.primary,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      widget.card.korean,
+                      style: const TextStyle(
+                        fontSize: 108,
+                        fontWeight: FontWeight.w900,
+                        height: 1.1,
+                        color: AppColors.primary,
+                      ),
                     ),
                   ),
                 ),

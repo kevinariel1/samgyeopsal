@@ -674,6 +674,1347 @@ class HangulStrokeEvaluator {
         StrokeGuideStep(number: 5, position: Offset(0.86, 0.42), directionHint: '5 ➔'),
       ],
     ),
+    'ㅡ': HangulCharacterDefinition(
+      character: 'ㅡ',
+      maxStrokesAllowed: 1,
+      isOpenShape: true,
+      expectedStart: Offset(0.24, 0.50),
+      expectedEnd: Offset(0.76, 0.50),
+      templatePaths: [
+        [
+          Offset(0.24, 0.50),
+          Offset(0.50, 0.50),
+          Offset(0.76, 0.50),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.24, 0.50),
+          end: Offset(0.76, 0.50),
+          segmentName: 'horizontal earth line',
+        ),
+      ],
+      mandatoryCorners: [],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.24, 0.40), directionHint: '1 ➔'),
+      ],
+    ),
+    'ㅣ': HangulCharacterDefinition(
+      character: 'ㅣ',
+      maxStrokesAllowed: 1,
+      isOpenShape: true,
+      expectedStart: Offset(0.50, 0.20),
+      expectedEnd: Offset(0.50, 0.80),
+      templatePaths: [
+        [
+          Offset(0.50, 0.20),
+          Offset(0.50, 0.50),
+          Offset(0.50, 0.80),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.50, 0.20),
+          end: Offset(0.50, 0.80),
+          segmentName: 'vertical standing line',
+        ),
+      ],
+      mandatoryCorners: [],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.50, 0.12), directionHint: '1 ↓'),
+      ],
+    ),
+    'ㅁ': HangulCharacterDefinition(
+      character: 'ㅁ',
+      maxStrokesAllowed: 4,
+      isOpenShape: false,
+      expectedStart: Offset(0.30, 0.28),
+      expectedEnd: Offset(0.70, 0.72),
+      templatePaths: [
+        [
+          Offset(0.30, 0.28),
+          Offset(0.30, 0.72),
+        ],
+        [
+          Offset(0.30, 0.28),
+          Offset(0.70, 0.28),
+          Offset(0.70, 0.72),
+        ],
+        [
+          Offset(0.30, 0.72),
+          Offset(0.70, 0.72),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.30, 0.28),
+          end: Offset(0.30, 0.72),
+          segmentName: 'left vertical wall',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.28),
+          end: Offset(0.70, 0.28),
+          segmentName: 'top horizontal roof',
+        ),
+        CharacterSegment(
+          start: Offset(0.70, 0.28),
+          end: Offset(0.70, 0.72),
+          segmentName: 'right vertical wall',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.72),
+          end: Offset(0.70, 0.72),
+          segmentName: 'bottom closing bar',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.70, 0.28),
+        Offset(0.30, 0.72),
+      ],
+      forbiddenCutZones: [
+        Offset(0.50, 0.50),
+      ],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.20, 0.28), directionHint: '1 ↓'),
+        StrokeGuideStep(number: 2, position: Offset(0.50, 0.20), directionHint: '2 ➔↴'),
+        StrokeGuideStep(number: 3, position: Offset(0.50, 0.80), directionHint: '3 ➔'),
+      ],
+    ),
+    'ㅂ': HangulCharacterDefinition(
+      character: 'ㅂ',
+      maxStrokesAllowed: 4,
+      isOpenShape: false,
+      expectedStart: Offset(0.30, 0.24),
+      expectedEnd: Offset(0.70, 0.74),
+      templatePaths: [
+        [
+          Offset(0.30, 0.24),
+          Offset(0.30, 0.74),
+        ],
+        [
+          Offset(0.70, 0.24),
+          Offset(0.70, 0.74),
+        ],
+        [
+          Offset(0.30, 0.50),
+          Offset(0.70, 0.50),
+        ],
+        [
+          Offset(0.30, 0.74),
+          Offset(0.70, 0.74),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.30, 0.24),
+          end: Offset(0.30, 0.74),
+          segmentName: 'left bucket wall',
+        ),
+        CharacterSegment(
+          start: Offset(0.70, 0.24),
+          end: Offset(0.70, 0.74),
+          segmentName: 'right bucket wall',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.50),
+          end: Offset(0.70, 0.50),
+          segmentName: 'middle water line',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.74),
+          end: Offset(0.70, 0.74),
+          segmentName: 'bottom base',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.30, 0.74),
+        Offset(0.70, 0.74),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.20, 0.24), directionHint: '1 ↓'),
+        StrokeGuideStep(number: 2, position: Offset(0.78, 0.24), directionHint: '2 ↓'),
+        StrokeGuideStep(number: 3, position: Offset(0.50, 0.42), directionHint: '3 ➔'),
+        StrokeGuideStep(number: 4, position: Offset(0.50, 0.82), directionHint: '4 ➔'),
+      ],
+    ),
+    'ㅅ': HangulCharacterDefinition(
+      character: 'ㅅ',
+      maxStrokesAllowed: 2,
+      isOpenShape: true,
+      expectedStart: Offset(0.50, 0.24),
+      expectedEnd: Offset(0.74, 0.74),
+      templatePaths: [
+        [
+          Offset(0.50, 0.24),
+          Offset(0.38, 0.50),
+          Offset(0.26, 0.74),
+        ],
+        [
+          Offset(0.50, 0.44),
+          Offset(0.62, 0.58),
+          Offset(0.74, 0.74),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.50, 0.24),
+          end: Offset(0.26, 0.74),
+          segmentName: 'left mountain slope',
+        ),
+        CharacterSegment(
+          start: Offset(0.50, 0.44),
+          end: Offset(0.74, 0.74),
+          segmentName: 'right mountain slope',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.50, 0.24),
+      ],
+      forbiddenCutZones: [
+        Offset(0.50, 0.74),
+      ],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.50, 0.16), directionHint: '1 ↙'),
+        StrokeGuideStep(number: 2, position: Offset(0.68, 0.48), directionHint: '2 ↘'),
+      ],
+    ),
+    'ㅇ': HangulCharacterDefinition(
+      character: 'ㅇ',
+      maxStrokesAllowed: 2,
+      isOpenShape: false,
+      expectedStart: Offset(0.50, 0.26),
+      expectedEnd: Offset(0.50, 0.26),
+      templatePaths: [
+        [
+          Offset(0.50, 0.26),
+          Offset(0.32, 0.34),
+          Offset(0.26, 0.50),
+          Offset(0.32, 0.66),
+          Offset(0.50, 0.74),
+          Offset(0.68, 0.66),
+          Offset(0.74, 0.50),
+          Offset(0.68, 0.34),
+          Offset(0.50, 0.26),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.50, 0.26),
+          end: Offset(0.26, 0.50),
+          segmentName: 'upper left arc',
+        ),
+        CharacterSegment(
+          start: Offset(0.26, 0.50),
+          end: Offset(0.50, 0.74),
+          segmentName: 'lower left arc',
+        ),
+        CharacterSegment(
+          start: Offset(0.50, 0.74),
+          end: Offset(0.74, 0.50),
+          segmentName: 'lower right arc',
+        ),
+        CharacterSegment(
+          start: Offset(0.74, 0.50),
+          end: Offset(0.50, 0.26),
+          segmentName: 'upper right arc',
+        ),
+      ],
+      mandatoryCorners: [],
+      forbiddenCutZones: [
+        Offset(0.50, 0.50),
+      ],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.50, 0.16), directionHint: '1 ↺'),
+      ],
+    ),
+    'ㅈ': HangulCharacterDefinition(
+      character: 'ㅈ',
+      maxStrokesAllowed: 3,
+      isOpenShape: true,
+      expectedStart: Offset(0.28, 0.28),
+      expectedEnd: Offset(0.74, 0.74),
+      templatePaths: [
+        [
+          Offset(0.28, 0.28),
+          Offset(0.72, 0.28),
+          Offset(0.48, 0.52),
+          Offset(0.26, 0.74),
+        ],
+        [
+          Offset(0.50, 0.48),
+          Offset(0.74, 0.74),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.28, 0.28),
+          end: Offset(0.72, 0.28),
+          segmentName: 'top horizontal roof',
+        ),
+        CharacterSegment(
+          start: Offset(0.72, 0.28),
+          end: Offset(0.26, 0.74),
+          segmentName: 'left diagonal leg',
+        ),
+        CharacterSegment(
+          start: Offset(0.50, 0.48),
+          end: Offset(0.74, 0.74),
+          segmentName: 'right diagonal leg',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.72, 0.28),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.28, 0.20), directionHint: '1 ➔↙'),
+        StrokeGuideStep(number: 2, position: Offset(0.68, 0.50), directionHint: '2 ↘'),
+      ],
+    ),
+    'ㅋ': HangulCharacterDefinition(
+      character: 'ㅋ',
+      maxStrokesAllowed: 3,
+      isOpenShape: true,
+      expectedStart: Offset(0.28, 0.28),
+      expectedEnd: Offset(0.72, 0.52),
+      templatePaths: [
+        [
+          Offset(0.28, 0.28),
+          Offset(0.72, 0.28),
+          Offset(0.72, 0.74),
+        ],
+        [
+          Offset(0.30, 0.50),
+          Offset(0.72, 0.50),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.28, 0.28),
+          end: Offset(0.72, 0.28),
+          segmentName: 'top horizontal bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.72, 0.28),
+          end: Offset(0.72, 0.74),
+          segmentName: 'right vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.50),
+          end: Offset(0.72, 0.50),
+          segmentName: 'middle key bar',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.72, 0.28),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.28, 0.20), directionHint: '1 ➔↴'),
+        StrokeGuideStep(number: 2, position: Offset(0.24, 0.50), directionHint: '2 ➔'),
+      ],
+    ),
+    'ㅌ': HangulCharacterDefinition(
+      character: 'ㅌ',
+      maxStrokesAllowed: 4,
+      isOpenShape: true,
+      expectedStart: Offset(0.30, 0.26),
+      expectedEnd: Offset(0.72, 0.74),
+      templatePaths: [
+        [
+          Offset(0.30, 0.26),
+          Offset(0.72, 0.26),
+        ],
+        [
+          Offset(0.30, 0.50),
+          Offset(0.68, 0.50),
+        ],
+        [
+          Offset(0.30, 0.26),
+          Offset(0.30, 0.74),
+          Offset(0.72, 0.74),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.30, 0.26),
+          end: Offset(0.72, 0.26),
+          segmentName: 'top bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.50),
+          end: Offset(0.68, 0.50),
+          segmentName: 'middle bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.26),
+          end: Offset(0.30, 0.74),
+          segmentName: 'left vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.30, 0.74),
+          end: Offset(0.72, 0.74),
+          segmentName: 'bottom bar',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.30, 0.74),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.30, 0.18), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.50, 0.42), directionHint: '2 ➔'),
+        StrokeGuideStep(number: 3, position: Offset(0.20, 0.60), directionHint: '3 ↓➔'),
+      ],
+    ),
+    'ㅍ': HangulCharacterDefinition(
+      character: 'ㅍ',
+      maxStrokesAllowed: 4,
+      isOpenShape: true,
+      expectedStart: Offset(0.26, 0.28),
+      expectedEnd: Offset(0.74, 0.72),
+      templatePaths: [
+        [
+          Offset(0.26, 0.28),
+          Offset(0.74, 0.28),
+        ],
+        [
+          Offset(0.38, 0.28),
+          Offset(0.38, 0.72),
+        ],
+        [
+          Offset(0.62, 0.28),
+          Offset(0.62, 0.72),
+        ],
+        [
+          Offset(0.24, 0.72),
+          Offset(0.74, 0.72),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.26, 0.28),
+          end: Offset(0.74, 0.28),
+          segmentName: 'top roof bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.38, 0.28),
+          end: Offset(0.38, 0.72),
+          segmentName: 'left pillar',
+        ),
+        CharacterSegment(
+          start: Offset(0.62, 0.28),
+          end: Offset(0.62, 0.72),
+          segmentName: 'right pillar',
+        ),
+        CharacterSegment(
+          start: Offset(0.24, 0.72),
+          end: Offset(0.74, 0.72),
+          segmentName: 'bottom floor bar',
+        ),
+      ],
+      mandatoryCorners: [],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.26, 0.20), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.30, 0.48), directionHint: '2 ↓'),
+        StrokeGuideStep(number: 3, position: Offset(0.70, 0.48), directionHint: '3 ↓'),
+        StrokeGuideStep(number: 4, position: Offset(0.50, 0.80), directionHint: '4 ➔'),
+      ],
+    ),
+    'ㅊ': HangulCharacterDefinition(
+      character: 'ㅊ',
+      maxStrokesAllowed: 4,
+      isOpenShape: true,
+      expectedStart: Offset(0.42, 0.18),
+      expectedEnd: Offset(0.74, 0.76),
+      templatePaths: [
+        [
+          Offset(0.42, 0.18),
+          Offset(0.58, 0.18),
+        ],
+        [
+          Offset(0.28, 0.34),
+          Offset(0.72, 0.34),
+          Offset(0.48, 0.56),
+          Offset(0.26, 0.76),
+        ],
+        [
+          Offset(0.50, 0.52),
+          Offset(0.74, 0.76),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.42, 0.18),
+          end: Offset(0.58, 0.18),
+          segmentName: 'top hat tick',
+        ),
+        CharacterSegment(
+          start: Offset(0.28, 0.34),
+          end: Offset(0.72, 0.34),
+          segmentName: 'horizontal bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.72, 0.34),
+          end: Offset(0.26, 0.76),
+          segmentName: 'left leg',
+        ),
+        CharacterSegment(
+          start: Offset(0.50, 0.52),
+          end: Offset(0.74, 0.76),
+          segmentName: 'right leg',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.72, 0.34),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.50, 0.10), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.24, 0.34), directionHint: '2 ➔↙'),
+        StrokeGuideStep(number: 3, position: Offset(0.70, 0.56), directionHint: '3 ↘'),
+      ],
+    ),
+    'ㅎ': HangulCharacterDefinition(
+      character: 'ㅎ',
+      maxStrokesAllowed: 4,
+      isOpenShape: false,
+      expectedStart: Offset(0.40, 0.18),
+      expectedEnd: Offset(0.50, 0.46),
+      templatePaths: [
+        [
+          Offset(0.40, 0.18),
+          Offset(0.60, 0.18),
+        ],
+        [
+          Offset(0.24, 0.32),
+          Offset(0.76, 0.32),
+        ],
+        [
+          Offset(0.50, 0.46),
+          Offset(0.34, 0.54),
+          Offset(0.34, 0.68),
+          Offset(0.50, 0.76),
+          Offset(0.66, 0.68),
+          Offset(0.66, 0.54),
+          Offset(0.50, 0.46),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.40, 0.18),
+          end: Offset(0.60, 0.18),
+          segmentName: 'top hat crown',
+        ),
+        CharacterSegment(
+          start: Offset(0.24, 0.32),
+          end: Offset(0.76, 0.32),
+          segmentName: 'hat brim',
+        ),
+        CharacterSegment(
+          start: Offset(0.50, 0.46),
+          end: Offset(0.34, 0.68),
+          segmentName: 'left circle side',
+        ),
+        CharacterSegment(
+          start: Offset(0.50, 0.76),
+          end: Offset(0.66, 0.54),
+          segmentName: 'right circle side',
+        ),
+      ],
+      mandatoryCorners: [],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.50, 0.10), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.24, 0.26), directionHint: '2 ➔'),
+        StrokeGuideStep(number: 3, position: Offset(0.50, 0.84), directionHint: '3 ↺'),
+      ],
+    ),
+    'ㅑ': HangulCharacterDefinition(
+      character: 'ㅑ',
+      maxStrokesAllowed: 3,
+      isOpenShape: true,
+      expectedStart: Offset(0.44, 0.20),
+      expectedEnd: Offset(0.74, 0.60),
+      templatePaths: [
+        [
+          Offset(0.44, 0.20),
+          Offset(0.44, 0.50),
+          Offset(0.44, 0.80),
+        ],
+        [
+          Offset(0.44, 0.38),
+          Offset(0.74, 0.38),
+        ],
+        [
+          Offset(0.44, 0.60),
+          Offset(0.74, 0.60),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.44, 0.20),
+          end: Offset(0.44, 0.80),
+          segmentName: 'vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.44, 0.38),
+          end: Offset(0.74, 0.38),
+          segmentName: 'upper right branch',
+        ),
+        CharacterSegment(
+          start: Offset(0.44, 0.60),
+          end: Offset(0.74, 0.60),
+          segmentName: 'lower right branch',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.44, 0.38),
+        Offset(0.44, 0.60),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.44, 0.12), directionHint: '1 ↓'),
+        StrokeGuideStep(number: 2, position: Offset(0.74, 0.30), directionHint: '2 ➔'),
+        StrokeGuideStep(number: 3, position: Offset(0.74, 0.68), directionHint: '3 ➔'),
+      ],
+    ),
+    'ㅛ': HangulCharacterDefinition(
+      character: 'ㅛ',
+      maxStrokesAllowed: 3,
+      isOpenShape: true,
+      expectedStart: Offset(0.38, 0.24),
+      expectedEnd: Offset(0.76, 0.60),
+      templatePaths: [
+        [
+          Offset(0.38, 0.24),
+          Offset(0.38, 0.60),
+        ],
+        [
+          Offset(0.62, 0.24),
+          Offset(0.62, 0.60),
+        ],
+        [
+          Offset(0.24, 0.60),
+          Offset(0.50, 0.60),
+          Offset(0.76, 0.60),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.38, 0.24),
+          end: Offset(0.38, 0.60),
+          segmentName: 'left vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.62, 0.24),
+          end: Offset(0.62, 0.60),
+          segmentName: 'right vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.24, 0.60),
+          end: Offset(0.76, 0.60),
+          segmentName: 'horizontal base',
+        ),
+      ],
+      mandatoryCorners: [],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.38, 0.16), directionHint: '1 ↓'),
+        StrokeGuideStep(number: 2, position: Offset(0.62, 0.16), directionHint: '2 ↓'),
+        StrokeGuideStep(number: 3, position: Offset(0.24, 0.68), directionHint: '3 ➔'),
+      ],
+    ),
+    'ㅐ': HangulCharacterDefinition(
+      character: 'ㅐ',
+      maxStrokesAllowed: 3,
+      isOpenShape: true,
+      expectedStart: Offset(0.36, 0.20),
+      expectedEnd: Offset(0.66, 0.80),
+      templatePaths: [
+        [
+          Offset(0.36, 0.20),
+          Offset(0.36, 0.80),
+        ],
+        [
+          Offset(0.36, 0.50),
+          Offset(0.66, 0.50),
+        ],
+        [
+          Offset(0.66, 0.20),
+          Offset(0.66, 0.80),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.36, 0.20),
+          end: Offset(0.36, 0.80),
+          segmentName: 'left vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.36, 0.50),
+          end: Offset(0.66, 0.50),
+          segmentName: 'middle bridge',
+        ),
+        CharacterSegment(
+          start: Offset(0.66, 0.20),
+          end: Offset(0.66, 0.80),
+          segmentName: 'right vertical stem',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.36, 0.50),
+        Offset(0.66, 0.50),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.36, 0.12), directionHint: '1 ↓'),
+        StrokeGuideStep(number: 2, position: Offset(0.50, 0.42), directionHint: '2 ➔'),
+        StrokeGuideStep(number: 3, position: Offset(0.66, 0.12), directionHint: '3 ↓'),
+      ],
+    ),
+    'ㅔ': HangulCharacterDefinition(
+      character: 'ㅔ',
+      maxStrokesAllowed: 3,
+      isOpenShape: true,
+      expectedStart: Offset(0.22, 0.50),
+      expectedEnd: Offset(0.70, 0.80),
+      templatePaths: [
+        [
+          Offset(0.22, 0.50),
+          Offset(0.48, 0.50),
+        ],
+        [
+          Offset(0.48, 0.20),
+          Offset(0.48, 0.80),
+        ],
+        [
+          Offset(0.70, 0.20),
+          Offset(0.70, 0.80),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.22, 0.50),
+          end: Offset(0.48, 0.50),
+          segmentName: 'left horizontal dash',
+        ),
+        CharacterSegment(
+          start: Offset(0.48, 0.20),
+          end: Offset(0.48, 0.80),
+          segmentName: 'inner vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.70, 0.20),
+          end: Offset(0.70, 0.80),
+          segmentName: 'outer vertical stem',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.48, 0.50),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.22, 0.42), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.48, 0.12), directionHint: '2 ↓'),
+        StrokeGuideStep(number: 3, position: Offset(0.70, 0.12), directionHint: '3 ↓'),
+      ],
+    ),
+    'ㅘ': HangulCharacterDefinition(
+      character: 'ㅘ',
+      maxStrokesAllowed: 4,
+      isOpenShape: true,
+      expectedStart: Offset(0.34, 0.30),
+      expectedEnd: Offset(0.84, 0.50),
+      templatePaths: [
+        [
+          Offset(0.34, 0.30),
+          Offset(0.34, 0.62),
+        ],
+        [
+          Offset(0.16, 0.62),
+          Offset(0.52, 0.62),
+        ],
+        [
+          Offset(0.64, 0.18),
+          Offset(0.64, 0.82),
+        ],
+        [
+          Offset(0.64, 0.50),
+          Offset(0.84, 0.50),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.34, 0.30),
+          end: Offset(0.34, 0.62),
+          segmentName: 'left o stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.16, 0.62),
+          end: Offset(0.52, 0.62),
+          segmentName: 'left o base',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.18),
+          end: Offset(0.64, 0.82),
+          segmentName: 'right vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.50),
+          end: Offset(0.84, 0.50),
+          segmentName: 'right branch',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.34, 0.62),
+        Offset(0.64, 0.50),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.34, 0.22), directionHint: '1 ↓'),
+        StrokeGuideStep(number: 2, position: Offset(0.16, 0.70), directionHint: '2 ➔'),
+        StrokeGuideStep(number: 3, position: Offset(0.64, 0.10), directionHint: '3 ↓'),
+        StrokeGuideStep(number: 4, position: Offset(0.84, 0.42), directionHint: '4 ➔'),
+      ],
+    ),
+    'ㅝ': HangulCharacterDefinition(
+      character: 'ㅝ',
+      maxStrokesAllowed: 4,
+      isOpenShape: true,
+      expectedStart: Offset(0.16, 0.38),
+      expectedEnd: Offset(0.74, 0.82),
+      templatePaths: [
+        [
+          Offset(0.16, 0.38),
+          Offset(0.54, 0.38),
+        ],
+        [
+          Offset(0.35, 0.38),
+          Offset(0.35, 0.72),
+        ],
+        [
+          Offset(0.54, 0.56),
+          Offset(0.74, 0.56),
+        ],
+        [
+          Offset(0.74, 0.18),
+          Offset(0.74, 0.82),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.16, 0.38),
+          end: Offset(0.54, 0.38),
+          segmentName: 'u horizontal bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.35, 0.38),
+          end: Offset(0.35, 0.72),
+          segmentName: 'u downward stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.54, 0.56),
+          end: Offset(0.74, 0.56),
+          segmentName: 'eo inward bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.74, 0.18),
+          end: Offset(0.74, 0.82),
+          segmentName: 'right vertical stem',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.35, 0.38),
+        Offset(0.74, 0.56),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.16, 0.30), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.35, 0.80), directionHint: '2 ↓'),
+        StrokeGuideStep(number: 3, position: Offset(0.54, 0.48), directionHint: '3 ➔'),
+        StrokeGuideStep(number: 4, position: Offset(0.74, 0.10), directionHint: '4 ↓'),
+      ],
+    ),
+    'ㅟ': HangulCharacterDefinition(
+      character: 'ㅟ',
+      maxStrokesAllowed: 3,
+      isOpenShape: true,
+      expectedStart: Offset(0.18, 0.42),
+      expectedEnd: Offset(0.72, 0.82),
+      templatePaths: [
+        [
+          Offset(0.18, 0.42),
+          Offset(0.56, 0.42),
+        ],
+        [
+          Offset(0.37, 0.42),
+          Offset(0.37, 0.76),
+        ],
+        [
+          Offset(0.72, 0.18),
+          Offset(0.72, 0.82),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.18, 0.42),
+          end: Offset(0.56, 0.42),
+          segmentName: 'horizontal u bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.37, 0.42),
+          end: Offset(0.37, 0.76),
+          segmentName: 'downward u stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.72, 0.18),
+          end: Offset(0.72, 0.82),
+          segmentName: 'right vertical stem',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.37, 0.42),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.18, 0.34), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.37, 0.84), directionHint: '2 ↓'),
+        StrokeGuideStep(number: 3, position: Offset(0.72, 0.10), directionHint: '3 ↓'),
+      ],
+    ),
+    'ㅢ': HangulCharacterDefinition(
+      character: 'ㅢ',
+      maxStrokesAllowed: 2,
+      isOpenShape: true,
+      expectedStart: Offset(0.20, 0.56),
+      expectedEnd: Offset(0.72, 0.82),
+      templatePaths: [
+        [
+          Offset(0.20, 0.56),
+          Offset(0.58, 0.56),
+        ],
+        [
+          Offset(0.72, 0.18),
+          Offset(0.72, 0.82),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.20, 0.56),
+          end: Offset(0.58, 0.56),
+          segmentName: 'horizontal eu bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.72, 0.18),
+          end: Offset(0.72, 0.82),
+          segmentName: 'vertical i stem',
+        ),
+      ],
+      mandatoryCorners: [],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.20, 0.48), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.72, 0.10), directionHint: '2 ↓'),
+      ],
+    ),
+    'ㄲ': HangulCharacterDefinition(
+      character: 'ㄲ',
+      maxStrokesAllowed: 4,
+      isOpenShape: true,
+      expectedStart: Offset(0.18, 0.30),
+      expectedEnd: Offset(0.80, 0.72),
+      templatePaths: [
+        [
+          Offset(0.18, 0.30),
+          Offset(0.44, 0.30),
+          Offset(0.44, 0.72),
+        ],
+        [
+          Offset(0.54, 0.30),
+          Offset(0.80, 0.30),
+          Offset(0.80, 0.72),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.18, 0.30),
+          end: Offset(0.44, 0.30),
+          segmentName: 'first top bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.44, 0.30),
+          end: Offset(0.44, 0.72),
+          segmentName: 'first vertical drop',
+        ),
+        CharacterSegment(
+          start: Offset(0.54, 0.30),
+          end: Offset(0.80, 0.30),
+          segmentName: 'second top bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.80, 0.30),
+          end: Offset(0.80, 0.72),
+          segmentName: 'second vertical drop',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.44, 0.30),
+        Offset(0.80, 0.30),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.18, 0.22), directionHint: '1 ➔↴'),
+        StrokeGuideStep(number: 2, position: Offset(0.54, 0.22), directionHint: '2 ➔↴'),
+      ],
+    ),
+    'ㄸ': HangulCharacterDefinition(
+      character: 'ㄸ',
+      maxStrokesAllowed: 6,
+      isOpenShape: true,
+      expectedStart: Offset(0.18, 0.30),
+      expectedEnd: Offset(0.82, 0.72),
+      templatePaths: [
+        [
+          Offset(0.18, 0.30),
+          Offset(0.44, 0.30),
+        ],
+        [
+          Offset(0.18, 0.30),
+          Offset(0.18, 0.72),
+          Offset(0.44, 0.72),
+        ],
+        [
+          Offset(0.56, 0.30),
+          Offset(0.82, 0.30),
+        ],
+        [
+          Offset(0.56, 0.30),
+          Offset(0.56, 0.72),
+          Offset(0.82, 0.72),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.18, 0.30),
+          end: Offset(0.44, 0.30),
+          segmentName: 'first top bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.18, 0.30),
+          end: Offset(0.18, 0.72),
+          segmentName: 'first left stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.18, 0.72),
+          end: Offset(0.44, 0.72),
+          segmentName: 'first bottom bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.56, 0.30),
+          end: Offset(0.82, 0.30),
+          segmentName: 'second top bar',
+        ),
+        CharacterSegment(
+          start: Offset(0.56, 0.30),
+          end: Offset(0.56, 0.72),
+          segmentName: 'second left stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.56, 0.72),
+          end: Offset(0.82, 0.72),
+          segmentName: 'second bottom bar',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.18, 0.72),
+        Offset(0.56, 0.72),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.18, 0.22), directionHint: '1 ➔'),
+        StrokeGuideStep(number: 2, position: Offset(0.18, 0.80), directionHint: '2 ↓➔'),
+        StrokeGuideStep(number: 3, position: Offset(0.56, 0.22), directionHint: '3 ➔'),
+        StrokeGuideStep(number: 4, position: Offset(0.56, 0.80), directionHint: '4 ↓➔'),
+      ],
+    ),
+    'ㅃ': HangulCharacterDefinition(
+      character: 'ㅃ',
+      maxStrokesAllowed: 8,
+      isOpenShape: false,
+      expectedStart: Offset(0.18, 0.26),
+      expectedEnd: Offset(0.82, 0.74),
+      templatePaths: [
+        [
+          Offset(0.18, 0.26),
+          Offset(0.18, 0.74),
+        ],
+        [
+          Offset(0.44, 0.26),
+          Offset(0.44, 0.74),
+        ],
+        [
+          Offset(0.18, 0.50),
+          Offset(0.44, 0.50),
+        ],
+        [
+          Offset(0.18, 0.74),
+          Offset(0.44, 0.74),
+        ],
+        [
+          Offset(0.56, 0.26),
+          Offset(0.56, 0.74),
+        ],
+        [
+          Offset(0.82, 0.26),
+          Offset(0.82, 0.74),
+        ],
+        [
+          Offset(0.56, 0.50),
+          Offset(0.82, 0.50),
+        ],
+        [
+          Offset(0.56, 0.74),
+          Offset(0.82, 0.74),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.18, 0.26),
+          end: Offset(0.18, 0.74),
+          segmentName: 'first left wall',
+        ),
+        CharacterSegment(
+          start: Offset(0.44, 0.26),
+          end: Offset(0.44, 0.74),
+          segmentName: 'first right wall',
+        ),
+        CharacterSegment(
+          start: Offset(0.18, 0.74),
+          end: Offset(0.44, 0.74),
+          segmentName: 'first base',
+        ),
+        CharacterSegment(
+          start: Offset(0.56, 0.26),
+          end: Offset(0.56, 0.74),
+          segmentName: 'second left wall',
+        ),
+        CharacterSegment(
+          start: Offset(0.82, 0.26),
+          end: Offset(0.82, 0.74),
+          segmentName: 'second right wall',
+        ),
+        CharacterSegment(
+          start: Offset(0.56, 0.74),
+          end: Offset(0.82, 0.74),
+          segmentName: 'second base',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.18, 0.74),
+        Offset(0.56, 0.74),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.18, 0.18), directionHint: '1 ↓'),
+        StrokeGuideStep(number: 2, position: Offset(0.44, 0.18), directionHint: '2 ↓'),
+        StrokeGuideStep(number: 3, position: Offset(0.56, 0.18), directionHint: '3 ↓'),
+        StrokeGuideStep(number: 4, position: Offset(0.82, 0.18), directionHint: '4 ↓'),
+      ],
+    ),
+    'ㅆ': HangulCharacterDefinition(
+      character: 'ㅆ',
+      maxStrokesAllowed: 4,
+      isOpenShape: true,
+      expectedStart: Offset(0.32, 0.26),
+      expectedEnd: Offset(0.84, 0.74),
+      templatePaths: [
+        [
+          Offset(0.32, 0.26),
+          Offset(0.16, 0.74),
+        ],
+        [
+          Offset(0.32, 0.46),
+          Offset(0.46, 0.74),
+        ],
+        [
+          Offset(0.68, 0.26),
+          Offset(0.52, 0.74),
+        ],
+        [
+          Offset(0.68, 0.46),
+          Offset(0.84, 0.74),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.32, 0.26),
+          end: Offset(0.16, 0.74),
+          segmentName: 'first left slope',
+        ),
+        CharacterSegment(
+          start: Offset(0.32, 0.46),
+          end: Offset(0.46, 0.74),
+          segmentName: 'first right slope',
+        ),
+        CharacterSegment(
+          start: Offset(0.68, 0.26),
+          end: Offset(0.52, 0.74),
+          segmentName: 'second left slope',
+        ),
+        CharacterSegment(
+          start: Offset(0.68, 0.46),
+          end: Offset(0.84, 0.74),
+          segmentName: 'second right slope',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.32, 0.26),
+        Offset(0.68, 0.26),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.32, 0.18), directionHint: '1 ↙'),
+        StrokeGuideStep(number: 2, position: Offset(0.44, 0.48), directionHint: '2 ↘'),
+        StrokeGuideStep(number: 3, position: Offset(0.68, 0.18), directionHint: '3 ↙'),
+        StrokeGuideStep(number: 4, position: Offset(0.82, 0.48), directionHint: '4 ↘'),
+      ],
+    ),
+    'ㅉ': HangulCharacterDefinition(
+      character: 'ㅉ',
+      maxStrokesAllowed: 6,
+      isOpenShape: true,
+      expectedStart: Offset(0.16, 0.28),
+      expectedEnd: Offset(0.84, 0.74),
+      templatePaths: [
+        [
+          Offset(0.16, 0.28),
+          Offset(0.46, 0.28),
+          Offset(0.16, 0.74),
+        ],
+        [
+          Offset(0.32, 0.50),
+          Offset(0.46, 0.74),
+        ],
+        [
+          Offset(0.54, 0.28),
+          Offset(0.84, 0.28),
+          Offset(0.54, 0.74),
+        ],
+        [
+          Offset(0.70, 0.50),
+          Offset(0.84, 0.74),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.16, 0.28),
+          end: Offset(0.46, 0.28),
+          segmentName: 'first roof',
+        ),
+        CharacterSegment(
+          start: Offset(0.46, 0.28),
+          end: Offset(0.16, 0.74),
+          segmentName: 'first left leg',
+        ),
+        CharacterSegment(
+          start: Offset(0.54, 0.28),
+          end: Offset(0.84, 0.28),
+          segmentName: 'second roof',
+        ),
+        CharacterSegment(
+          start: Offset(0.84, 0.28),
+          end: Offset(0.54, 0.74),
+          segmentName: 'second left leg',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.46, 0.28),
+        Offset(0.84, 0.28),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.16, 0.20), directionHint: '1 ➔↙'),
+        StrokeGuideStep(number: 2, position: Offset(0.54, 0.20), directionHint: '2 ➔↙'),
+      ],
+    ),
+    '산': HangulCharacterDefinition(
+      character: '산',
+      maxStrokesAllowed: 6,
+      isOpenShape: true,
+      expectedStart: Offset(0.34, 0.18),
+      expectedEnd: Offset(0.74, 0.84),
+      templatePaths: [
+        [
+          Offset(0.34, 0.18),
+          Offset(0.18, 0.52),
+        ],
+        [
+          Offset(0.34, 0.34),
+          Offset(0.50, 0.52),
+        ],
+        [
+          Offset(0.64, 0.16),
+          Offset(0.64, 0.56),
+        ],
+        [
+          Offset(0.64, 0.36),
+          Offset(0.82, 0.36),
+        ],
+        [
+          Offset(0.28, 0.62),
+          Offset(0.28, 0.84),
+          Offset(0.74, 0.84),
+        ],
+      ],
+      segments: [
+        CharacterSegment(
+          start: Offset(0.34, 0.18),
+          end: Offset(0.18, 0.52),
+          segmentName: 'top consonant left slope',
+        ),
+        CharacterSegment(
+          start: Offset(0.34, 0.34),
+          end: Offset(0.50, 0.52),
+          segmentName: 'top consonant right slope',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.16),
+          end: Offset(0.64, 0.56),
+          segmentName: 'vowel vertical stem',
+        ),
+        CharacterSegment(
+          start: Offset(0.64, 0.36),
+          end: Offset(0.82, 0.36),
+          segmentName: 'vowel branch',
+        ),
+        CharacterSegment(
+          start: Offset(0.28, 0.62),
+          end: Offset(0.28, 0.84),
+          segmentName: 'batchim vertical drop',
+        ),
+        CharacterSegment(
+          start: Offset(0.28, 0.84),
+          end: Offset(0.74, 0.84),
+          segmentName: 'batchim bottom bar',
+        ),
+      ],
+      mandatoryCorners: [
+        Offset(0.28, 0.84),
+      ],
+      forbiddenCutZones: [],
+      guideSteps: [
+        StrokeGuideStep(number: 1, position: Offset(0.34, 0.10), directionHint: '1 ↙'),
+        StrokeGuideStep(number: 2, position: Offset(0.48, 0.32), directionHint: '2 ↘'),
+        StrokeGuideStep(number: 3, position: Offset(0.64, 0.10), directionHint: '3 ↓'),
+        StrokeGuideStep(number: 4, position: Offset(0.82, 0.28), directionHint: '4 ➔'),
+        StrokeGuideStep(number: 5, position: Offset(0.20, 0.72), directionHint: '5 ↓➔'),
+      ],
+    ),
   };
 
   static HangulCharacterDefinition getDefinition(String char) {

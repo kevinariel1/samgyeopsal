@@ -126,7 +126,9 @@ class _StoryViewerWidgetState extends State<StoryViewerWidget> {
                         ),
                         const SizedBox(width: 6),
                         AudioButton(
-                          textToSpeak: page.koreanHighlight,
+                          textToSpeak: page.sound.isNotEmpty
+                              ? page.sound
+                              : page.koreanHighlight,
                           size: 32,
                         ),
                       ],

@@ -19,7 +19,7 @@
             "korean": "ㄱ",
             "romanization": "g / k",
             "meaning": "Corner / Gun shape",
-            "sound": "g",
+            "sound": "그",
             "mnemonic": "Looks like an elbow or a corner. Makes a soft 'g' sound as in 'go'.",
             "exampleWord": "고양이 (Goyang-i - Cat)",
             "iconName": "pets"
@@ -29,7 +29,7 @@
             "korean": "ㄴ",
             "romanization": "n",
             "meaning": "Nose shape",
-            "sound": "n",
+            "sound": "느",
             "mnemonic": "Looks like the side of a Nose! Makes the 'n' sound as in 'nest'.",
             "exampleWord": "나비 (Nabi - Butterfly)",
             "iconName": "flutter_dash"
@@ -41,19 +41,19 @@
             {
               "text": "Baby Bear found a wooden corner stick shaped like 'ㄱ' in the forest.",
               "koreanHighlight": "ㄱ",
-              "sound": "g",
+              "sound": "그",
               "icon": "forest"
             },
             {
               "text": "A tiny butterfly landed right on his Nose, which looked like 'ㄴ'!",
               "koreanHighlight": "ㄴ",
-              "sound": "n",
+              "sound": "느",
               "icon": "face"
             },
             {
               "text": "Now Baby Bear remembers: Corner is 'ㄱ' (g) and Nose is 'ㄴ' (n)!",
               "koreanHighlight": "ㄱ ㄴ",
-              "sound": "g n",
+              "sound": "그 느",
               "icon": "favorite"
             }
           ]
@@ -72,7 +72,7 @@
             "korean": "ㄷ",
             "romanization": "d / t",
             "meaning": "Door shape",
-            "sound": "d",
+            "sound": "드",
             "mnemonic": "Looks like an open Doorway! Makes the 'd' sound as in 'door'.",
             "exampleWord": "다람쥐 (Daramjwi - Squirrel)",
             "iconName": "meeting_room"
@@ -82,7 +82,7 @@
             "korean": "ㄹ",
             "romanization": "r / l",
             "meaning": "Rattlesnake / Road",
-            "sound": "r",
+            "sound": "르",
             "mnemonic": "Curvy like a winding Road or snake! Makes an 'r' / 'l' sound.",
             "exampleWord": "라디오 (Radio - Radio)",
             "iconName": "alt_route"
@@ -94,13 +94,13 @@
             {
               "text": "Baby Bear opened the Door 'ㄷ' to start his morning adventure.",
               "koreanHighlight": "ㄷ",
-              "sound": "d",
+              "sound": "드",
               "icon": "door_front"
             },
             {
               "text": "He walked down the winding Road 'ㄹ' toward the sparkling river.",
               "koreanHighlight": "ㄹ",
-              "sound": "r",
+              "sound": "르",
               "icon": "hiking"
             }
           ]
@@ -117,7 +117,7 @@
           "id": "q1",
           "type": "multiple_choice",
           "prompt": "Which letter looks like a Nose and sounds like 'n'?",
-          "soundToPlay": "n",
+          "soundToPlay": "느",
           "options": ["ㄱ", "ㄴ", "ㄷ", "ㄹ"],
           "correctIndex": 1,
           "explanation": "ㄴ represents the tongue touching the roof of mouth, shaped like a Nose ('n')."
@@ -126,16 +126,16 @@
           "id": "q2",
           "type": "listening",
           "prompt": "Listen to the sound and choose the matching Korean consonant:",
-          "soundToPlay": "g",
+          "soundToPlay": "그",
           "options": ["ㄴ", "ㄹ", "ㄱ", "ㄷ"],
           "correctIndex": 2,
-          "explanation": "You heard 'g' which is ㄱ (Giyeok)!"
+          "explanation": "You heard '그' (g) which is ㄱ (Giyeok)!"
         },
         {
           "id": "q3",
           "type": "multiple_choice",
           "prompt": "Which letter looks like an open Door ('d')?",
-          "soundToPlay": "d",
+          "soundToPlay": "드",
           "options": ["ㄷ", "ㄱ", "ㄴ", "ㄹ"],
           "correctIndex": 0,
           "explanation": "ㄷ is shaped like a Door and produces the 'd' sound."
@@ -144,7 +144,7 @@
           "id": "q4",
           "type": "matching",
           "prompt": "What sound does ㄹ (winding road) make?",
-          "soundToPlay": "r",
+          "soundToPlay": "르",
           "options": ["k / g", "m", "r / l", "p"],
           "correctIndex": 2,
           "explanation": "ㄹ sounds like a light flap 'r' or 'l'."
@@ -153,7 +153,7 @@
           "id": "q5",
           "type": "tracing",
           "prompt": "Trace the letter ㄱ with your finger on the screen!",
-          "soundToPlay": "g",
+          "soundToPlay": "그",
           "targetCharacter": "ㄱ",
           "options": ["Trace ㄱ with your finger to complete!"],
           "correctIndex": 0,
@@ -163,25 +163,25 @@
           "id": "q6",
           "type": "listening",
           "prompt": "Listen carefully. Which consonant matches this sound?",
-          "soundToPlay": "d",
+          "soundToPlay": "드",
           "options": ["ㄷ", "ㄴ", "ㄱ", "ㄹ"],
           "correctIndex": 0,
-          "explanation": "You heard the 'd' sound, which is ㄷ (Digeut - Door)!"
+          "explanation": "You heard the '드' (d) sound, which is ㄷ (Digeut - Door)!"
         },
         {
           "id": "q7",
           "type": "listening",
           "prompt": "Listen to the audio. Which letter corresponds to this sound?",
-          "soundToPlay": "n",
+          "soundToPlay": "느",
           "options": ["ㄹ", "ㄴ", "ㄷ", "ㄱ"],
           "correctIndex": 1,
-          "explanation": "You heard the 'n' sound, which corresponds to ㄴ (Nieun - Nose)!"
+          "explanation": "You heard the '느' (n) sound, which corresponds to ㄴ (Nieun - Nose)!"
         },
         {
           "id": "q8",
           "type": "multiple_choice",
           "prompt": "Which consonant is shaped like a corner or gun, representing the back of the tongue?",
-          "soundToPlay": "g",
+          "soundToPlay": "그",
           "options": ["ㄴ", "ㄷ", "ㄱ", "ㄹ"],
           "correctIndex": 2,
           "explanation": "ㄱ (Giyeok) represents the tongue blocking the throat at a 90-degree corner!"
@@ -190,7 +190,7 @@
           "id": "q9",
           "type": "matching",
           "prompt": "In the word '고양이' (Goyang-i - Cat), what is the starting consonant sound?",
-          "soundToPlay": "g",
+          "soundToPlay": "고양이",
           "options": ["d", "g / k", "n", "r / l"],
           "correctIndex": 1,
           "explanation": "고양이 begins with 'ㄱ', making the soft 'g' sound!"
@@ -199,7 +199,7 @@
           "id": "q10",
           "type": "multiple_choice",
           "prompt": "Which letter represents a winding road or rattlesnake?",
-          "soundToPlay": "r",
+          "soundToPlay": "르",
           "options": ["ㄷ", "ㄹ", "ㄱ", "ㄴ"],
           "correctIndex": 1,
           "explanation": "ㄹ (Rieul) has a zig-zag snake or winding road shape!"
@@ -208,7 +208,7 @@
           "id": "q11",
           "type": "matching",
           "prompt": "Match the word '나비' (Nabi - Butterfly) with its starting letter:",
-          "soundToPlay": "n",
+          "soundToPlay": "나비",
           "options": ["ㄱ", "ㄷ", "ㄹ", "ㄴ"],
           "correctIndex": 3,
           "explanation": "나비 (Butterfly) starts with 'ㄴ' (n)!"
@@ -217,7 +217,7 @@
           "id": "q12",
           "type": "tracing",
           "prompt": "Trace the letter ㄴ (Nieun) with your finger on the screen!",
-          "soundToPlay": "n",
+          "soundToPlay": "느",
           "targetCharacter": "ㄴ",
           "options": ["Trace ㄴ to complete!"],
           "correctIndex": 0,
@@ -227,7 +227,7 @@
           "id": "q13",
           "type": "tracing",
           "prompt": "Trace the letter ㄷ (Digeut) with your finger on the screen!",
-          "soundToPlay": "d",
+          "soundToPlay": "드",
           "targetCharacter": "ㄷ",
           "options": ["Trace ㄷ to complete!"],
           "correctIndex": 0,
@@ -237,7 +237,7 @@
           "id": "q14",
           "type": "multiple_choice",
           "prompt": "Which consonant starts the Korean word '다람쥐' (Daramjwi - Squirrel)?",
-          "soundToPlay": "d",
+          "soundToPlay": "다람쥐",
           "options": ["ㄷ", "ㄹ", "ㄴ", "ㄱ"],
           "correctIndex": 0,
           "explanation": "다람쥐 begins with ㄷ (d)!"
@@ -247,9 +247,9 @@
   },
   {
     "id": "unit_2",
-    "title": "Unit 2: Basic Vowels (ㅏ, ㅓ, ㅗ, ㅜ)",
+    "title": "Unit 2: Basic Vowels (ㅏ, ㅓ, ㅗ, ㅜ, ㅡ, ㅣ)",
     "subtitle": "Breathing Life with Vowels",
-    "description": "Consonants need vowels to speak! Learn the primary 4 vowel sounds.",
+    "description": "Consonants need vowels to speak! Learn the 6 foundational Korean vowel sounds.",
     "order": 2,
     "unlockRequirement": 80,
     "lessons": [
@@ -265,7 +265,7 @@
             "korean": "ㅏ",
             "romanization": "a",
             "meaning": "Ah / Outward branch",
-            "sound": "a",
+            "sound": "아",
             "mnemonic": "A person pointing right towards the bright sun: 'Ah!'.",
             "exampleWord": "아이 (Ai - Child)",
             "iconName": "wb_sunny"
@@ -275,7 +275,7 @@
             "korean": "ㅗ",
             "romanization": "o",
             "meaning": "Oh / Sun rising over ground",
-            "sound": "o",
+            "sound": "오",
             "mnemonic": "The sun rising above the horizon line: 'Oh! sunrise!'.",
             "exampleWord": "오이 (Oi - Cucumber)",
             "iconName": "wb_twilight"
@@ -287,18 +287,112 @@
             {
               "text": "The sun pops up above the earth: 'ㅗ' (o)!",
               "koreanHighlight": "ㅗ",
-              "sound": "o",
+              "sound": "오",
               "icon": "wb_sunny"
             },
             {
               "text": "Baby Bear smiles and shouts: 'ㅏ' (a)!",
               "koreanHighlight": "ㅏ",
-              "sound": "a",
+              "sound": "아",
               "icon": "sentiment_very_satisfied"
             }
           ]
         },
         "tracingTarget": "ㅏ"
+      },
+      {
+        "id": "lesson_2_2",
+        "unitId": "unit_2",
+        "title": "Cozy Vowels: ㅓ (eo) & ㅜ (u)",
+        "order": 2,
+        "introduction": "Now let's flip the direction! When strokes point left or down, they make deeper, cozy sounds.",
+        "cards": [
+          {
+            "id": "card_eo",
+            "korean": "ㅓ",
+            "romanization": "eo / uh",
+            "meaning": "Uh / Inward branch",
+            "sound": "어",
+            "mnemonic": "Points LEFT (inward). Imagine someone bumping into you and saying 'Uh-oh!' (eo).",
+            "exampleWord": "어머니 (Eomeoni - Mother)",
+            "iconName": "face"
+          },
+          {
+            "id": "card_u",
+            "korean": "ㅜ",
+            "romanization": "u / oo",
+            "meaning": "Oo / Roots under ground",
+            "sound": "우",
+            "mnemonic": "Points DOWN below the earth line like tree roots: 'Oo!' as in 'moon'.",
+            "exampleWord": "우유 (Uyu - Milk)",
+            "iconName": "water_drop"
+          }
+        ],
+        "story": {
+          "title": "Evening Milk with Mama Bear",
+          "storyPages": [
+            {
+              "text": "When the sun hides, Baby Bear looks back toward his mother: 'ㅓ' (eo - uh)!",
+              "koreanHighlight": "ㅓ",
+              "sound": "어",
+              "icon": "face"
+            },
+            {
+              "text": "He drinks warm milk under the moonlight: 'ㅜ' (u - oo)!",
+              "koreanHighlight": "ㅜ",
+              "sound": "우",
+              "icon": "favorite"
+            }
+          ]
+        },
+        "tracingTarget": "ㅓ"
+      },
+      {
+        "id": "lesson_2_3",
+        "unitId": "unit_2",
+        "title": "Earth & Sky Person: ㅡ (eu) & ㅣ (i)",
+        "order": 3,
+        "introduction": "Meet the two purest shapes in Korean: the flat Earth (ㅡ) and the standing Person (ㅣ)!",
+        "cards": [
+          {
+            "id": "card_eu",
+            "korean": "ㅡ",
+            "romanization": "eu",
+            "meaning": "Flat Earth / Brook",
+            "sound": "으",
+            "mnemonic": "A flat horizontal line like the ground! Smile wide and pull your lips flat: 'eu' (like 'put' without rounding lips).",
+            "exampleWord": "으뜸 (Eutteum - The Best)",
+            "iconName": "landscape"
+          },
+          {
+            "id": "card_i",
+            "korean": "ㅣ",
+            "romanization": "i / ee",
+            "meaning": "Standing Person / Tree",
+            "sound": "이",
+            "mnemonic": "Stands tall like a Person or the number 1! Sounds like 'ee' in 'tree'.",
+            "exampleWord": "이 (I - Tooth / Two)",
+            "iconName": "person"
+          }
+        ],
+        "story": {
+          "title": "Standing Tall on the Earth",
+          "storyPages": [
+            {
+              "text": "Baby Bear lies flat on the soft forest ground: 'ㅡ' (eu)!",
+              "koreanHighlight": "ㅡ",
+              "sound": "으",
+              "icon": "forest"
+            },
+            {
+              "text": "Then he stands up straight and tall like a person: 'ㅣ' (i - ee)!",
+              "koreanHighlight": "ㅣ",
+              "sound": "이",
+              "icon": "person"
+            }
+          ]
+        },
+        "tracingTarget": "ㅡ"
       }
     ],
     "quiz": {
@@ -310,7 +404,7 @@
           "id": "q2_1",
           "type": "multiple_choice",
           "prompt": "Which vowel sounds like 'ah' in 'father'?",
-          "soundToPlay": "a",
+          "soundToPlay": "아",
           "options": ["ㅗ", "ㅏ", "ㅜ", "ㅓ"],
           "correctIndex": 1,
           "explanation": "ㅏ produces the open 'ah' sound!"
@@ -319,7 +413,7 @@
           "id": "q2_2",
           "type": "multiple_choice",
           "prompt": "Which vowel represents the sun rising ABOVE the horizon line?",
-          "soundToPlay": "o",
+          "soundToPlay": "오",
           "options": ["ㅗ", "ㅜ", "ㅏ", "ㅓ"],
           "correctIndex": 0,
           "explanation": "ㅗ represents the bright sun pointing upward above the earth horizon ('o')!"
@@ -328,16 +422,16 @@
           "id": "q2_3",
           "type": "listening",
           "prompt": "Listen to the vowel sound and choose the correct letter:",
-          "soundToPlay": "o",
+          "soundToPlay": "오",
           "options": ["ㅏ", "ㅗ", "ㅓ", "ㅜ"],
           "correctIndex": 1,
-          "explanation": "You heard 'o' as in 'open' or 'boat', which is ㅗ!"
+          "explanation": "You heard '오' (o) as in 'open' or 'boat', which is ㅗ!"
         },
         {
           "id": "q2_4",
           "type": "multiple_choice",
           "prompt": "Which vowel has a horizontal ground with a vertical line pointing DOWN under the earth?",
-          "soundToPlay": "u",
+          "soundToPlay": "우",
           "options": ["ㅗ", "ㅏ", "ㅜ", "ㅡ"],
           "correctIndex": 2,
           "explanation": "ㅜ points downward beneath the horizon, making the 'oo' sound as in 'moon'!"
@@ -346,16 +440,16 @@
           "id": "q2_5",
           "type": "listening",
           "prompt": "Listen carefully. Which vowel matches this sound?",
-          "soundToPlay": "a",
+          "soundToPlay": "아",
           "options": ["ㅓ", "ㅏ", "ㅗ", "ㅣ"],
           "correctIndex": 1,
-          "explanation": "You heard the open 'ah' sound, which is ㅏ!"
+          "explanation": "You heard the open '아' (ah) sound, which is ㅏ!"
         },
         {
           "id": "q2_6",
           "type": "matching",
           "prompt": "What sound does the vowel ㅓ make?",
-          "soundToPlay": "eo",
+          "soundToPlay": "어",
           "options": ["ah", "eo / uh", "oo", "oh"],
           "correctIndex": 1,
           "explanation": "ㅓ has an inward stroke pointing left, sounding like 'eo' or 'uh' as in 'sun'!"
@@ -364,7 +458,7 @@
           "id": "q2_7",
           "type": "multiple_choice",
           "prompt": "In Korean vowel philosophy, what does the vertical standing line (ㅣ) represent?",
-          "soundToPlay": "i",
+          "soundToPlay": "이",
           "options": ["The Sky (Sun)", "The Earth (Flat ground)", "The Person (Standing human)", "Water"],
           "correctIndex": 2,
           "explanation": "In Hangul, • is Sky/Sun, ㅡ is Earth/Ground, and ㅣ is the upright standing Person!"
@@ -373,7 +467,7 @@
           "id": "q2_8",
           "type": "matching",
           "prompt": "Which vowel starts the Korean word '오이' (Oi - Cucumber)?",
-          "soundToPlay": "o",
+          "soundToPlay": "오이",
           "options": ["ㅏ", "ㅗ", "ㅜ", "ㅓ"],
           "correctIndex": 1,
           "explanation": "오이 starts with ㅗ ('o')!"
@@ -382,7 +476,7 @@
           "id": "q2_9",
           "type": "tracing",
           "prompt": "Trace the vowel ㅏ (Ah) with your finger on the screen!",
-          "soundToPlay": "a",
+          "soundToPlay": "아",
           "targetCharacter": "ㅏ",
           "options": ["Trace ㅏ to complete!"],
           "correctIndex": 0,
@@ -392,7 +486,7 @@
           "id": "q2_10",
           "type": "tracing",
           "prompt": "Trace the vowel ㅗ (Oh) with your finger on the screen!",
-          "soundToPlay": "o",
+          "soundToPlay": "오",
           "targetCharacter": "ㅗ",
           "options": ["Trace ㅗ to complete!"],
           "correctIndex": 0,
@@ -421,7 +515,7 @@
             "korean": "가",
             "romanization": "ga",
             "meaning": "Go",
-            "sound": "ga",
+            "sound": "가",
             "mnemonic": "ㄱ (g) + ㅏ (a) = 가 (ga). Means 'Go'!",
             "exampleWord": "가방 (Gabang - Bag)",
             "iconName": "directions_walk"
@@ -431,7 +525,7 @@
             "korean": "나",
             "romanization": "na",
             "meaning": "I / Me",
-            "sound": "na",
+            "sound": "나",
             "mnemonic": "ㄴ (n) + ㅏ (a) = 나 (na). Means 'I' or 'Me'!",
             "exampleWord": "나무 (Namu - Tree)",
             "iconName": "nature"
@@ -443,18 +537,71 @@
             {
               "text": "Baby Bear packed his bag to go: '가' (Ga)!",
               "koreanHighlight": "가",
-              "sound": "ga",
+              "sound": "가",
               "icon": "backpack"
             },
             {
               "text": "He pointed happily at himself: '나' (Na - Me)!",
               "koreanHighlight": "나",
-              "sound": "na",
+              "sound": "나",
               "icon": "person"
             }
           ]
         },
         "tracingTarget": "가"
+      },
+      {
+        "id": "lesson_3_2",
+        "unitId": "unit_3",
+        "title": "Building Blocks: ㄷ + ㅏ = 다 & ㄹ + ㅏ = 라",
+        "order": 2,
+        "introduction": "Let's finish the famous Korean 'Ga-Na-Da-Ra' song by snapping ㄷ and ㄹ with ㅏ!",
+        "cards": [
+          {
+            "id": "card_da",
+            "korean": "다",
+            "romanization": "da",
+            "meaning": "All / Everything",
+            "sound": "다",
+            "mnemonic": "ㄷ (d) + ㅏ (a) = 다 (da). Means 'All' or 'Everything'!",
+            "exampleWord": "다리 (Dari - Leg / Bridge)",
+            "iconName": "door_front"
+          },
+          {
+            "id": "card_ra",
+            "korean": "라",
+            "romanization": "ra / la",
+            "meaning": "Musical 'La' sound",
+            "sound": "라",
+            "mnemonic": "ㄹ (r/l) + ㅏ (a) = 라 (ra/la). Like singing 'La-la-la'!",
+            "exampleWord": "라디오 (Radio - Radio)",
+            "iconName": "music_note"
+          }
+        ],
+        "story": {
+          "title": "The Ga-Na-Da-Ra Song",
+          "storyPages": [
+            {
+              "text": "Baby Bear opened the door and shouted 'All together!': '다' (Da)!",
+              "koreanHighlight": "다",
+              "sound": "다",
+              "icon": "door_front"
+            },
+            {
+              "text": "He skipped down the road singing a happy tune: '라' (Ra/La)!",
+              "koreanHighlight": "라",
+              "sound": "라",
+              "icon": "hiking"
+            },
+            {
+              "text": "Now he can sing the Korean ABCs: 가, 나, 다, 라 (Ga, Na, Da, Ra)!",
+              "koreanHighlight": "가 나 다 라",
+              "sound": "가 나 다 라",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "다"
       }
     ],
     "quiz": {
@@ -466,7 +613,7 @@
           "id": "q3_1",
           "type": "multiple_choice",
           "prompt": "What syllable do you get when you combine 'ㄱ' (g) and 'ㅏ' (a)?",
-          "soundToPlay": "ga",
+          "soundToPlay": "가",
           "options": ["나", "가", "다", "라"],
           "correctIndex": 1,
           "explanation": "ㄱ + ㅏ = 가 (Ga)!"
@@ -475,7 +622,7 @@
           "id": "q3_2",
           "type": "multiple_choice",
           "prompt": "What does the syllable '나' (ㄴ + ㅏ) mean in Korean?",
-          "soundToPlay": "na",
+          "soundToPlay": "나",
           "options": ["You", "I / Me", "Go", "Tree"],
           "correctIndex": 1,
           "explanation": "나 (Na) is the Korean word for 'I' or 'Me'!"
@@ -484,7 +631,7 @@
           "id": "q3_3",
           "type": "multiple_choice",
           "prompt": "Which syllable block combines the consonant 'ㄷ' (d) and vowel 'ㅏ' (a)?",
-          "soundToPlay": "da",
+          "soundToPlay": "다",
           "options": ["가", "나", "다", "라"],
           "correctIndex": 2,
           "explanation": "ㄷ + ㅏ snaps together to form '다' (Da)!"
@@ -493,7 +640,7 @@
           "id": "q3_4",
           "type": "listening",
           "prompt": "Listen to the syllable sound and choose the matching block:",
-          "soundToPlay": "ga",
+          "soundToPlay": "가",
           "options": ["나", "가", "다", "라"],
           "correctIndex": 1,
           "explanation": "You heard '가' (Ga)!"
@@ -502,7 +649,7 @@
           "id": "q3_5",
           "type": "listening",
           "prompt": "Listen to the audio. Which syllable block is being spoken?",
-          "soundToPlay": "na",
+          "soundToPlay": "나",
           "options": ["다", "가", "나", "마"],
           "correctIndex": 2,
           "explanation": "You heard '나' (Na)!"
@@ -511,7 +658,7 @@
           "id": "q3_6",
           "type": "matching",
           "prompt": "Combine 'ㄹ' (r/l) and 'ㅏ' (a). Which syllable is formed?",
-          "soundToPlay": "ra",
+          "soundToPlay": "라",
           "options": ["바", "사", "라", "자"],
           "correctIndex": 2,
           "explanation": "ㄹ + ㅏ combines into '라' (Ra/La)!"
@@ -520,7 +667,7 @@
           "id": "q3_7",
           "type": "multiple_choice",
           "prompt": "The word '가방' (bag) begins with which syllable block?",
-          "soundToPlay": "ga",
+          "soundToPlay": "가방",
           "options": ["나", "가", "다", "라"],
           "correctIndex": 1,
           "explanation": "가방 (bag) starts with 가 (ga)!"
@@ -529,7 +676,7 @@
           "id": "q3_8",
           "type": "multiple_choice",
           "prompt": "The word '나무' (tree) begins with which syllable block?",
-          "soundToPlay": "na",
+          "soundToPlay": "나무",
           "options": ["가", "나", "다", "마"],
           "correctIndex": 1,
           "explanation": "나무 (tree) starts with 나 (na)!"
@@ -538,7 +685,7 @@
           "id": "q3_9",
           "type": "tracing",
           "prompt": "Trace the syllable block 가 (Ga) with your finger!",
-          "soundToPlay": "ga",
+          "soundToPlay": "가",
           "targetCharacter": "가",
           "options": ["Trace 가 to complete!"],
           "correctIndex": 0,
@@ -548,11 +695,1331 @@
           "id": "q3_10",
           "type": "tracing",
           "prompt": "Trace the syllable block 나 (Na) with your finger!",
-          "soundToPlay": "na",
+          "soundToPlay": "나",
           "targetCharacter": "나",
           "options": ["Trace 나 to complete!"],
           "correctIndex": 0,
           "explanation": "Outstanding! ㄴ sits on the left and ㅏ stands on the right to form 나!"
+        }
+      ]
+    }
+  },
+  {
+    "id": "unit_4",
+    "title": "Unit 4: Everyday Consonants (ㅁ, ㅂ, ㅅ, ㅇ, ㅈ)",
+    "subtitle": "Mouth, Bucket, Mountain & the Magic Circle",
+    "description": "Learn the next 5 essential consonants, including the silent circle 'ㅇ' used in almost every Korean sentence!",
+    "order": 4,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_4_1",
+        "unitId": "unit_4",
+        "title": "Meet ㅁ (Mieum) & ㅂ (Bieup)",
+        "order": 1,
+        "introduction": "These two letters are made with your lips! Look at their boxy shapes.",
+        "cards": [
+          {
+            "id": "card_m",
+            "korean": "ㅁ",
+            "romanization": "m",
+            "meaning": "Mouth shape",
+            "sound": "므",
+            "mnemonic": "A square box that looks just like an open Mouth! Makes the 'm' sound as in 'mom'.",
+            "exampleWord": "모자 (Moja - Hat)",
+            "iconName": "face"
+          },
+          {
+            "id": "card_b",
+            "korean": "ㅂ",
+            "romanization": "b / p",
+            "meaning": "Bucket shape",
+            "sound": "브",
+            "mnemonic": "Looks like a Bucket half-filled with water! Makes a soft 'b' sound as in 'bucket'.",
+            "exampleWord": "바나나 (Banana - Banana)",
+            "iconName": "shopping_basket"
+          }
+        ],
+        "story": {
+          "title": "A Bucket of Berries",
+          "storyPages": [
+            {
+              "text": "Baby Bear carried a wooden Bucket 'ㅂ' (b) into the sunny meadow.",
+              "koreanHighlight": "ㅂ",
+              "sound": "브",
+              "icon": "backpack"
+            },
+            {
+              "text": "He opened his square Mouth 'ㅁ' (m) wide to taste a sweet berry: 'Mmm!'",
+              "koreanHighlight": "ㅁ",
+              "sound": "므",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "ㅁ"
+      },
+      {
+        "id": "lesson_4_2",
+        "unitId": "unit_4",
+        "title": "Meet ㅅ (Siot), ㅇ (Ieung) & ㅈ (Jieut)",
+        "order": 2,
+        "introduction": "Meet the Mountain, the Silent Circle, and the Jar! Tip: 'ㅇ' is silent at the start of a block, and 'ng' at the bottom.",
+        "cards": [
+          {
+            "id": "card_s",
+            "korean": "ㅅ",
+            "romanization": "s / sh",
+            "meaning": "Ski slope / Mountain",
+            "sound": "스",
+            "mnemonic": "Two strokes leaning together like a Ski mountain peak! Makes a gentle 's' sound as in 'sun' (or 'sh' before 'i').",
+            "exampleWord": "사과 (Sagwa - Apple)",
+            "iconName": "landscape"
+          },
+          {
+            "id": "card_ng",
+            "korean": "ㅇ",
+            "romanization": "silent / ng",
+            "meaning": "Zero / Ring",
+            "sound": "응",
+            "mnemonic": "Looks like a Zero (0)! At the start of a block it makes ZERO sound (silent placeholder, like 아 = 'a'). At the bottom, it rings like 'ng' in 'sing'!",
+            "exampleWord": "아기 (Agi - Baby)",
+            "iconName": "circle"
+          },
+          {
+            "id": "card_j",
+            "korean": "ㅈ",
+            "romanization": "j",
+            "meaning": "Jar / Joyful person",
+            "sound": "즈",
+            "mnemonic": "A mountain 'ㅅ' with a lid on top like a Jar! Makes a soft 'j' sound as in 'jam'.",
+            "exampleWord": "지도 (Jido - Map)",
+            "iconName": "map"
+          }
+        ],
+        "story": {
+          "title": "The Silent Ring on the Mountain",
+          "storyPages": [
+            {
+              "text": "Baby Bear climbed up the steep Ski mountain peak: 'ㅅ' (s)!",
+              "koreanHighlight": "ㅅ",
+              "sound": "스",
+              "icon": "hiking"
+            },
+            {
+              "text": "At the top, the golden sun looked like a round silent Ring: 'ㅇ'!",
+              "koreanHighlight": "ㅇ",
+              "sound": "아",
+              "icon": "wb_sunny"
+            },
+            {
+              "text": "He jumped for Joy with a flat roof over his head: 'ㅈ' (j)!",
+              "koreanHighlight": "ㅈ",
+              "sound": "즈",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "ㅅ"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_4",
+      "unitId": "unit_4",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "prompt": "Which consonant looks like a square Mouth and makes the 'm' sound?",
+          "soundToPlay": "므",
+          "options": ["ㅂ", "ㅁ", "ㅅ", "ㅇ"],
+          "correctIndex": 1,
+          "explanation": "ㅁ (Mieum) is shaped like an open Mouth and makes the 'm' sound!"
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "prompt": "Which consonant looks like a Bucket half-full of water ('b')?",
+          "soundToPlay": "브",
+          "options": ["ㅁ", "ㅈ", "ㅂ", "ㄷ"],
+          "correctIndex": 2,
+          "explanation": "ㅂ (Bieup) looks like a Bucket and makes the 'b' sound!"
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "prompt": "What sound does 'ㅇ' make when it sits at the START (left/top) of a syllable block like '아'?",
+          "soundToPlay": "아",
+          "options": ["An 'm' sound", "It is completely silent (Zero sound)", "A hard 'k' sound", "An 's' sound"],
+          "correctIndex": 1,
+          "explanation": "Think of ㅇ as Zero (0)! At the start of a syllable block, it is a silent placeholder so the vowel can stand in a block."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "prompt": "Which consonant looks like a Ski mountain peak and makes the 's' sound?",
+          "soundToPlay": "스",
+          "options": ["ㅅ", "ㅈ", "ㄱ", "ㄴ"],
+          "correctIndex": 0,
+          "explanation": "ㅅ (Siot) has two strokes meeting like a mountain peak and makes the 's' sound!"
+        },
+        {
+          "id": "q4_5",
+          "type": "matching",
+          "prompt": "Which consonant starts the Korean word '바나나' (Banana)?",
+          "soundToPlay": "바나나",
+          "options": ["ㅁ", "ㅂ", "ㅅ", "ㅈ"],
+          "correctIndex": 1,
+          "explanation": "바나나 starts with 바 (ㅂ + ㅏ), using the Bucket letter 'ㅂ' (b)!"
+        },
+        {
+          "id": "q4_6",
+          "type": "listening",
+          "prompt": "Listen to the syllable '마' (Ma). Which consonant is at the start?",
+          "soundToPlay": "마",
+          "options": ["ㅂ", "ㅅ", "ㅁ", "ㅈ"],
+          "correctIndex": 2,
+          "explanation": "마 (Ma) starts with ㅁ (m)!"
+        },
+        {
+          "id": "q4_7",
+          "type": "listening",
+          "prompt": "Listen to the word '사과' (Sagwa - Apple). Which consonant does it start with?",
+          "soundToPlay": "사과",
+          "options": ["ㅅ", "ㅈ", "ㅁ", "ㅂ"],
+          "correctIndex": 0,
+          "explanation": "사과 starts with 사 (ㅅ + ㅏ), which uses 'ㅅ' (s)!"
+        },
+        {
+          "id": "q4_8",
+          "type": "matching",
+          "prompt": "If 'ㅏ' is 'a', how do we write the syllable '아' (a) properly as a complete Korean block?",
+          "soundToPlay": "아",
+          "options": ["마", "사", "아", "자"],
+          "correctIndex": 2,
+          "explanation": "Vowels never stand alone in Korean words! Silent 'ㅇ' + 'ㅏ' = '아' (a)."
+        },
+        {
+          "id": "q4_9",
+          "type": "tracing",
+          "prompt": "Trace the square Mouth letter ㅁ (Mieum) with your finger!",
+          "soundToPlay": "므",
+          "targetCharacter": "ㅁ",
+          "options": ["Trace ㅁ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Great job! ㅁ is drawn with a left vertical line, top-right corner, and bottom closing bar."
+        },
+        {
+          "id": "q4_10",
+          "type": "tracing",
+          "prompt": "Trace the mountain letter ㅅ (Siot) with your finger!",
+          "soundToPlay": "스",
+          "targetCharacter": "ㅅ",
+          "options": ["Trace ㅅ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Awesome! ㅅ starts with a left-curving slope from the top, then a right-leaning support stroke."
+        }
+      ]
+    }
+  },
+  {
+    "id": "unit_5",
+    "title": "Unit 5: Puffy Air Consonants (ㅊ, ㅋ, ㅌ, ㅍ, ㅎ)",
+    "subtitle": "Upgrading Letters with a Puff of Air",
+    "description": "Add one extra stroke to letters you already know to create airy, aspirated sounds!",
+    "order": 5,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_5_1",
+        "unitId": "unit_5",
+        "title": "Airy Upgrades: ㅋ (k), ㅌ (t) & ㅍ (p)",
+        "order": 1,
+        "introduction": "Hold your hand in front of your mouth! Adding a line to ㄱ, ㄷ, and ㅂ gives them a strong puff of air.",
+        "cards": [
+          {
+            "id": "card_k",
+            "korean": "ㅋ",
+            "romanization": "k",
+            "meaning": "Key / Upgraded ㄱ",
+            "sound": "크",
+            "mnemonic": "It's 'ㄱ' (g) with an extra line, looking like an old Key! Makes a strong, breathy 'k' sound as in 'key'. (Koreans type ㅋㅋㅋ for 'hahaha'!)",
+            "exampleWord": "코 (Ko - Nose)",
+            "iconName": "vpn_key"
+          },
+          {
+            "id": "card_t",
+            "korean": "ㅌ",
+            "romanization": "t",
+            "meaning": "Teeth / E-shape (Upgraded ㄷ)",
+            "sound": "트",
+            "mnemonic": "It's 'ㄷ' (d) with a middle bar—looks like a capital 'E' or Teeth! Makes a breathy 't' sound as in 'top'.",
+            "exampleWord": "토끼 (Tokki - Rabbit)",
+            "iconName": "pets"
+          },
+          {
+            "id": "card_p",
+            "korean": "ㅍ",
+            "romanization": "p",
+            "meaning": "Pillars (Upgraded ㅂ)",
+            "sound": "프",
+            "mnemonic": "Looks like two Pillars with a roof and floor (Roman numeral II)! Upgrades 'b' into a puffy 'p' sound as in 'pop'.",
+            "exampleWord": "포도 (Podo - Grapes)",
+            "iconName": "nature"
+          }
+        ],
+        "story": {
+          "title": "The Huff and Puff Wind",
+          "storyPages": [
+            {
+              "text": "A windy breeze blew through the forest, turning 'ㄱ' into a Key: 'ㅋ' (k)!",
+              "koreanHighlight": "ㅋ",
+              "sound": "크",
+              "icon": "forest"
+            },
+            {
+              "text": "A little rabbit chattered its Teeth in the breeze: 'ㅌ' (t)!",
+              "koreanHighlight": "ㅌ",
+              "sound": "트",
+              "icon": "face"
+            },
+            {
+              "text": "Sweet purple grapes popped between two Pillars: 'ㅍ' (p)!",
+              "koreanHighlight": "ㅍ",
+              "sound": "프",
+              "icon": "favorite"
+            }
+          ]
+        },
+        "tracingTarget": "ㅋ"
+      },
+      {
+        "id": "lesson_5_2",
+        "unitId": "unit_5",
+        "title": "Hats On! ㅊ (ch) & ㅎ (h)",
+        "order": 2,
+        "introduction": "Put a cute little top-hat stroke on ㅈ (j) and ㅇ (silent) to get 'ch' and 'h'! With these two, you know ALL 14 basic consonants!",
+        "cards": [
+          {
+            "id": "card_ch",
+            "korean": "ㅊ",
+            "romanization": "ch",
+            "meaning": "Chimney (Upgraded ㅈ)",
+            "sound": "츠",
+            "mnemonic": "It's 'ㅈ' (j) wearing a little chimney or antenna on top! Makes a crisp 'ch' sound as in 'cheer'.",
+            "exampleWord": "차 (Cha - Tea / Car)",
+            "iconName": "emoji_food_beverage"
+          },
+          {
+            "id": "card_h",
+            "korean": "ㅎ",
+            "romanization": "h",
+            "meaning": "Hat on a head (Upgraded ㅇ)",
+            "sound": "흐",
+            "mnemonic": "A round head 'ㅇ' wearing a fancy Hat on top! Makes a happy 'h' sound as in 'hat' (ㅎㅎㅎ = 'hehehe').",
+            "exampleWord": "하마 (Hama - Hippo)",
+            "iconName": "sentiment_very_satisfied"
+          }
+        ],
+        "story": {
+          "title": "Baby Bear's Fancy Hat",
+          "storyPages": [
+            {
+              "text": "Baby Bear put a tall top-hat on his round head 'ㅇ' and laughed: 'ㅎ' (h - Ha ha)!",
+              "koreanHighlight": "ㅎ",
+              "sound": "흐",
+              "icon": "sentiment_very_satisfied"
+            },
+            {
+              "text": "He sipped warm tea and cheered with his friends: 'ㅊ' (ch - Cha)!",
+              "koreanHighlight": "ㅊ",
+              "sound": "츠",
+              "icon": "wb_sunny"
+            }
+          ]
+        },
+        "tracingTarget": "ㅎ"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_5",
+      "unitId": "unit_5",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q5_1",
+          "type": "multiple_choice",
+          "prompt": "When you add an extra horizontal stroke to 'ㄱ' (g), which puffy 'k' letter do you get?",
+          "soundToPlay": "크",
+          "options": ["ㅌ", "ㅋ", "ㅍ", "ㅊ"],
+          "correctIndex": 1,
+          "explanation": "ㄱ (g) upgrades into ㅋ (k)! Koreans also use ㅋㅋㅋ to mean 'hahaha' in text messages."
+        },
+        {
+          "id": "q5_2",
+          "type": "multiple_choice",
+          "prompt": "Which letter looks like a round head 'ㅇ' wearing a Hat and makes the 'h' sound?",
+          "soundToPlay": "흐",
+          "options": ["ㅎ", "ㅊ", "ㅇ", "ㅍ"],
+          "correctIndex": 0,
+          "explanation": "ㅎ (Hieut) is a circle wearing a hat on top, making the 'h' sound!"
+        },
+        {
+          "id": "q5_3",
+          "type": "multiple_choice",
+          "prompt": "Which letter upgrades 'ㄷ' (d) into a breathy 't' sound (looking like a capital E)?",
+          "soundToPlay": "트",
+          "options": ["ㅋ", "ㅍ", "ㅌ", "ㅊ"],
+          "correctIndex": 2,
+          "explanation": "ㅌ (Tieut) adds a middle stroke to ㄷ and makes the 't' sound!"
+        },
+        {
+          "id": "q5_4",
+          "type": "multiple_choice",
+          "prompt": "Which letter upgrades 'ㅈ' (j) by adding a little top stroke to make the 'ch' sound?",
+          "soundToPlay": "츠",
+          "options": ["ㅅ", "ㅊ", "ㅎ", "ㅌ"],
+          "correctIndex": 1,
+          "explanation": "ㅊ (Chieut) is ㅈ with a top stroke, making the 'ch' sound as in '차' (Cha - Tea/Car)!"
+        },
+        {
+          "id": "q5_5",
+          "type": "matching",
+          "prompt": "Which consonant looks like two pillars with a roof and floor, making the 'p' sound?",
+          "soundToPlay": "프",
+          "options": ["ㅂ", "ㅁ", "ㅍ", "ㅌ"],
+          "correctIndex": 2,
+          "explanation": "ㅍ (Pieup) makes the 'p' sound as in '포도' (Podo - Grapes)!"
+        },
+        {
+          "id": "q5_6",
+          "type": "listening",
+          "prompt": "Listen to the word '코' (Ko - Nose). How is it written in Hangul?",
+          "soundToPlay": "코",
+          "options": ["고", "코", "토", "포"],
+          "correctIndex": 1,
+          "explanation": "ㅋ (k) + ㅗ (o) = 코 (Ko - Nose)!"
+        },
+        {
+          "id": "q5_7",
+          "type": "listening",
+          "prompt": "Listen to the syllable '하' (Ha). Which block matches the sound?",
+          "soundToPlay": "하",
+          "options": ["아", "자", "차", "하"],
+          "correctIndex": 3,
+          "explanation": "ㅎ (h) + ㅏ (a) = 하 (Ha)!"
+        },
+        {
+          "id": "q5_8",
+          "type": "matching",
+          "prompt": "What does the Korean word '차' (ㅊ + ㅏ) mean?",
+          "soundToPlay": "차",
+          "options": ["Nose", "Tea or Car", "Rabbit", "Grapes"],
+          "correctIndex": 1,
+          "explanation": "차 (Cha) means both 'Tea' and 'Car' in Korean!"
+        },
+        {
+          "id": "q5_9",
+          "type": "tracing",
+          "prompt": "Trace the Key letter ㅋ (Kieuk) with your finger!",
+          "soundToPlay": "크",
+          "targetCharacter": "ㅋ",
+          "options": ["Trace ㅋ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Superb! Draw ㄱ first, then add the horizontal key stroke in the middle!"
+        },
+        {
+          "id": "q5_10",
+          "type": "tracing",
+          "prompt": "Trace the E-shaped letter ㅌ (Tieut) with your finger!",
+          "soundToPlay": "트",
+          "targetCharacter": "ㅌ",
+          "options": ["Trace ㅌ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Great job! Top bar, middle bar, then the L-shaped bottom base!"
+        }
+      ]
+    }
+  },
+  {
+    "id": "unit_6",
+    "title": "Unit 6: Y-Vowels & E-Vowels (ㅑ, ㅕ, ㅛ, ㅠ, ㅐ, ㅔ)",
+    "subtitle": "Double-Dash Magic & Everyday 'Eh' Vowels",
+    "description": "Add one extra dash to basic vowels to add a 'Y' sound, and combine vowels to make 'ae' and 'e'!",
+    "order": 6,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_6_1",
+        "unitId": "unit_6",
+        "title": "The Y-Vowel Magic: ㅑ (ya), ㅕ (yeo), ㅛ (yo), ㅠ (yu)",
+        "order": 1,
+        "introduction": "Here is the easiest trick in Korean: add ONE extra short dash to ㅏ, ㅓ, ㅗ, or ㅜ, and a 'Y' sound jumps to the front!",
+        "cards": [
+          {
+            "id": "card_ya_yeo",
+            "korean": "ㅑ",
+            "romanization": "ya (and ㅕ = yeo)",
+            "meaning": "Double dash = Add 'Y'!",
+            "sound": "야",
+            "mnemonic": "ㅏ (a) + 1 dash = ㅑ (ya)! Likewise, ㅓ (eo) + 1 dash = ㅕ (yeo as in 'young').",
+            "exampleWord": "야구 (Yagu - Baseball)",
+            "iconName": "wb_sunny"
+          },
+          {
+            "id": "card_yo_yu",
+            "korean": "ㅛ",
+            "romanization": "yo (and ㅠ = yu)",
+            "meaning": "Polite 'Yo' & 'Yu'",
+            "sound": "요",
+            "mnemonic": "ㅗ (o) + 1 dash = ㅛ (yo)! ㅜ (u) + 1 dash = ㅠ (yu, which looks like crying eyes ㅠㅠ)!",
+            "exampleWord": "우유 (Uyu - Milk) / 요리 (Yori - Cooking)",
+            "iconName": "favorite"
+          }
+        ],
+        "story": {
+          "title": "Double the Fun!",
+          "storyPages": [
+            {
+              "text": "Baby Bear shouted to his friend across the field: '야!' (Ya - Hey)!",
+              "koreanHighlight": "야",
+              "sound": "야",
+              "icon": "person"
+            },
+            {
+              "text": "They cooked a delicious meal together: '요리' (Yori - Cooking)!",
+              "koreanHighlight": "요",
+              "sound": "요",
+              "icon": "favorite"
+            },
+            {
+              "text": "And drank fresh cold milk: '우유' (Uyu - Milk)!",
+              "koreanHighlight": "유",
+              "sound": "유",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "ㅑ"
+      },
+      {
+        "id": "lesson_6_2",
+        "unitId": "unit_6",
+        "title": "The 'Eh' Twins: ㅐ (ae) & ㅔ (e)",
+        "order": 2,
+        "introduction": "When ㅏ or ㅓ holds hands with ㅣ (i), they form the 'Eh' twins: ㅐ (ae) and ㅔ (e)! In modern Seoul Korean, both sound like 'eh' in 'bed'.",
+        "cards": [
+          {
+            "id": "card_ae",
+            "korean": "ㅐ",
+            "romanization": "ae (eh)",
+            "meaning": "ㅏ + ㅣ (H-bridge inside)",
+            "sound": "애",
+            "mnemonic": "ㅏ (a) + ㅣ (i) = ㅐ (ae). The bridge is on the OUTSIDE right, looking like a capital 'H'! Sounds like 'eh' in 'care' or 'bed'.",
+            "exampleWord": "개 (Gae - Dog)",
+            "iconName": "pets"
+          },
+          {
+            "id": "card_e",
+            "korean": "ㅔ",
+            "romanization": "e (eh)",
+            "meaning": "ㅓ + ㅣ (Bridge outside left)",
+            "sound": "에",
+            "mnemonic": "ㅓ (eo) + ㅣ (i) = ㅔ (e). The short dash pokes out to the LEFT! Sounds like 'e' in 'yes' (네 = Ne = Yes!).",
+            "exampleWord": "네 (Ne - Yes)",
+            "iconName": "check_circle"
+          }
+        ],
+        "story": {
+          "title": "Baby Bear's Puppy Friend",
+          "storyPages": [
+            {
+              "text": "Baby Bear met a friendly little Dog wagging its tail: '개' (Gae - Dog)!",
+              "koreanHighlight": "개",
+              "sound": "개",
+              "icon": "forest"
+            },
+            {
+              "text": "The puppy barked 'Are we friends?' and Baby Bear nodded: '네!' (Ne - Yes)!",
+              "koreanHighlight": "네",
+              "sound": "네",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "ㅐ"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_6",
+      "unitId": "unit_6",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q6_1",
+          "type": "multiple_choice",
+          "prompt": "What happens to the sound when you add ONE extra short stroke to ㅏ (a), ㅓ (eo), ㅗ (o), or ㅜ (u)?",
+          "soundToPlay": "야",
+          "options": [
+            "It adds a 'Y' sound to the front (ya, yeo, yo, yu)",
+            "It makes the vowel silent",
+            "It adds an 'M' sound to the end",
+            "It turns into a consonant"
+          ],
+          "correctIndex": 0,
+          "explanation": "Adding a second stroke adds a 'y' glide: ㅏ➔ㅑ(ya), ㅓ➔ㅕ(yeo), ㅗ➔ㅛ(yo), ㅜ➔ㅠ(yu)!"
+        },
+        {
+          "id": "q6_2",
+          "type": "multiple_choice",
+          "prompt": "Which vowel upgrades 'ㅗ' (o) into 'ㅛ' (yo)?",
+          "soundToPlay": "요",
+          "options": ["ㅠ", "ㅛ", "ㅑ", "ㅕ"],
+          "correctIndex": 1,
+          "explanation": "ㅛ has two vertical strokes rising above the horizon line, making the 'yo' sound!"
+        },
+        {
+          "id": "q6_3",
+          "type": "multiple_choice",
+          "prompt": "In Korean text messages, which vowel looks like crying eyes ('T_T') and sounds like 'yu'?",
+          "soundToPlay": "유",
+          "options": ["ㅛ", "ㅑ", "ㅠ", "ㅐ"],
+          "correctIndex": 2,
+          "explanation": "ㅠ (yu) has two downward strokes like teardrops, so Koreans type ㅠㅠ when crying!"
+        },
+        {
+          "id": "q6_4",
+          "type": "multiple_choice",
+          "prompt": "Which vowel combines ㅏ + ㅣ (looking like a capital H) to make the 'ae / eh' sound as in '개' (Dog)?",
+          "soundToPlay": "애",
+          "options": ["ㅔ", "ㅐ", "ㅑ", "ㅕ"],
+          "correctIndex": 1,
+          "explanation": "ㅐ (ae) is formed from ㅏ + ㅣ with the horizontal bar in the middle like an 'H'!"
+        },
+        {
+          "id": "q6_5",
+          "type": "multiple_choice",
+          "prompt": "How do you write '네' (Ne - Yes) using ㄴ (n) and the vowel ㅔ (e)?",
+          "soundToPlay": "네",
+          "options": ["나", "너", "네", "노"],
+          "correctIndex": 2,
+          "explanation": "ㄴ (n) + ㅔ (e) = 네 (Ne), the polite Korean word for 'Yes'!"
+        },
+        {
+          "id": "q6_6",
+          "type": "listening",
+          "prompt": "Listen to the word '우유' (Uyu - Milk). Which two vowels do you hear?",
+          "soundToPlay": "우유",
+          "options": ["ㅜ (u) and ㅠ (yu)", "ㅗ (o) and ㅛ (yo)", "ㅏ (a) and ㅑ (ya)", "ㅐ (ae) and ㅔ (e)"],
+          "correctIndex": 0,
+          "explanation": "우유 (Uyu - Milk) uses ㅜ (u) in the first block and ㅠ (yu) in the second block!"
+        },
+        {
+          "id": "q6_7",
+          "type": "listening",
+          "prompt": "Listen to the word '개' (Gae - Dog). Choose the correct Hangul block:",
+          "soundToPlay": "개",
+          "options": ["가", "고", "개", "구"],
+          "correctIndex": 2,
+          "explanation": "ㄱ (g) + ㅐ (ae) = 개 (Gae - Dog)!"
+        },
+        {
+          "id": "q6_8",
+          "type": "matching",
+          "prompt": "Match the vowel pair that sounds virtually identical ('eh') in modern everyday Korean:",
+          "soundToPlay": "애",
+          "options": ["ㅐ (ae) and ㅔ (e)", "ㅏ (a) and ㅜ (u)", "ㅗ (o) and ㅣ (i)", "ㅑ (ya) and ㅠ (yu)"],
+          "correctIndex": 0,
+          "explanation": "In modern spoken Korean, both ㅐ and ㅔ sound like a relaxed 'eh' (as in 'bed'), though we keep their distinct spellings!"
+        },
+        {
+          "id": "q6_9",
+          "type": "tracing",
+          "prompt": "Trace the Y-vowel ㅑ (Ya) with your finger!",
+          "soundToPlay": "야",
+          "targetCharacter": "ㅑ",
+          "options": ["Trace ㅑ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Fantastic! Long vertical line first, followed by two short horizontal strokes to the right!"
+        },
+        {
+          "id": "q6_10",
+          "type": "tracing",
+          "prompt": "Trace the vowel ㅐ (Ae) with your finger!",
+          "soundToPlay": "애",
+          "targetCharacter": "ㅐ",
+          "options": ["Trace ㅐ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Wonderful! Left vertical line, middle bridge stroke, then the right vertical line!"
+        }
+      ]
+    }
+  },
+  {
+    "id": "unit_7",
+    "title": "Unit 7: W-Vowels & Diphthongs (ㅘ, ㅝ, ㅚ, ㅟ, ㅢ)",
+    "subtitle": "Gliding Two Vowels Together",
+    "description": "Snap a bottom vowel and a side vowel together to make smooth 'Wa', 'Wo', 'We', and 'Wi' glides!",
+    "order": 7,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_7_1",
+        "unitId": "unit_7",
+        "title": "The 'W' Glides: ㅘ (wa) & ㅝ (wo)",
+        "order": 1,
+        "introduction": "When ㅗ (o) or ㅜ (u) slides quickly into ㅏ (a) or ㅓ (eo), your lips naturally make a 'W' sound! (Note: Bright ㅗ pairs with Bright ㅏ; Cozy ㅜ pairs with Cozy ㅓ!)",
+        "cards": [
+          {
+            "id": "card_wa",
+            "korean": "ㅘ",
+            "romanization": "wa",
+            "meaning": "ㅗ (o) + ㅏ (a) = Wa!",
+            "sound": "와",
+            "mnemonic": "Say 'o' + 'a' really fast: o-a, o-a... 'Wa'! In Korean, saying '와!' (Wa!) means 'Wow!'.",
+            "exampleWord": "사과 (Sagwa - Apple)",
+            "iconName": "wb_sunny"
+          },
+          {
+            "id": "card_wo",
+            "korean": "ㅝ",
+            "romanization": "wo / weo",
+            "meaning": "ㅜ (u) + ㅓ (eo) = Wo!",
+            "sound": "워",
+            "mnemonic": "Say 'u' + 'eo' fast: u-eo... 'Wo' as in 'wonder'! Used in '고마워' (Gomawo - Thanks) and '뭐' (Mwo - What).",
+            "exampleWord": "고마워요 (Gomawoyo - Thank you)",
+            "iconName": "favorite"
+          }
+        ],
+        "story": {
+          "title": "Wow, An Apple!",
+          "storyPages": [
+            {
+              "text": "Baby Bear saw a giant shiny red apple ('사과') and gasped: '와!' (Wa - Wow)!",
+              "koreanHighlight": "와",
+              "sound": "와",
+              "icon": "wb_sunny"
+            },
+            {
+              "text": "Mama Bear handed it to him, and he smiled: '고마워요!' (Gomawoyo - Thank you)!",
+              "koreanHighlight": "워",
+              "sound": "워",
+              "icon": "favorite"
+            }
+          ]
+        },
+        "tracingTarget": "가"
+      },
+      {
+        "id": "lesson_7_2",
+        "unitId": "unit_7",
+        "title": "Smooth Combos: ㅟ (wi), ㅚ/ㅙ/ㅞ (we) & ㅢ (ui)",
+        "order": 2,
+        "introduction": "Let's meet the remaining vowel combinations! Once you know these, you can read EVERY vowel in the Korean language.",
+        "cards": [
+          {
+            "id": "card_wi",
+            "korean": "ㅟ",
+            "romanization": "wi",
+            "meaning": "ㅜ (u) + ㅣ (i) = Wi (Above / Up)",
+            "sound": "위",
+            "mnemonic": "Say 'oo' + 'ee' fast: 'Wi' (like English 'we')! With a silent ㅇ, '위' (Wi) means 'Up / Above'.",
+            "exampleWord": "가위 (Gawi - Scissors)",
+            "iconName": "hiking"
+          },
+          {
+            "id": "card_we_ui",
+            "korean": "ㅢ",
+            "romanization": "ui (and ㅚ/ㅙ/ㅞ = we)",
+            "meaning": "ㅡ (eu) + ㅣ (i) = Ui!",
+            "sound": "의",
+            "mnemonic": "ㅡ (eu) + ㅣ (i) glides together into 'ui' (as in 의사 Uisa = Doctor)! Bonus: ㅚ, ㅙ, and ㅞ all sound like 'we' in 'wedding' (왜 Wae = Why?)." ,
+            "exampleWord": "의사 (Uisa - Doctor) / 왜 (Wae - Why?)",
+            "iconName": "person"
+          }
+        ],
+        "story": {
+          "title": "Looking Up at the Doctor",
+          "storyPages": [
+            {
+              "text": "Baby Bear looked UP at the tall tree branch: '위' (Wi - Up/Above)!",
+              "koreanHighlight": "위",
+              "sound": "위",
+              "icon": "forest"
+            },
+            {
+              "text": "Kind Doctor Owl ('의사' - Uisa) asked 'Why ('왜' - Wae) are you climbing so high?'",
+              "koreanHighlight": "의사",
+              "sound": "의사",
+              "icon": "person"
+            }
+          ]
+        },
+        "tracingTarget": "나"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_7",
+      "unitId": "unit_7",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q7_1",
+          "type": "multiple_choice",
+          "prompt": "When you glide ㅗ (o) and ㅏ (a) together into 'ㅘ', what sound does it make?",
+          "soundToPlay": "와",
+          "options": ["wa (as in '와!' - Wow!)", "wo", "wi", "ui"],
+          "correctIndex": 0,
+          "explanation": "ㅗ (o) + ㅏ (a) glides smoothly into 'ㅘ' (wa)!"
+        },
+        {
+          "id": "q7_2",
+          "type": "multiple_choice",
+          "prompt": "Which two basic vowels combine to make 'ㅝ' (wo)?",
+          "soundToPlay": "워",
+          "options": ["ㅗ + ㅏ", "ㅜ + ㅓ", "ㅡ + ㅣ", "ㅏ + ㅣ"],
+          "correctIndex": 1,
+          "explanation": "Cozy vowel ㅜ (u) and cozy vowel ㅓ (eo) combine to form ㅝ (wo)!"
+        },
+        {
+          "id": "q7_3",
+          "type": "multiple_choice",
+          "prompt": "What sound does 'ㅟ' (ㅜ + ㅣ) make, and what does '위' mean?",
+          "soundToPlay": "위",
+          "options": ["'wi' (means Up / Above)", "'wa' (means Apple)", "'ui' (means Doctor)", "'ko' (means Nose)"],
+          "correctIndex": 0,
+          "explanation": "ㅜ (u) + ㅣ (i) = ㅟ (wi), and '위' means 'Up' or 'On top'!"
+        },
+        {
+          "id": "q7_4",
+          "type": "multiple_choice",
+          "prompt": "Which compound vowel combines flat Earth 'ㅡ' and standing Person 'ㅣ' to start the word '의사' (Uisa - Doctor)?",
+          "soundToPlay": "의사",
+          "options": ["ㅘ", "ㅝ", "ㅟ", "ㅢ"],
+          "correctIndex": 3,
+          "explanation": "ㅡ (eu) + ㅣ (i) = ㅢ (ui), used in 의사 (Uisa - Doctor)!"
+        },
+        {
+          "id": "q7_5",
+          "type": "listening",
+          "prompt": "Listen to the exclamation '와!' (Wa! - Wow!). How is it written?",
+          "soundToPlay": "와",
+          "options": ["워", "와", "위", "의"],
+          "correctIndex": 1,
+          "explanation": "Silent ㅇ + ㅘ (wa) = 와 (Wa - Wow)!"
+        },
+        {
+          "id": "q7_6",
+          "type": "listening",
+          "prompt": "Listen to the word '가위' (Gawi - Scissors). Which blocks do you hear?",
+          "soundToPlay": "가위",
+          "options": ["가위", "사과", "우유", "의사"],
+          "correctIndex": 0,
+          "explanation": "가 (ga) + 위 (wi) = 가위 (Gawi - Scissors)!"
+        },
+        {
+          "id": "q7_7",
+          "type": "matching",
+          "prompt": "In the word '사과' (Sagwa - Apple), how is the second block '과' (gwa) built?",
+          "soundToPlay": "사과",
+          "options": ["ㄱ (g) + ㅘ (wa)", "ㅅ (s) + ㅏ (a)", "ㅇ (silent) + ㅜ (u)", "ㅂ (b) + ㅏ (a)"],
+          "correctIndex": 0,
+          "explanation": "ㄱ (g) + ㅘ (wa) snaps together into 과 (gwa)!"
+        },
+        {
+          "id": "q7_8",
+          "type": "multiple_choice",
+          "prompt": "Why does Korean never combine ㅗ (o) with ㅓ (eo)?",
+          "soundToPlay": "와",
+          "options": [
+            "Because of Vowel Harmony: Bright ㅗ pairs with Bright ㅏ (ㅘ), and Cozy ㅜ pairs with Cozy ㅓ (ㅝ)!",
+            "Because ㅓ is a consonant",
+            "Because ㅗ is silent",
+            "There is no reason"
+          ],
+          "correctIndex": 0,
+          "explanation": "Korean follows Vowel Harmony! Bright vowels (ㅗ, ㅏ) stick together (ㅘ), and dark/cozy vowels (ㅜ, ㅓ) stick together (ㅝ)."
+        },
+        {
+          "id": "q7_9",
+          "type": "matching",
+          "prompt": "What do the compound vowels ㅚ, ㅙ, and ㅞ all sound like in modern Korean?",
+          "soundToPlay": "왜",
+          "options": ["'we' (as in 'wedding' or '왜' Wae = Why?)", "'oo' (as in 'moon')", "'ah' (as in 'father')", "'ee' (as in 'tree')"],
+          "correctIndex": 0,
+          "explanation": "In modern Seoul Korean, ㅚ, ㅙ, and ㅞ all converge to the 'we' sound!"
+        },
+        {
+          "id": "q7_10",
+          "type": "listening",
+          "prompt": "Listen to the friendly phrase '고마워요' (Gomawoyo - Thank you). Which W-vowel is in '워'?",
+          "soundToPlay": "고마워요",
+          "options": ["ㅘ (wa)", "ㅝ (wo)", "ㅟ (wi)", "ㅢ (ui)"],
+          "correctIndex": 1,
+          "explanation": "고마워요 uses '워' (ㅇ + ㅝ), which has the ㅝ (wo) vowel!"
+        }
+      ]
+    }
+  },
+  {
+    "id": "unit_8",
+    "title": "Unit 8: Double (Tense) Consonants (ㄲ, ㄸ, ㅃ, ㅆ, ㅉ)",
+    "subtitle": "Twin Letters with Crisp, Tight Energy!",
+    "description": "Meet the 5 twin consonants! No puff of air—just tense your vocal cords for a crisp, popping sound.",
+    "order": 8,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_8_1",
+        "unitId": "unit_8",
+        "title": "Crisp Twins: ㄲ (kk), ㄸ (tt) & ㅃ (pp)",
+        "order": 1,
+        "introduction": "Now you know the 3-way Korean consonant trio: Soft (ㄱ, ㄷ, ㅂ), Airy (ㅋ, ㅌ, ㅍ), and Twin/Tense (ㄲ, ㄸ, ㅃ)! For twins, hold back the puff of air and pop the sound cleanly.",
+        "cards": [
+          {
+            "id": "card_kk",
+            "korean": "ㄲ",
+            "romanization": "kk",
+            "meaning": "Twin Giyeok (Tense k/g)",
+            "sound": "끄",
+            "mnemonic": "Two ㄱ letters side by side! Sounds like the crisp, unaspirated 'k' in 'sky' or 'skill' (zero puff of air).",
+            "exampleWord": "토끼 (Tokki - Rabbit) / 꼬리 (Kkori - Tail)",
+            "iconName": "pets"
+          },
+          {
+            "id": "card_tt",
+            "korean": "ㄸ",
+            "romanization": "tt",
+            "meaning": "Twin Digeut (Tense t/d)",
+            "sound": "뜨",
+            "mnemonic": "Two ㄷ doors side by side! Sounds like the crisp 't' in 'stop' or 'star'.",
+            "exampleWord": "딸기 (Ttalgi - Strawberry)",
+            "iconName": "favorite"
+          },
+          {
+            "id": "card_pp",
+            "korean": "ㅃ",
+            "romanization": "pp",
+            "meaning": "Twin Bieup (Tense p/b)",
+            "sound": "쁘",
+            "mnemonic": "Two ㅂ buckets side by side! Press your lips tightly and pop them open like 'p' in 'spin' or 'spy'.",
+            "exampleWord": "아빠 (Appa - Dad) / 빵 (Ppang - Bread)",
+            "iconName": "person"
+          }
+        ],
+        "story": {
+          "title": "Strawberries with Papa Bear",
+          "storyPages": [
+            {
+              "text": "A fluffy white Rabbit ('토끼' - Tokki) hopped by with a twitching tail!",
+              "koreanHighlight": "토끼",
+              "sound": "토끼",
+              "icon": "forest"
+            },
+            {
+              "text": "Baby Bear picked sweet red Strawberries ('딸기' - Ttalgi) in the sunshine.",
+              "koreanHighlight": "딸기",
+              "sound": "딸기",
+              "icon": "wb_sunny"
+            },
+            {
+              "text": "He shared fresh Bread ('빵') with his loving Dad ('아빠' - Appa)!",
+              "koreanHighlight": "아빠",
+              "sound": "아빠",
+              "icon": "person"
+            }
+          ]
+        },
+        "tracingTarget": "ㄲ"
+      },
+      {
+        "id": "lesson_8_2",
+        "unitId": "unit_8",
+        "title": "Sizzling Twins: ㅆ (ss) & ㅉ (jj)",
+        "order": 2,
+        "introduction": "Finish the entire Hangul alphabet with ㅆ (ss) and ㅉ (jj)! Once you finish this lesson, you know ALL 40 letters of Hangul!",
+        "cards": [
+          {
+            "id": "card_ss",
+            "korean": "ㅆ",
+            "romanization": "ss",
+            "meaning": "Twin Siot (Sharp 'ss')",
+            "sound": "쓰",
+            "mnemonic": "Two ㅅ mountains side by side! Whereas single ㅅ is a soft, relaxed 's', twin ㅆ is a sharp, hissing 'ss' as in 'hiss' or 'sun'!",
+            "exampleWord": "비싸요 (Bissayo - It's expensive)",
+            "iconName": "landscape"
+          },
+          {
+            "id": "card_jj",
+            "korean": "ㅉ",
+            "romanization": "jj",
+            "meaning": "Twin Jieut (Crisp 'jj')",
+            "sound": "쯔",
+            "mnemonic": "Two ㅈ letters side by side! A tight, energetic 'jj' sound—used when Koreans say '짱!' (Jjang! = Awesome / The Best!).",
+            "exampleWord": "찌개 (Jjigae - Korean Stew) / 짱 (Jjang - Awesome!)",
+            "iconName": "sentiment_very_satisfied"
+          }
+        ],
+        "story": {
+          "title": "You Are Awesome (짱)!",
+          "storyPages": [
+            {
+              "text": "Mama Bear cooked a warm, bubbling pot of stew: '찌개' (Jjigae)!",
+              "koreanHighlight": "찌개",
+              "sound": "찌개",
+              "icon": "favorite"
+            },
+            {
+              "text": "Baby Bear cheered because he now knows all 40 letters of Hangul: '짱!' (Jjang - Awesome)!",
+              "koreanHighlight": "짱",
+              "sound": "짱",
+              "icon": "sentiment_very_satisfied"
+            }
+          ]
+        },
+        "tracingTarget": "ㅆ"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_8",
+      "unitId": "unit_8",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q8_1",
+          "type": "multiple_choice",
+          "prompt": "How are Korean double (tense) consonants like ㄲ, ㄸ, ㅃ pronounced compared to ㅋ, ㅌ, ㅍ?",
+          "soundToPlay": "끄",
+          "options": [
+            "Crisp and tense with ZERO puff of air (like 'k' in 'sky' or 'p' in 'spin')",
+            "With a huge puff of air",
+            "Completely silent",
+            "Like English vowels"
+          ],
+          "correctIndex": 0,
+          "explanation": "Double consonants (쌍자음) are pronounced with tight vocal cords and no puff of air!"
+        },
+        {
+          "id": "q8_2",
+          "type": "multiple_choice",
+          "prompt": "Which word uses the twin consonant 'ㅃ' (pp) to mean 'Dad / Papa'?",
+          "soundToPlay": "아빠",
+          "options": ["아기 (Baby)", "아빠 (Dad)", "어머니 (Mother)", "아이 (Child)"],
+          "correctIndex": 1,
+          "explanation": "아빠 (Appa) uses ㅃ (pp) and means 'Dad'!"
+        },
+        {
+          "id": "q8_3",
+          "type": "multiple_choice",
+          "prompt": "Which twin consonant starts the Korean word '딸기' (Ttalgi - Strawberry)?",
+          "soundToPlay": "딸기",
+          "options": ["ㄲ", "ㄸ", "ㅃ", "ㅆ"],
+          "correctIndex": 1,
+          "explanation": "딸기 (Strawberry) begins with ㄸ (tt)!"
+        },
+        {
+          "id": "q8_4",
+          "type": "multiple_choice",
+          "prompt": "Which twin consonant makes a sharp, hissing 'ss' sound as in '비싸요' (Bissayo - Expensive)?",
+          "soundToPlay": "쓰",
+          "options": ["ㅅ", "ㅆ", "ㅉ", "ㅊ"],
+          "correctIndex": 1,
+          "explanation": "ㅆ (Ssang-siot) makes the sharp, tense 'ss' sound!"
+        },
+        {
+          "id": "q8_5",
+          "type": "listening",
+          "prompt": "Listen to the word '토끼' (Tokki - Rabbit). How is the second syllable written?",
+          "soundToPlay": "토끼",
+          "options": ["기 (gi)", "키 (ki)", "끼 (kki)", "리 (ri)"],
+          "correctIndex": 2,
+          "explanation": "토끼 uses the tense twin consonant ㄲ + ㅣ = 끼 (kki)!"
+        },
+        {
+          "id": "q8_6",
+          "type": "listening",
+          "prompt": "Listen carefully to the contrast. Which syllable is being spoken: '사' (sa) or '싸' (ssa)?",
+          "soundToPlay": "싸",
+          "options": ["싸 (ssa - Twin ㅆ)", "사 (sa - Single ㅅ)", "자 (ja)", "차 (cha)"],
+          "correctIndex": 0,
+          "explanation": "You heard the sharp, tense '싸' (ssa) with twin ㅆ!"
+        },
+        {
+          "id": "q8_7",
+          "type": "matching",
+          "prompt": "Compare the 3-way Korean consonant trio for G/K: Soft ➔ Airy ➔ Tense Twin:",
+          "soundToPlay": "끄",
+          "options": [
+            "ㄱ (soft g) ➔ ㅋ (airy k) ➔ ㄲ (tense kk)",
+            "ㄴ ➔ ㄷ ➔ ㄹ",
+            "ㅏ ➔ ㅑ ➔ ㅘ",
+            "ㅁ ➔ ㅇ ➔ ㅎ"
+          ],
+          "correctIndex": 0,
+          "explanation": "Korean organizes stops in 3-way trios: Soft (ㄱ, ㄷ, ㅂ, ㅈ), Airy (ㅋ, ㅌ, ㅍ, ㅊ), and Tense Twins (ㄲ, ㄸ, ㅃ, ㅉ)!"
+        },
+        {
+          "id": "q8_8",
+          "type": "matching",
+          "prompt": "What does the slang word '짱!' (Jjang - starting with ㅉ) mean in Korean?",
+          "soundToPlay": "짱",
+          "options": ["Awesome / The Best!", "Goodnight", "Water", "Excuse me"],
+          "correctIndex": 0,
+          "explanation": "짱 (Jjang) means 'Awesome!' or 'The Best!'—just like you for mastering all of Hangul!"
+        },
+        {
+          "id": "q8_9",
+          "type": "tracing",
+          "prompt": "Trace the twin consonant ㄲ (Ssang-giyeok) with your finger!",
+          "soundToPlay": "끄",
+          "targetCharacter": "ㄲ",
+          "options": ["Trace ㄲ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Awesome! Two neat ㄱ shapes side by side form ㄲ!"
+        },
+        {
+          "id": "q8_10",
+          "type": "tracing",
+          "prompt": "Trace the twin consonant ㅆ (Ssang-siot) with your finger!",
+          "soundToPlay": "쓰",
+          "targetCharacter": "ㅆ",
+          "options": ["Trace ㅆ to complete!"],
+          "correctIndex": 0,
+          "explanation": "Brilliant! Two mountain peaks side by side form ㅆ!"
+        }
+      ]
+    }
+  },
+  {
+    "id": "unit_9",
+    "title": "Unit 9: Final Consonants (Batchim) & Polite Phrases",
+    "subtitle": "3-Letter Blocks & Everyday Greetings",
+    "description": "Put all 40 letters to work! Read 3-letter Batchim blocks (물, 밥, 빵) and speak your first polite Korean phrases!",
+    "order": 9,
+    "unlockRequirement": 80,
+    "lessons": [
+      {
+        "id": "lesson_9_1",
+        "unitId": "unit_9",
+        "title": "The Floor Cushion (Batchim): 물 (Water), 밥 (Rice) & 빵 (Bread)",
+        "order": 1,
+        "introduction": "When a 3rd consonant sits on the floor at the bottom of a syllable block, Koreans call it 'Batchim' (support cushion)!",
+        "cards": [
+          {
+            "id": "card_mul",
+            "korean": "물",
+            "romanization": "mul",
+            "meaning": "Water",
+            "sound": "물",
+            "mnemonic": "ㅁ (m) on top + ㅜ (u) in the middle + ㄹ (l) on the floor = 물 (mul). Essential word for 'Water'!",
+            "exampleWord": "물 주세요 (Mul juseyo - Water, please)",
+            "iconName": "water_drop"
+          },
+          {
+            "id": "card_bap",
+            "korean": "밥",
+            "romanization": "bap",
+            "meaning": "Cooked Rice / Meal",
+            "sound": "밥",
+            "mnemonic": "ㅂ (b) + ㅏ (a) on top, with ㅂ (p) sitting at the bottom = 밥 (bap). Means 'Rice' or 'Meal'!",
+            "exampleWord": "김밥 (Gimbap - Seaweed Rice Roll)",
+            "iconName": "restaurant"
+          },
+          {
+            "id": "card_ppang",
+            "korean": "빵",
+            "romanization": "ppang",
+            "meaning": "Bread / Bakery",
+            "sound": "빵",
+            "mnemonic": "Twin ㅃ (pp) + ㅏ (a) on top, with circle ㅇ ('ng') on the floor = 빵 (ppang - Bread)!",
+            "exampleWord": "식빵 (Sikppang - Sliced Bread)",
+            "iconName": "shopping_basket"
+          }
+        ],
+        "story": {
+          "title": "Picnic on the Mountain",
+          "storyPages": [
+            {
+              "text": "Baby Bear opened his lunchbox to eat warm Rice ('밥' - Bap) and soft Bread ('빵' - Ppang)!",
+              "koreanHighlight": "밥 빵",
+              "sound": "밥 빵",
+              "icon": "backpack"
+            },
+            {
+              "text": "And he drank cool, fresh spring Water: '물' (Mul)!",
+              "koreanHighlight": "물",
+              "sound": "물",
+              "icon": "forest"
+            }
+          ]
+        },
+        "tracingTarget": "산"
+      },
+      {
+        "id": "lesson_9_2",
+        "unitId": "unit_9",
+        "title": "Polite Greetings: Hello, Thank You & Please",
+        "order": 2,
+        "introduction": "In Korean culture, adding '-요' (yo) or '-니다' (nida) at the end makes your words polite and warm. Let's speak real Korean!",
+        "cards": [
+          {
+            "id": "card_annyeong",
+            "korean": "안녕하세요",
+            "romanization": "Annyeong-haseyo",
+            "meaning": "Hello (Polite)",
+            "sound": "안녕하세요",
+            "mnemonic": "Literally asks 'Are you at peace?'. Say 'Annyeong' to close friends, and 'Annyeong-haseyo' to be polite to anyone!",
+            "exampleWord": "안녕! (Annyeong! - Hi / Bye to friends)",
+            "iconName": "waving_hand"
+          },
+          {
+            "id": "card_gamsa",
+            "korean": "감사합니다",
+            "romanization": "Gamsa-hamnida",
+            "meaning": "Thank you (Polite)",
+            "sound": "감사합니다",
+            "mnemonic": "감사 (Gamsa = Gratitude) + 합니다 (hamnida = I do). Pronunciation tip: The 'ㅂ' in 합 meets 'ㄴ' and sounds softly like 'm' (Gam-sa-ham-ni-da)!",
+            "exampleWord": "고마워요 (Gomawoyo - Thanks, friendly polite)",
+            "iconName": "favorite"
+          },
+          {
+            "id": "card_juseyo",
+            "korean": "주세요",
+            "romanization": "Juseyo",
+            "meaning": "Please give me...",
+            "sound": "주세요",
+            "mnemonic": "Put any item in front of '주세요' (Juseyo) to order politely! 물 주세요 (Mul juseyo) = 'Water, please!'",
+            "exampleWord": "밥 주세요 (Bap juseyo - Rice, please!)",
+            "iconName": "sentiment_very_satisfied"
+          }
+        ],
+        "story": {
+          "title": "Baby Bear Visits the Forest Cafe",
+          "storyPages": [
+            {
+              "text": "Baby Bear bowed politely to Wise Owl and said Hello: '안녕하세요' (Annyeong-haseyo)!",
+              "koreanHighlight": "안녕하세요",
+              "sound": "안녕하세요",
+              "icon": "person"
+            },
+            {
+              "text": "He ordered politely: '물 주세요!' (Mul juseyo - Water, please)!",
+              "koreanHighlight": "물 주세요",
+              "sound": "물 주세요",
+              "icon": "sentiment_very_satisfied"
+            },
+            {
+              "text": "Baby Bear received the cup with both paws and said: '감사합니다!' (Gamsa-hamnida - Thank you)!",
+              "koreanHighlight": "감사합니다",
+              "sound": "감사합니다",
+              "icon": "favorite"
+            }
+          ]
+        },
+        "tracingTarget": "나"
+      }
+    ],
+    "quiz": {
+      "id": "quiz_unit_9",
+      "unitId": "unit_9",
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "id": "q9_1",
+          "type": "multiple_choice",
+          "prompt": "What do Koreans call the final consonant that sits at the bottom of a syllable block (like 'ㄹ' in '물')?",
+          "soundToPlay": "물",
+          "options": ["Hangul", "Batchim (Floor cushion)", "Jamo", "Annyeong"],
+          "correctIndex": 1,
+          "explanation": "Batchim (받침) means 'support' or 'floor cushion'—it's the final consonant at the bottom of a syllable block!"
+        },
+        {
+          "id": "q9_2",
+          "type": "multiple_choice",
+          "prompt": "What does the 3-letter Korean word '물' (ㅁ + ㅜ + ㄹ, mul) mean?",
+          "soundToPlay": "물",
+          "options": ["Bread", "Cooked Rice", "Water", "Tree"],
+          "correctIndex": 2,
+          "explanation": "물 (mul) means 'Water'!"
+        },
+        {
+          "id": "q9_3",
+          "type": "multiple_choice",
+          "prompt": "In the word '빵' (Ppang - Bread), what sound does the circle 'ㅇ' make at the BOTTOM of the block?",
+          "soundToPlay": "빵",
+          "options": ["'ng' as in 'sing'", "It is silent", "'m' as in 'mom'", "'s' as in 'sun'"],
+          "correctIndex": 0,
+          "explanation": "While ㅇ is silent at the top/left of a block, as a bottom Batchim it makes the ringing 'ng' sound: ㅃ + ㅏ + ㅇ = 빵 (ppang)!"
+        },
+        {
+          "id": "q9_4",
+          "type": "multiple_choice",
+          "prompt": "How do you say a polite 'Hello' to someone in Korean?",
+          "soundToPlay": "안녕하세요",
+          "options": ["감사합니다", "주세요", "안녕하세요", "바나나"],
+          "correctIndex": 2,
+          "explanation": "안녕하세요 (Annyeong-haseyo) is the standard polite way to say 'Hello'!"
+        },
+        {
+          "id": "q9_5",
+          "type": "multiple_choice",
+          "prompt": "Which expression means 'Thank you' politely in Korean?",
+          "soundToPlay": "감사합니다",
+          "options": ["안녕하세요", "감사합니다", "아니요", "물 주세요"],
+          "correctIndex": 1,
+          "explanation": "감사합니다 (Gamsa-hamnida) means 'Thank you'!"
+        },
+        {
+          "id": "q9_6",
+          "type": "listening",
+          "prompt": "Listen carefully to the phrase. What is the speaker asking for?",
+          "soundToPlay": "물 주세요",
+          "options": ["물 주세요 (Water, please)", "밥 주세요 (Rice, please)", "안녕하세요 (Hello)", "감사합니다 (Thank you)"],
+          "correctIndex": 0,
+          "explanation": "You heard '물 주세요' (Mul juseyo), which means 'Water, please'!"
+        },
+        {
+          "id": "q9_7",
+          "type": "listening",
+          "prompt": "Listen to the greeting. Which phrase did you hear?",
+          "soundToPlay": "안녕하세요",
+          "options": ["감사합니다 (Thank you)", "안녕하세요 (Hello)", "빵 (Bread)", "가방 (Bag)"],
+          "correctIndex": 1,
+          "explanation": "You heard '안녕하세요' (Annyeong-haseyo - Hello)!"
+        },
+        {
+          "id": "q9_8",
+          "type": "matching",
+          "prompt": "How do you politely ask for cooked rice ('밥') at a Korean restaurant?",
+          "soundToPlay": "밥 주세요",
+          "options": ["밥 주세요 (Bap juseyo)", "밥 안녕하세요", "물 감사합니다", "빵 아니요"],
+          "correctIndex": 0,
+          "explanation": "Noun + 주세요 (juseyo) means 'Please give me [Noun]', so '밥 주세요' means 'Rice, please!'."
+        },
+        {
+          "id": "q9_9",
+          "type": "tracing",
+          "prompt": "Trace the 3-letter Batchim block 산 (San - Mountain) with your finger!",
+          "soundToPlay": "산",
+          "targetCharacter": "산",
+          "options": ["Trace 산 to complete!"],
+          "correctIndex": 0,
+          "explanation": "Amazing! You wrote ㅅ + ㅏ on top and tucked the Batchim ㄴ underneath to make 산!"
+        },
+        {
+          "id": "q9_10",
+          "type": "multiple_choice",
+          "prompt": "In '감사합니다' (Thank you), why is '합니다' pronounced 'ham-ni-da' instead of 'hap-ni-da'?",
+          "soundToPlay": "감사합니다",
+          "options": [
+            "Because ㅂ (p) softens to an 'm' sound before ㄴ (n) for smooth pronunciation",
+            "It is a spelling mistake",
+            "ㅂ always makes an 'm' sound",
+            "ㄴ is silent"
+          ],
+          "correctIndex": 0,
+          "explanation": "In Korean, when Batchim ㅂ meets ㄴ right after it, ㅂ nasalizes into 'm' so your mouth can flow smoothly: Gam-sa-ham-ni-da!"
         }
       ]
     }
