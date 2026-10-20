@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/services/storage_service.dart';
@@ -195,8 +194,8 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
                       : _buildCollapsedChatBubble(theme, isDark, fact),
                 ),
                 const SizedBox(height: 2),
-                // Standalone Character Sprite with glow/shadow & gentle floating motion
-                _buildCharacterSprite(isDark),
+                // Standalone Character Sprite with gentle floating motion
+                _buildCharacterSprite(),
               ],
             ),
           ),
@@ -460,9 +459,8 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
 
   /// Standalone Cute White Cat Sprite:
   /// - Scaled up & cropped of excess transparent margin so the cat is 2.2x larger.
-  /// - Backed by a soft dark/purple drop-shadow silhouette & glowing cushion so white fur stands out on white backgrounds.
-  /// - Animated with a gentle breathing/bobbing motion.
-  Widget _buildCharacterSprite(bool isDark) {
+  /// - Clean transparent sprite with no blurry shadow or dark background behind it.
+  Widget _buildCharacterSprite() {
     final double spriteWidth = _isExpanded ? 132 : 114;
     final double spriteHeight = _isExpanded ? 104 : 90;
 
@@ -489,55 +487,7 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
               alignment: Alignment.center,
               clipBehavior: Clip.none,
               children: [
-                // 1. Soft glowing pedestal/aura beneath the cat so it stands out on white cards
-                Positioned(
-                  bottom: 6,
-                  child: Container(
-                    width: spriteWidth * 0.78,
-                    height: 22,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      gradient: RadialGradient(
-                        colors: [
-                          AppColors.accentPurple.withOpacity(_isExpanded ? 0.55 : 0.35),
-                          AppColors.accentPurple.withOpacity(0.0),
-                        ],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(isDark ? 0.5 : 0.25),
-                          blurRadius: 12,
-                          spreadRadius: 2,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                // 2. Silhouette Drop-Shadow layer behind the transparent PNG
-                // Ensures the snow-white cat fur has crisp contrast even over pure white backgrounds
-                Transform.translate(
-                  offset: const Offset(0, 3),
-                  child: Transform.scale(
-                    scale: 1.72,
-                    child: ImageFiltered(
-                      imageFilter: ImageFilter.blur(sigmaX: 4.5, sigmaY: 4.5),
-                      child: ColorFiltered(
-                        colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(isDark ? 0.65 : 0.38),
-                          BlendMode.srcATop,
-                        ),
-                        child: Image.asset(
-                          _kMascotAssetPath,
-                          fit: BoxFit.contain,
-                          errorBuilder: (_, _, _) => const SizedBox.shrink(),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-                // 3. Foreground Crisp Cat Sprite (scaled 1.7x to trim internal PNG transparent padding)
+                // Crisp Cat Sprite (scaled 1.7x to trim internal PNG transparent padding)
                 Transform.scale(
                   scale: 1.7,
                   child: Image.asset(
@@ -549,7 +499,7 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
                   ),
                 ),
 
-                // 4. Unread Fun Fact Notification Sparkle Badge when collapsed
+                // Unread Fun Fact Notification Sparkle Badge when collapsed
                 if (!_isExpanded && _hasUnreadFact)
                   Positioned(
                     top: 4,
