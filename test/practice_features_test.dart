@@ -12,6 +12,7 @@ import 'package:learn_korean/presentation/screens/progress_screen.dart';
 import 'package:learn_korean/presentation/screens/sound_detective_screen.dart';
 import 'package:learn_korean/presentation/screens/speed_match_screen.dart';
 import 'package:learn_korean/presentation/screens/writing_studio_screen.dart';
+import 'package:learn_korean/presentation/widgets/floating_fun_fact_guide.dart';
 
 import 'widget_test.dart';
 
@@ -226,5 +227,54 @@ void main() {
     expect(find.text('Speed Match ⚡'), findsOneWidget);
     expect(find.text('Matched: 0 / 6'), findsOneWidget);
     expect(find.text('Moves: 0'), findsOneWidget);
+  });
+
+  testWidgets('FloatingFunFactGuide starts with no bubble, pops up on timer or tap, and closes via X or veil',
+      (WidgetTester tester) async {
+    final mockStorage = MemoryStorageService();
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Stack(
+            children: [
+              const Center(child: Text('Main Content')),
+              FloatingFunFactGuide(
+                storageService: mockStorage,
+                promptInterval: const Duration(minutes: 5),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    // 1. By default when idle, NO 'DID YOU KNOW?' bubble is shown
+    expect(find.textContaining('DID YOU KNOW?'), findsNothing);
+    expect(find.text('Next Fact'), findsNothing);
+
+    // 2. After 5 minutes elapse, the cat automatically pops out with a fun fact bubble
+    await tester.pump(const Duration(minutes: 5));
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('DID YOU KNOW?'), findsOneWidget);
+    expect(find.text('Next Fact'), findsOneWidget);
+
+    // 3. Tapping the close 'X' button hides the bubble and retracts the cat
+    await tester.tap(find.byIcon(Icons.close_rounded));
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('DID YOU KNOW?'), findsNothing);
+
+    // 4. Waiting another 5 minutes pops it up again, and tapping the dark veil (top-left) closes it
+    await tester.pump(const Duration(minutes: 5));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('DID YOU KNOW?'), findsOneWidget);
+
+    await tester.tapAt(const Offset(20, 20));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('DID YOU KNOW?'), findsNothing);
   });
 }
