@@ -229,7 +229,7 @@ void main() {
     expect(find.text('Moves: 0'), findsOneWidget);
   });
 
-  testWidgets('FloatingFunFactGuide starts with no bubble, pops up on timer or tap, and closes via X or veil',
+  testWidgets('FloatingFunFactGuide shows initial greeting, auto-retracts to peeking, pops up on timer or tap, and closes via X or veil',
       (WidgetTester tester) async {
     final mockStorage = MemoryStorageService();
 
@@ -242,6 +242,7 @@ void main() {
               FloatingFunFactGuide(
                 storageService: mockStorage,
                 promptInterval: const Duration(minutes: 5),
+                greetingDuration: const Duration(seconds: 6),
               ),
             ],
           ),
@@ -251,24 +252,32 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    // 1. By default when idle, NO 'DID YOU KNOW?' bubble is shown
+    // 1. At launch, the cat greets the user with a time-of-day WELCOME bubble (no 'DID YOU KNOW?' yet)
+    expect(find.textContaining('WELCOME •'), findsOneWidget);
+    expect(find.textContaining('DID YOU KNOW?'), findsNothing);
+
+    // 2. After 6 seconds elapse, the greeting auto-retracts into the peeking state (no bubble shown)
+    await tester.pump(const Duration(seconds: 6));
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('WELCOME •'), findsNothing);
     expect(find.textContaining('DID YOU KNOW?'), findsNothing);
     expect(find.text('Next Fact'), findsNothing);
 
-    // 2. After 5 minutes elapse, the cat automatically pops out with a fun fact bubble
+    // 3. After 5 minutes elapse, the cat automatically pops out with a fun fact bubble
     await tester.pump(const Duration(minutes: 5));
     await tester.pumpAndSettle();
 
     expect(find.textContaining('DID YOU KNOW?'), findsOneWidget);
     expect(find.text('Next Fact'), findsOneWidget);
 
-    // 3. Tapping the close 'X' button hides the bubble and retracts the cat
+    // 4. Tapping the close 'X' button hides the bubble and retracts the cat
     await tester.tap(find.byIcon(Icons.close_rounded));
     await tester.pumpAndSettle();
 
     expect(find.textContaining('DID YOU KNOW?'), findsNothing);
 
-    // 4. Waiting another 5 minutes pops it up again, and tapping the dark veil (top-left) closes it
+    // 5. Waiting another 5 minutes pops it up again, and tapping the dark veil (top-left) closes it
     await tester.pump(const Duration(minutes: 5));
     await tester.pumpAndSettle();
     expect(find.textContaining('DID YOU KNOW?'), findsOneWidget);
