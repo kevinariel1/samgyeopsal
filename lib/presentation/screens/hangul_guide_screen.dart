@@ -43,7 +43,7 @@ class _HangulGuideScreenState extends ConsumerState<HangulGuideScreen>
     HangulCharacterGuide(hangul: 'ㅊ', romanization: 'ch', name: 'Chieut (치읓)', sound: '츠', category: 'Basic Consonant'),
     HangulCharacterGuide(hangul: 'ㅋ', romanization: 'k', name: 'Kieuk (키읔)', sound: '크', category: 'Basic Consonant'),
     HangulCharacterGuide(hangul: 'ㅌ', romanization: 't', name: 'Tieut (티읕)', sound: '트', category: 'Basic Consonant'),
-    HangulCharacterGuide(hangul: 'ㅍ', romanization: 'p', name: 'Pieup (피vp)', sound: '프', category: 'Basic Consonant'),
+    HangulCharacterGuide(hangul: 'ㅍ', romanization: 'p', name: 'Pieup (피읍)', sound: '프', category: 'Basic Consonant'),
     HangulCharacterGuide(hangul: 'ㅎ', romanization: 'h', name: 'Hieut (히읗)', sound: '흐', category: 'Basic Consonant'),
   ];
 

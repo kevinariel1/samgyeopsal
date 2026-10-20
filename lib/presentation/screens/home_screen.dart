@@ -6,6 +6,7 @@ import '../../data/models/unit_model.dart';
 import '../providers/app_providers.dart';
 import 'lesson_screen.dart';
 import 'quiz_screen.dart';
+import '../widgets/journey_gate_separator.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -126,7 +127,10 @@ class HomeScreen extends ConsumerWidget {
                         final isPassed = progress.isUnitPassed(unit.id);
                         final lastAttempt = progress.getLastAttempt(unit.id);
 
-                        return _UnitCard(
+                        final hasGate = unit.sectionTitle != null && unit.sectionTitle!.isNotEmpty;
+                        final gateNumber = (units.sublist(0, index + 1).where((u) => u.sectionTitle != null && u.sectionTitle!.isNotEmpty).length);
+
+                        final card = _UnitCard(
                           unit: unit,
                           isUnlocked: isUnlocked,
                           quizScore: quizScore,
@@ -177,6 +181,22 @@ class HomeScreen extends ConsumerWidget {
                                 }
                               : null,
                         );
+
+                        if (hasGate) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              JourneyGateSeparator(
+                                title: unit.sectionTitle!,
+                                subtitle: unit.sectionDescription,
+                                isUnlocked: isUnlocked,
+                                gateNumber: gateNumber,
+                              ),
+                              card,
+                            ],
+                          );
+                        }
+                        return card;
                       },
                     ),
                     const SizedBox(height: 32),

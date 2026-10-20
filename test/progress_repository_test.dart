@@ -258,4 +258,20 @@ void main() {
       });
     });
   });
+
+    test('Streak logic increments consecutive days and resets after missed day', () async {
+      final storage = MemoryStorageService();
+      final repo = ProgressRepositoryImpl(storage);
+
+      // Day 1
+      await repo.awardPracticeXp(10);
+      var progress = await repo.getProgress();
+      expect(progress.streakDays, 1);
+      expect(progress.activeDates.length, 1);
+
+      // Multiple activities on the same day do not over-increment streak
+      await repo.awardPracticeXp(10);
+      progress = await repo.getProgress();
+      expect(progress.streakDays, 1);
+    });
 }

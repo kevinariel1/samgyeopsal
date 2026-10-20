@@ -123,6 +123,83 @@ class ProgressScreen extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: 28),
+                // Streak Calendar View
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  decoration: BoxDecoration(
+                    color: theme.cardTheme.color,
+                    borderRadius: BorderRadius.circular(22),
+                    border: Border.all(color: AppColors.lightCardBorder),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(Icons.local_fire_department_rounded, color: AppColors.accentYellow, size: 24),
+                              const SizedBox(width: 8),
+                              Text(
+                                ' Day Streak (Best: )',
+                                style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 15),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            'Last 14 Days',
+                            style: theme.textTheme.bodySmall?.copyWith(fontSize: 11),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 14),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: progress.getStreakCalendar(daysBack: 14).map((day) {
+                          final isToday = day.isToday;
+                          final active = day.hasActivity;
+                          return Semantics(
+                            label: ': ',
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: 18,
+                                  height: 18,
+                                  decoration: BoxDecoration(
+                                    color: active
+                                        ? AppColors.accentYellow
+                                        : (isToday
+                                            ? AppColors.accentYellow.withOpacity(0.2)
+                                            : theme.dividerColor.withOpacity(0.15)),
+                                    shape: BoxShape.circle,
+                                    border: isToday
+                                        ? Border.all(color: AppColors.accentYellow, width: 1.5)
+                                        : null,
+                                  ),
+                                  child: active
+                                      ? const Icon(Icons.check, size: 12, color: Colors.black87)
+                                      : null,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  day.date.day.toString(),
+                                  style: TextStyle(
+                                    fontSize: 9,
+                                    fontWeight: isToday ? FontWeight.w900 : FontWeight.w600,
+                                    color: isToday ? AppColors.accentYellow : theme.textTheme.bodySmall?.color,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 28),
                 // Achievement Badges Showcase
                 Text(
                   'Achievement Badges 🏅',
@@ -168,6 +245,18 @@ class ProgressScreen extends ConsumerWidget {
                       title: 'Speed Matcher',
                       subtitle: 'Clear a Match Board',
                       unlocked: progress.hasBadge('badge_speed_matcher'),
+                    ),
+                    _BadgeCard(
+                      emoji: '🃏',
+                      title: 'Deck Master',
+                      subtitle: 'Finish a Flashcard Set',
+                      unlocked: progress.hasBadge('badge_flashcard_master') || progress.hasBadge('badge_flashcard_perfect'),
+                    ),
+                    _BadgeCard(
+                      emoji: '🎯',
+                      title: 'Flawless Recall',
+                      subtitle: '100% on Flashcards',
+                      unlocked: progress.hasBadge('badge_flashcard_perfect'),
                     ),
                     _BadgeCard(
                       emoji: '🎓',

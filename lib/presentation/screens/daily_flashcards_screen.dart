@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/app_colors.dart';
 import '../../data/models/card_model.dart';
@@ -16,6 +16,8 @@ class _DailyFlashcardsScreenState extends ConsumerState<DailyFlashcardsScreen> {
   int _currentIndex = 0;
   int _masteredCount = 0;
   int _reviewAgainCount = 0;
+  bool _xpAwarded = false;
+  int _earnedXp = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,26 @@ class _DailyFlashcardsScreenState extends ConsumerState<DailyFlashcardsScreen> {
           final isFinished = _currentIndex >= allCards.length;
 
           if (isFinished) {
+            if (!_xpAwarded && allCards.isNotEmpty) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!mounted || _xpAwarded) return;
+                final totalCount = allCards.length;
+                final accuracy = totalCount > 0 ? (_masteredCount / totalCount) : 0.0;
+                // Base 10 XP + 2 XP per card + up to 10 bonus XP based on accuracy
+                final calculatedXp = 10 + (totalCount * 2) + (accuracy * 10).round();
+                final badgeId = accuracy >= 1.0 ? 'badge_flashcard_perfect' : 'badge_flashcard_master';
+
+                setState(() {
+                  _xpAwarded = true;
+                  _earnedXp = calculatedXp;
+                });
+
+                ref.read(progressProvider.notifier).awardPracticeXp(
+                      calculatedXp,
+                      badgeId: badgeId,
+                    );
+              });
+            }
             return Center(
               child: Padding(
                 padding: const EdgeInsets.all(24),
@@ -69,12 +91,34 @@ class _DailyFlashcardsScreenState extends ConsumerState<DailyFlashcardsScreen> {
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 20),
+                      if (_earnedXp > 0) ...[
+                        const SizedBox(height: 12),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: AppColors.accentYellow.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(color: AppColors.starGold),
+                          ),
+                          child: Text(
+                            '+ $_earnedXp XP Earned! ⚡',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w900,
+                              color: AppColors.starGold,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ],
+                      const SizedBox(height: 20),
                       ElevatedButton.icon(
                         onPressed: () {
                           setState(() {
                             _currentIndex = 0;
                             _masteredCount = 0;
                             _reviewAgainCount = 0;
+                            _xpAwarded = false;
+                            _earnedXp = 0;
                           });
                         },
                         icon: const Icon(Icons.replay_rounded),
@@ -167,3 +211,4 @@ class _DailyFlashcardsScreenState extends ConsumerState<DailyFlashcardsScreen> {
     );
   }
 }
+

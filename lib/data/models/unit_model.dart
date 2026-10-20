@@ -8,6 +8,8 @@ class UnitModel {
   final String description;
   final int order;
   final int unlockRequirement;
+  final String? sectionTitle;
+  final String? sectionDescription;
   final List<LessonModel> lessons;
   final QuizModel? quiz;
 
@@ -18,6 +20,8 @@ class UnitModel {
     required this.description,
     required this.order,
     this.unlockRequirement = 0,
+    this.sectionTitle,
+    this.sectionDescription,
     required this.lessons,
     this.quiz,
   });
@@ -31,6 +35,8 @@ class UnitModel {
       description: json['description'] as String? ?? '',
       order: json['order'] as int? ?? 1,
       unlockRequirement: json['unlockRequirement'] as int? ?? 0,
+      sectionTitle: json['sectionTitle'] as String?,
+      sectionDescription: json['sectionDescription'] as String?,
       lessons: rawLessons
           .map((item) => LessonModel.fromJson(item as Map<String, dynamic>))
           .toList(),

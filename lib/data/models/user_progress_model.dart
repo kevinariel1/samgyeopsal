@@ -9,6 +9,8 @@ class UserProgressModel {
   final Map<String, int> quizHighestXp; // quizId or unitId -> highest EXP earned
   final Set<String> unlockedBadges;
   final int streakDays;
+  final int longestStreak;
+  final List<String> activeDates; // ISO-8601 YYYY-MM-DD
   final int totalXp;
   final String lastActiveDate;
 
@@ -19,11 +21,14 @@ class UserProgressModel {
     this.quizHighestXp = const {},
     this.unlockedBadges = const {},
     this.streakDays = 1,
+    this.longestStreak = 1,
+    this.activeDates = const [],
     this.totalXp = 0,
     required this.lastActiveDate,
   });
 
   factory UserProgressModel.initial() {
+    final today = DateTime.now().toLocal().toIso8601String().substring(0, 10);
     return UserProgressModel(
       completedLessonIds: {},
       unitQuizScores: {},
@@ -31,8 +36,10 @@ class UserProgressModel {
       quizHighestXp: {},
       unlockedBadges: {},
       streakDays: 1,
+      longestStreak: 1,
+      activeDates: [today],
       totalXp: 0,
-      lastActiveDate: DateTime.now().toIso8601String().substring(0, 10),
+      lastActiveDate: today,
     );
   }
 
@@ -84,6 +91,8 @@ class UserProgressModel {
     Map<String, int>? quizHighestXp,
     Set<String>? unlockedBadges,
     int? streakDays,
+    int? longestStreak,
+    List<String>? activeDates,
     int? totalXp,
     String? lastActiveDate,
   }) {
@@ -94,6 +103,8 @@ class UserProgressModel {
       quizHighestXp: quizHighestXp ?? this.quizHighestXp,
       unlockedBadges: unlockedBadges ?? this.unlockedBadges,
       streakDays: streakDays ?? this.streakDays,
+      longestStreak: longestStreak ?? this.longestStreak,
+      activeDates: activeDates ?? this.activeDates,
       totalXp: totalXp ?? this.totalXp,
       lastActiveDate: lastActiveDate ?? this.lastActiveDate,
     );
@@ -106,6 +117,8 @@ class UserProgressModel {
         'quizHighestXp': quizHighestXp,
         'unlockedBadges': unlockedBadges.toList(),
         'streakDays': streakDays,
+        'longestStreak': longestStreak,
+        'activeDates': activeDates,
         'totalXp': totalXp,
         'lastActiveDate': lastActiveDate,
       };
@@ -131,6 +144,13 @@ class UserProgressModel {
     final badges = (map['unlockedBadges'] as List<dynamic>? ?? [])
         .map((e) => e.toString())
         .toSet();
+    final rawDates = (map['activeDates'] as List<dynamic>? ?? [])
+        .map((e) => e.toString())
+        .toList();
+    final lastDate = map['lastActiveDate'] as String? ??
+        DateTime.now().toLocal().toIso8601String().substring(0, 10);
+    final activeDatesList = rawDates.isEmpty ? [lastDate] : rawDates;
+    final currentStreak = (map['streakDays'] as num?)?.toInt() ?? 1;
 
     return UserProgressModel(
       completedLessonIds: lessons,
@@ -138,10 +158,11 @@ class UserProgressModel {
       lastQuizAttempts: attempts,
       quizHighestXp: quizXp,
       unlockedBadges: badges,
-      streakDays: (map['streakDays'] as num?)?.toInt() ?? 1,
+      streakDays: currentStreak,
+      longestStreak: (map['longestStreak'] as num?)?.toInt() ?? currentStreak,
+      activeDates: activeDatesList,
       totalXp: (map['totalXp'] as num?)?.toInt() ?? 0,
-      lastActiveDate: map['lastActiveDate'] as String? ??
-          DateTime.now().toIso8601String().substring(0, 10),
+      lastActiveDate: lastDate,
     );
   }
 
@@ -149,4 +170,38 @@ class UserProgressModel {
 
   factory UserProgressModel.fromJson(String source) =>
       UserProgressModel.fromMap(jsonDecode(source) as Map<String, dynamic>);
+  /// Returns calendar activity data for a window of days up to today.
+  List<CalendarDayStatus> getStreakCalendar({int daysBack = 14}) {
+    final now = DateTime.now().toLocal();
+    final today = DateTime(now.year, now.month, now.day);
+    final activeSet = activeDates.toSet();
+
+    return List.generate(daysBack, (i) {
+      final d = today.subtract(Duration(days: (daysBack - 1) - i));
+      final dateStr = d.toIso8601String().substring(0, 10);
+      final hasActivity = activeSet.contains(dateStr);
+      final isToday = d.year == today.year && d.month == today.month && d.day == today.day;
+      return CalendarDayStatus(
+        date: d,
+        dateString: dateStr,
+        hasActivity: hasActivity,
+        isToday: isToday,
+      );
+    });
+  }
+}
+
+class CalendarDayStatus {
+  final DateTime date;
+  final String dateString;
+  final bool hasActivity;
+  final bool isToday;
+
+  const CalendarDayStatus({
+    required this.date,
+    required this.dateString,
+    required this.hasActivity,
+    required this.isToday,
+  });
+
 }

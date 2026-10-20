@@ -4,6 +4,59 @@ import '../models/quiz_attempt_model.dart';
 import '../models/user_progress_model.dart';
 
 class ProgressRepositoryImpl implements ProgressRepository {
+  /// Updates streak and records active date using local device timezone boundaries.
+  /// If today was already recorded: maintains current streak.
+  /// If yesterday was the last active date: increments streak.
+  /// If more than 1 day was missed: resets streak to 1.
+  UserProgressModel _applyDailyStreak(UserProgressModel current, {DateTime? now}) {
+    final localNow = (now ?? DateTime.now()).toLocal();
+    final todayStr = localNow.toIso8601String().substring(0, 10);
+    final lastStr = current.lastActiveDate;
+
+    if (lastStr == todayStr) {
+      final dates = Set<String>.from(current.activeDates)..add(todayStr);
+      final sortedDates = dates.toList()..sort();
+      return current.copyWith(
+        lastActiveDate: todayStr,
+        activeDates: sortedDates,
+      );
+    }
+
+    final todayDate = DateTime(localNow.year, localNow.month, localNow.day);
+    DateTime? lastDate;
+    try {
+      final parts = lastStr.split('-');
+      if (parts.length == 3) {
+        lastDate = DateTime(int.parse(parts[0]), int.parse(parts[1]), int.parse(parts[2]));
+      }
+    } catch (_) {}
+
+    int newStreak;
+    if (lastDate == null) {
+      newStreak = 1;
+    } else {
+      final diffDays = todayDate.difference(lastDate).inDays;
+      if (diffDays == 1) {
+        newStreak = current.streakDays + 1;
+      } else if (diffDays <= 0) {
+        newStreak = current.streakDays;
+      } else {
+        newStreak = 1; // Missed day resets streak
+      }
+    }
+
+    final newLongest = newStreak > current.longestStreak ? newStreak : current.longestStreak;
+    final dates = Set<String>.from(current.activeDates)..add(todayStr);
+    final sortedDates = dates.toList()..sort();
+
+    return current.copyWith(
+      streakDays: newStreak,
+      longestStreak: newLongest,
+      activeDates: sortedDates,
+      lastActiveDate: todayStr,
+    );
+  }
+
   static const String _storageKey = 'user_learning_progress_v1';
   final StorageService _storageService;
 
@@ -31,10 +84,10 @@ class ProgressRepositoryImpl implements ProgressRepository {
   Future<void> markLessonComplete(String lessonId, {int earnedXp = 20}) async {
     final current = await getProgress();
     final updatedLessons = Set<String>.from(current.completedLessonIds)..add(lessonId);
-    final updated = current.copyWith(
+    final withStreak = _applyDailyStreak(current);
+    final updated = withStreak.copyWith(
       completedLessonIds: updatedLessons,
-      totalXp: current.totalXp + earnedXp,
-      lastActiveDate: DateTime.now().toIso8601String().substring(0, 10),
+      totalXp: withStreak.totalXp + earnedXp,
     );
     await saveProgress(updated);
   }
@@ -68,11 +121,11 @@ class ProgressRepositoryImpl implements ProgressRepository {
       updatedQuizHighestXp[unitId] = attemptExp;
     }
 
-    final updated = current.copyWith(
+    final withStreak = _applyDailyStreak(current);
+    final updated = withStreak.copyWith(
       unitQuizScores: updatedScores,
       quizHighestXp: updatedQuizHighestXp,
-      totalXp: current.totalXp + awardedExp,
-      lastActiveDate: DateTime.now().toIso8601String().substring(0, 10),
+      totalXp: withStreak.totalXp + awardedExp,
     );
     await saveProgress(updated);
     return awardedExp;
@@ -112,12 +165,12 @@ class ProgressRepositoryImpl implements ProgressRepository {
       updatedQuizHighestXp[attempt.unitId] = attemptExp;
     }
 
-    final updated = current.copyWith(
+    final withStreak = _applyDailyStreak(current);
+    final updated = withStreak.copyWith(
       unitQuizScores: updatedScores,
       lastQuizAttempts: updatedAttempts,
       quizHighestXp: updatedQuizHighestXp,
-      totalXp: current.totalXp + awardedExp,
-      lastActiveDate: DateTime.now().toIso8601String().substring(0, 10),
+      totalXp: withStreak.totalXp + awardedExp,
     );
     await saveProgress(updated);
     return awardedExp;
@@ -126,14 +179,14 @@ class ProgressRepositoryImpl implements ProgressRepository {
   @override
   Future<void> awardPracticeXp(int earnedXp, {String? badgeId}) async {
     final current = await getProgress();
-    final updatedBadges = Set<String>.from(current.unlockedBadges);
+    final withStreak = _applyDailyStreak(current);
+    final updatedBadges = Set<String>.from(withStreak.unlockedBadges);
     if (badgeId != null && badgeId.isNotEmpty) {
       updatedBadges.add(badgeId);
     }
-    final updated = current.copyWith(
-      totalXp: current.totalXp + earnedXp,
+    final updated = withStreak.copyWith(
+      totalXp: withStreak.totalXp + earnedXp,
       unlockedBadges: updatedBadges,
-      lastActiveDate: DateTime.now().toIso8601String().substring(0, 10),
     );
     await saveProgress(updated);
   }
