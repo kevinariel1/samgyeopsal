@@ -20,8 +20,9 @@ enum MascotGuideState {
 /// Interactive Floating Character Guide featuring the cute white cat mascot.
 /// Behavior:
 /// - **Greeting State (`MascotGuideState.greeting`)**: Uses `mascot_cat_idle_clean.png` when the app opens,
-///   displaying a warm time-of-day Korean greeting bubble before automatically retracting to peeking after a few seconds
-///   (or when dismissed). Also allows jumping straight to a fun fact.
+///   dimming the background with a thin dark veil and displaying a warm time-of-day Korean greeting bubble.
+///   Remains open until manually closed by the user (tapping the veil, the 'X' button, or "Let's Study!"),
+///   or transitioned into a fun fact by tapping "Fun Fact".
 /// - **Peeking State (`MascotGuideState.peeking`)**: Uses `mascot_cat_peeking_clean.png` with no text bubble,
 ///   peeking discreetly from the right edge of the screen.
 /// - **Speaking / Tapping State (`MascotGuideState.speaking`)**: Uses `mascot_cat_tapping_clean.png` every 5 minutes
@@ -30,14 +31,12 @@ enum MascotGuideState {
 class FloatingFunFactGuide extends StatefulWidget {
   final StorageService storageService;
   final Duration promptInterval;
-  final Duration greetingDuration;
   final bool showInitialGreeting;
 
   const FloatingFunFactGuide({
     super.key,
     required this.storageService,
     this.promptInterval = const Duration(minutes: 5),
-    this.greetingDuration = const Duration(seconds: 6),
     this.showInitialGreeting = true,
   });
 
@@ -60,7 +59,6 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
   late final AnimationController _hopController;
   late final Animation<double> _hopAnimation;
   Timer? _periodicTimer;
-  Timer? _greetingTimer;
 
   late bool _isDisabled;
   late MascotGuideState _guideState;
@@ -96,7 +94,6 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
     if (!_isDisabled) {
       if (_guideState == MascotGuideState.greeting) {
         _hopController.forward(from: 0.0);
-        _startGreetingTimer();
       }
       _startPeriodicTimer();
     }
@@ -104,22 +101,9 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
 
   @override
   void dispose() {
-    _greetingTimer?.cancel();
     _periodicTimer?.cancel();
     _hopController.dispose();
     super.dispose();
-  }
-
-  void _startGreetingTimer() {
-    _greetingTimer?.cancel();
-    _greetingTimer = Timer(widget.greetingDuration, () {
-      if (!mounted || _isDisabled) return;
-      if (_guideState == MascotGuideState.greeting) {
-        setState(() {
-          _guideState = MascotGuideState.peeking;
-        });
-      }
-    });
   }
 
   void _startPeriodicTimer() {
@@ -194,7 +178,6 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
   /// Public method to cycle to the next fact and show the speaking bubble
   void nextFact() {
     if (!mounted || _isDisabled) return;
-    _greetingTimer?.cancel();
     setState(() {
       _advanceFactIndex();
       _guideState = MascotGuideState.speaking;
@@ -206,7 +189,6 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
   /// Transitions directly from the greeting state to showing a fun fact
   void _showFunFactFromGreeting() {
     if (!mounted || _isDisabled) return;
-    _greetingTimer?.cancel();
     setState(() {
       _guideState = MascotGuideState.speaking;
     });
@@ -219,7 +201,6 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
     if (_isExpanded) {
       _closeBubble();
     } else {
-      _greetingTimer?.cancel();
       setState(() {
         _guideState = MascotGuideState.speaking;
       });
@@ -230,7 +211,6 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
 
   /// Closes the speech bubble, fades out the dark veil, and slides the cat back to peeking mode
   void _closeBubble() {
-    _greetingTimer?.cancel();
     setState(() {
       _guideState = MascotGuideState.peeking;
     });
@@ -238,7 +218,6 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
   }
 
   void _disableForever() {
-    _greetingTimer?.cancel();
     _periodicTimer?.cancel();
     setState(() {
       _isDisabled = true;
@@ -287,13 +266,13 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final fact = FunFactsData.facts[_currentIndex];
-    final bool showSpotlightVeil = _guideState == MascotGuideState.speaking;
+    final bool showSpotlightVeil = _isExpanded;
 
     return Positioned.fill(
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          // 1. Thin Dark Spotlight Veil when the character is speaking fun facts (MascotGuideState.speaking)
+          // 1. Thin Dark Spotlight Veil when the character is speaking or greeting (_isExpanded)
           // Tapping anywhere on this veil closes the speech bubble and retracts the cat.
           IgnorePointer(
             ignoring: !showSpotlightVeil,
