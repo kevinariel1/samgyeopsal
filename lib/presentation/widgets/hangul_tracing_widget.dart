@@ -13,6 +13,7 @@ class HangulTracingWidget extends StatefulWidget {
   final bool showGrid;
   final bool enabled;
   final bool? freehandMode;
+  final bool isQuiz;
 
   const HangulTracingWidget({
     super.key,
@@ -25,6 +26,7 @@ class HangulTracingWidget extends StatefulWidget {
     this.showGrid = true,
     this.enabled = true,
     this.freehandMode,
+    this.isQuiz = false,
   });
 
   @override
@@ -207,11 +209,11 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
                     // Active drawing canvas using Listener to directly capture points
                     Positioned.fill(
                       child: IgnorePointer(
-                        ignoring: !widget.enabled || _lastAttemptFailed || _hasTraced,
+                        ignoring: !widget.enabled || (widget.isQuiz && (_lastAttemptFailed || _hasTraced)),
                         child: Listener(
                           behavior: HitTestBehavior.opaque,
                           onPointerDown: (event) {
-                            if (!widget.enabled || _lastAttemptFailed || _hasTraced) return;
+                            if (!widget.enabled || (widget.isQuiz && (_lastAttemptFailed || _hasTraced))) return;
                             widget.onTracingActive?.call(true);
                             setState(() {
                               _currentStroke = [event.localPosition];
@@ -220,7 +222,7 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
                             });
                           },
                           onPointerMove: (event) {
-                            if (!widget.enabled || _lastAttemptFailed || _hasTraced) return;
+                            if (!widget.enabled || (widget.isQuiz && (_lastAttemptFailed || _hasTraced))) return;
                             setState(() {
                               _currentStroke.add(event.localPosition);
                             });
@@ -316,7 +318,7 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
               children: [
                 Expanded(
                   child: OutlinedButton.icon(
-                    onPressed: widget.enabled && !_hasTraced && !_lastAttemptFailed ? _clear : null,
+                    onPressed: widget.enabled && (!widget.isQuiz || (!_hasTraced && !_lastAttemptFailed)) ? _clear : null,
                     icon: const Icon(Icons.refresh_rounded),
                     label: const Text('Clear Canvas'),
                     style: OutlinedButton.styleFrom(

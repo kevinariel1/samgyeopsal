@@ -406,6 +406,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                     showGuides: false,
                     showGrid: false,
                     enabled: !_answered,
+                    isQuiz: true,
                     onTracingActive: (active) {
                       setState(() {
                         _isTracingActive = active;
