@@ -565,8 +565,11 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
                   style: theme.textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 14),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 16,
+                  runSpacing: 12,
                   children: [
                     ElevatedButton.icon(
                       onPressed: () => _speak(challenge.targetSyllable),
@@ -576,7 +579,6 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
                         backgroundColor: AppColors.secondary,
                       ),
                     ),
-                    const SizedBox(width: 16),
                     Container(
                       width: 68,
                       height: 68,
