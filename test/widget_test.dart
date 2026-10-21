@@ -53,7 +53,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('Hangul Baby 🌱'), findsOneWidget);
+    expect(find.text('Hangul Baby'), findsOneWidget);
     expect(find.text('Hello Baby Learner!'), findsOneWidget);
     expect(find.text('Unit 1: Basic Consonants'), findsOneWidget);
   });

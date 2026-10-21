@@ -36,12 +36,7 @@ class JourneyGateSeparator extends StatelessWidget {
                   child: Container(
                     height: 2,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          theme.dividerColor.withOpacity(0.05),
-                          isUnlocked ? AppColors.accentPurple : theme.dividerColor,
-                        ],
-                      ),
+                      color: isUnlocked ? AppColors.primaryContainer : theme.dividerColor,
                     ),
                   ),
                 ),
@@ -87,12 +82,7 @@ class JourneyGateSeparator extends StatelessWidget {
                   child: Container(
                     height: 2,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          isUnlocked ? AppColors.accentPurple : theme.dividerColor,
-                          theme.dividerColor.withOpacity(0.05),
-                        ],
-                      ),
+                      color: isUnlocked ? AppColors.primaryContainer : theme.dividerColor,
                     ),
                   ),
                 ),

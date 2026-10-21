@@ -13,7 +13,7 @@ class PracticeHubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Practice Hub 🎮'),
+        title: const Text('Practice Hub'),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
@@ -21,16 +21,12 @@ class PracticeHubScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [AppColors.secondary, Color(0xFF00B4D8)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+              color: AppColors.primary,
               borderRadius: BorderRadius.circular(24),
             ),
             child: const Row(
               children: [
-                Text('🧸', style: TextStyle(fontSize: 40)),
+                SizedBox.shrink(),
                 SizedBox(width: 16),
                 Expanded(
                   child: Column(
@@ -61,7 +57,7 @@ class PracticeHubScreen extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           _PracticeActivityCard(
-            title: 'Build the Hangul 🧩',
+            title: 'Build the Hangul',
             subtitle: 'Syllable LEGO Workshop & Puzzles',
             description:
                 'Snap Initial Consonants, Vowels, and Batchim together to create real Korean syllable blocks and hear them spoken live!',
@@ -77,13 +73,13 @@ class PracticeHubScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           _PracticeActivityCard(
-            title: 'Sound Detective 🎧',
+            title: 'Sound Detective',
             subtitle: 'Minimal Pairs Ear Trainer',
             description:
                 'Train your ear to distinguish tricky Korean sounds like Soft (ㄱ), Airy (ㅋ), and Tense Twins (ㄲ), or ㅏ vs ㅓ!',
             badgeText: 'EAR TRAINER',
             icon: Icons.headphones_rounded,
-            accentColor: const Color(0xFF00B4D8),
+            accentColor: AppColors.secondary,
             onTap: () {
               Navigator.push(
                 context,
@@ -93,7 +89,7 @@ class PracticeHubScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           _PracticeActivityCard(
-            title: 'Writing Studio ✍️',
+            title: 'Writing Studio',
             subtitle: 'Guided & Freehand Stroke Sandbox',
             description:
                 'Pick any Hangul consonant, vowel, or syllable block and practice calligraphy strokes with or without stencil guides.',
@@ -109,7 +105,7 @@ class PracticeHubScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           _PracticeActivityCard(
-            title: 'Speed Match ⚡',
+            title: 'Speed Match',
             subtitle: 'Hangul ↔ Sound Arcade',
             description:
                 'Match 6 pairs of Hangul letters and words with their romanizations as fast as you can!',
@@ -125,7 +121,7 @@ class PracticeHubScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           _PracticeActivityCard(
-            title: 'Smart Flashcards 🃏',
+            title: 'Smart Flashcards',
             subtitle: 'Daily Memory Deck',
             description:
                 'Flip through all character mnemonics and example words from your curriculum to keep your memory fresh.',

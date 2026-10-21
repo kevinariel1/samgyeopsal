@@ -62,7 +62,7 @@ class _HangulTracingWidgetState extends State<HangulTracingWidget> {
     if (_strokes.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Give it a try! Write the letter with your finger first 😊'),
+          content: Text('Give it a try! Write the letter with your finger first'),
           backgroundColor: AppColors.primary,
           duration: Duration(seconds: 2),
         ),

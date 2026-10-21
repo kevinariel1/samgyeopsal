@@ -232,7 +232,7 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
     final hour = DateTime.now().hour;
     if (hour >= 5 && hour < 12) {
       return (
-        badge: 'GOOD MORNING ☀️',
+        badge: 'GOOD MORNING',
         korean: '좋은 아침이에요! (Jo-eun a-chim-i-e-yo!)',
         romanization: 'Good morning!',
         message:
@@ -240,7 +240,7 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
       );
     } else if (hour >= 12 && hour < 18) {
       return (
-        badge: 'GOOD AFTERNOON 🌤️',
+        badge: 'GOOD AFTERNOON',
         korean: '안녕하세요! 좋은 오후예요!',
         romanization: 'An-nyeong-ha-se-yo! Good afternoon!',
         message:
@@ -248,7 +248,7 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
       );
     } else {
       return (
-        badge: 'GOOD EVENING 🌙',
+        badge: 'GOOD EVENING',
         korean: '오늘도 수고했어요! (O-neul-do su-go-haess-eo-yo!)',
         romanization: 'Great job today! Good evening!',
         message:
@@ -719,7 +719,7 @@ class FloatingFunFactGuideState extends State<FloatingFunFactGuide>
                 alignment:
                     _isExpanded ? Alignment.center : Alignment.centerRight,
                 errorBuilder: (_, _, _) => const Center(
-                  child: Text('🐱', style: TextStyle(fontSize: 48)),
+                  child: SizedBox.shrink(),
                 ),
               ),
             ),

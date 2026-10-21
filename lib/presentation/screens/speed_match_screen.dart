@@ -128,7 +128,7 @@ class _SpeedMatchScreenState extends ConsumerState<SpeedMatchScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Speed Match ⚡'),
+        title: const Text('Speed Match'),
         actions: [
           IconButton(
             tooltip: 'New Board',
@@ -168,7 +168,7 @@ class _SpeedMatchScreenState extends ConsumerState<SpeedMatchScreen> {
             if (_hasErrorFlash) ...[
               const SizedBox(height: 8),
               const Text(
-                'Not a match! Try another pair 😊',
+                'Not a match! Try another pair',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppColors.error,
@@ -191,7 +191,7 @@ class _SpeedMatchScreenState extends ConsumerState<SpeedMatchScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text('🎉', style: TextStyle(fontSize: 56)),
+                        const SizedBox.shrink(),
                         const SizedBox(height: 12),
                         const Text(
                           'Board Cleared!',

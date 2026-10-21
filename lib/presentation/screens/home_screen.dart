@@ -19,7 +19,7 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hangul Baby 🌱'),
+        title: const Text('Hangul Baby'),
         actions: [
           IconButton(
             tooltip: 'Toggle Theme',
@@ -49,10 +49,10 @@ class HomeScreen extends ConsumerWidget {
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [AppColors.primary, Color(0xFFFF8E72)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
+                        color: AppColors.primary,
+                        image: const DecorationImage(
+                          image: AssetImage('assets/images/banner_background.png'),
+                          fit: BoxFit.cover,
                         ),
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: [
@@ -65,13 +65,11 @@ class HomeScreen extends ConsumerWidget {
                       ),
                       child: Row(
                         children: [
-                          Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Text('🐣', style: TextStyle(fontSize: 32)),
+                          Image.asset(
+                            'assets/images/mascot_cat_banner_clean.png',
+                            width: 90,
+                            height: 90,
+                            fit: BoxFit.contain,
                           ),
                           const SizedBox(width: 16),
                           Expanded(
@@ -90,7 +88,7 @@ class HomeScreen extends ConsumerWidget {
                                 Text(
                                   progress.completedLessonsCount == 0
                                       ? 'Take your very first step with Unit 1!'
-                                      : 'You have conquered ${progress.completedLessonsCount} lesson(s)! ✨',
+                                      : 'You have conquered ${progress.completedLessonsCount} lesson(s)!',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,

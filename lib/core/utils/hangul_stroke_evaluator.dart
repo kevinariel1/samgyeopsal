@@ -2075,8 +2075,8 @@ class HangulStrokeEvaluator {
         isAccurate: false,
         accuracyScore: 0.2,
         feedbackMessage: freehandMode
-            ? 'Write in smooth, continuous stroke(s)! Don\'t tap dots 😊'
-            : 'Trace in smooth, continuous stroke(s)! Don\'t lift your finger to tap dots 😊',
+            ? 'Write in smooth, continuous stroke(s)! Don\'t tap dots'
+            : 'Trace in smooth, continuous stroke(s)! Don\'t lift your finger to tap dots',
       );
     }
 
@@ -2087,7 +2087,7 @@ class HangulStrokeEvaluator {
       return const StrokeEvaluationResult(
         isAccurate: false,
         accuracyScore: 0.1,
-        feedbackMessage: 'That was too short! Follow the full shape with your finger 😊',
+        feedbackMessage: 'That was too short! Follow the full shape with your finger',
       );
     }
 
@@ -2112,7 +2112,7 @@ class HangulStrokeEvaluator {
       return StrokeEvaluationResult(
         isAccurate: false,
         accuracyScore: 0.1,
-        feedbackMessage: 'Your drawing is too small! Write "$character" larger so it is clearly readable 😊',
+        feedbackMessage: 'Your drawing is too small! Write "$character" larger so it is clearly readable',
       );
     }
 
@@ -2442,7 +2442,7 @@ class HangulStrokeEvaluator {
     return StrokeEvaluationResult(
       isAccurate: true,
       accuracyScore: 0.95,
-      feedbackMessage: 'Beautiful! You wrote "$character" with full strokes & clean corners! ✨',
+      feedbackMessage: 'Beautiful! You wrote "$character" with full strokes & clean corners!',
     );
   }
 }

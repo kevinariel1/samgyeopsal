@@ -151,10 +151,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-              Text(
-                isPassed ? '🏆' : '🌱',
-                style: const TextStyle(fontSize: 64),
-              ),
+              const SizedBox.shrink(),
               const SizedBox(height: 12),
               Text(
                 isPassed ? 'Mastery Achieved!' : 'Keep Growing!',
@@ -179,7 +176,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                 ),
                 child: Text(
                   awardedXp > 0
-                      ? '+$awardedXp EXP Earned! ✨'
+                      ? '+$awardedXp EXP Earned!'
                       : '0 EXP (Quiz EXP already claimed)',
                   style: TextStyle(
                     fontSize: 13,
@@ -191,7 +188,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               const SizedBox(height: 8),
               Text(
                 isPassed
-                    ? 'Congratulations! You unlocked the next unit! 🎉'
+                    ? 'Congratulations! You unlocked the next unit!'
                     : 'You need 80% to unlock the next unit. Try again, you can do it!',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyMedium,
@@ -525,6 +522,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     final isSelected = _selectedOption == idx;
     final isCorrect = idx == question.correctIndex;
     final isReview = widget.mode == QuizMode.review;
+    final isDark = theme.brightness == Brightness.dark;
 
     Color cardColor = theme.cardTheme.color ?? Colors.white;
     Color borderColor = AppColors.lightCardBorder;
@@ -542,46 +540,63 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       }
     }
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(18),
-      onTap: isReview ? null : () => _submitAnswer(idx),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        decoration: BoxDecoration(
-          color: cardColor,
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: borderColor, width: 2),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: borderColor, width: 1.5),
-              ),
-              child: Center(
-                child: Text(
-                  String.fromCharCode(65 + idx),
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
+    return Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(20),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        splashColor: AppColors.primary.withOpacity(0.12),
+        highlightColor: AppColors.primary.withOpacity(0.06),
+        onTap: isReview ? null : () => _submitAnswer(idx),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          curve: Curves.easeOutCubic,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          constraints: const BoxConstraints(minHeight: 56),
+          decoration: BoxDecoration(
+            color: cardColor,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: isSelected && !_answered ? AppColors.primary : borderColor,
+              width: isSelected || (_answered && (isCorrect || isSelected)) ? 2.5 : 1.5,
+            ),
+            boxShadow: isDark ? AppColors.darkBentoShadow : AppColors.lightBentoShadow,
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: isSelected && !_answered ? AppColors.primaryContainer : Colors.transparent,
+                  border: Border.all(
+                    color: isSelected && !_answered ? AppColors.primary : borderColor,
+                    width: 1.5,
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    String.fromCharCode(65 + idx),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      color: isSelected && !_answered ? AppColors.primary : textColor,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Text(
-                optionText,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: textColor,
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  optionText,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: textColor,
+                    height: 1.3,
+                  ),
                 ),
               ),
-            ),
             if (_answered && isCorrect) ...[
               if (isReview && isSelected)
                 const Padding(
@@ -614,6 +629,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }

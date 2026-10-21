@@ -122,32 +122,32 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     '가': 'Go! / Edge (가다 = To go)',
     '나': 'I / Me (Casual)',
     '다': 'All / Everything',
-    '차': 'Tea 🍵 or Car 🚗',
-    '코': 'Nose 👃',
-    '이': 'Tooth 🦷 or Number 2',
+    '차': 'Tea  or Car',
+    '코': 'Nose',
+    '이': 'Tooth  or Number 2',
     '오': 'Number 5',
     '아이': 'Child',
-    '개': 'Dog 🐶',
+    '개': 'Dog',
     '네': 'Yes! (Polite)',
-    '와': 'Wow! ✨',
-    '위': 'Up / Above ⬆️',
-    '물': 'Water 💧',
-    '밥': 'Cooked Rice / Meal 🍚',
-    '산': 'Mountain ⛰️',
-    '빵': 'Bread 🍞',
-    '공': 'Ball ⚽ or Zero',
-    '곰': 'Bear 🐻 (Like Baby Bear!)',
-    '집': 'House / Home 🏠',
-    '별': 'Star ⭐',
-    '달': 'Moon 🌙',
-    '밤': 'Night 🌌 or Chestnut',
-    '눈': 'Eye 👀 or Snow ❄️',
-    '손': 'Hand ✋',
-    '발': 'Foot 🦶',
-    '말': 'Horse 🐴 or Speech/Words',
-    '불': 'Fire 🔥 or Light',
-    '문': 'Door 🚪',
-    '강': 'River 🏞️',
+    '와': 'Wow!',
+    '위': 'Up / Above ⬆',
+    '물': 'Water',
+    '밥': 'Cooked Rice / Meal',
+    '산': 'Mountain',
+    '빵': 'Bread',
+    '공': 'Ball  or Zero',
+    '곰': 'Bear  (Like Baby Bear!)',
+    '집': 'House / Home',
+    '별': 'Star',
+    '달': 'Moon',
+    '밤': 'Night  or Chestnut',
+    '눈': 'Eye  or Snow',
+    '손': 'Hand',
+    '발': 'Foot',
+    '말': 'Horse  or Speech/Words',
+    '불': 'Fire  or Light',
+    '문': 'Door',
+    '강': 'River',
     '방': 'Room',
   };
 
@@ -171,7 +171,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '코',
       romanization: 'ko',
-      meaningHint: 'Means "Nose" 👃',
+      meaningHint: 'Means "Nose"',
       chosungIdx: 10,
       jungsungIdx: 2,
       jongsungIdx: 0,
@@ -179,7 +179,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '물',
       romanization: 'mul',
-      meaningHint: 'Means "Water" 💧 (Uses Batchim ㄹ!)',
+      meaningHint: 'Means "Water"  (Uses Batchim ㄹ!)',
       chosungIdx: 4,
       jungsungIdx: 3,
       jongsungIdx: 4,
@@ -187,7 +187,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '밥',
       romanization: 'bap',
-      meaningHint: 'Means "Cooked Rice" 🍚 (Uses Batchim ㅂ!)',
+      meaningHint: 'Means "Cooked Rice"  (Uses Batchim ㅂ!)',
       chosungIdx: 5,
       jungsungIdx: 0,
       jongsungIdx: 6,
@@ -195,7 +195,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '산',
       romanization: 'san',
-      meaningHint: 'Means "Mountain" ⛰️ (Uses Batchim ㄴ!)',
+      meaningHint: 'Means "Mountain"  (Uses Batchim ㄴ!)',
       chosungIdx: 6,
       jungsungIdx: 0,
       jongsungIdx: 2,
@@ -203,7 +203,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '곰',
       romanization: 'gom',
-      meaningHint: 'Means "Bear" 🐻 (ㄱ + ㅗ + ㅁ)',
+      meaningHint: 'Means "Bear"  (ㄱ + ㅗ + ㅁ)',
       chosungIdx: 0,
       jungsungIdx: 2,
       jongsungIdx: 5,
@@ -211,7 +211,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '빵',
       romanization: 'ppang',
-      meaningHint: 'Means "Bread" 🍞 (Twin ㅃ + ㅏ + ㅇ)',
+      meaningHint: 'Means "Bread"  (Twin ㅃ + ㅏ + ㅇ)',
       chosungIdx: 16,
       jungsungIdx: 0,
       jongsungIdx: 8,
@@ -278,13 +278,13 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
         }
         _challengeSolved = true;
         _challengeFeedback =
-            '🎉 Awesome! You built "${currentChallenge.targetSyllable}" (${currentChallenge.romanization})! (+10 XP)';
+            'Awesome! You built "${currentChallenge.targetSyllable}" (${currentChallenge.romanization})! (+10 XP)';
       });
       _speak(builtSyllable);
     } else {
       setState(() {
         _challengeFeedback =
-            'You built "$builtSyllable", but we need "${currentChallenge.targetSyllable}"! Check your blocks 😊';
+            'You built "$builtSyllable", but we need "${currentChallenge.targetSyllable}"! Check your blocks';
       });
       _speak(builtSyllable);
     }
@@ -305,7 +305,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Build the Hangul 🧩'),
+        title: const Text('Build the Hangul'),
         bottom: TabBar(
           controller: _tabController,
           indicatorColor: AppColors.primary,
@@ -392,14 +392,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
                     width: 130,
                     height: 130,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          AppColors.primary.withOpacity(0.12),
-                          AppColors.secondary.withOpacity(0.12),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
+                      color: AppColors.primaryContainer,
                       borderRadius: BorderRadius.circular(28),
                       border: Border.all(color: AppColors.primary.withOpacity(0.4), width: 2),
                     ),
@@ -555,7 +548,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        '⭐ $_score pts',
+                        '$_score pts',
                         style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 12),
                       ),
                     ),

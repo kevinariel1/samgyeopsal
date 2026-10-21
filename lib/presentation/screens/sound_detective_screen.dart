@@ -164,7 +164,7 @@ class _SoundDetectiveScreenState extends ConsumerState<SoundDetectiveScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sound Detective 🎧'),
+        title: const Text('Sound Detective'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -191,7 +191,7 @@ class _SoundDetectiveScreenState extends ConsumerState<SoundDetectiveScreen> {
                   ),
                 ),
                 Text(
-                  'Round ${_currentIndex + 1}/${questions.length}  •  ✅ $_correctCount',
+                  'Round ${_currentIndex + 1}/${questions.length}  •  Correct: $_correctCount',
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -219,11 +219,7 @@ class _SoundDetectiveScreenState extends ConsumerState<SoundDetectiveScreen> {
                       width: 88,
                       height: 88,
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [AppColors.secondary, Color(0xFF00B4D8)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
+                        color: AppColors.primary,
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
@@ -242,7 +238,7 @@ class _SoundDetectiveScreenState extends ConsumerState<SoundDetectiveScreen> {
                   ),
                   const SizedBox(height: 14),
                   Text(
-                    '💡 Ear Tip: ${q.tip}',
+                    'Ear Tip: ${q.tip}',
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyMedium?.copyWith(fontSize: 13),
                   ),

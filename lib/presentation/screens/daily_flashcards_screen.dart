@@ -26,7 +26,7 @@ class _DailyFlashcardsScreenState extends ConsumerState<DailyFlashcardsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Smart Flashcards 🃏'),
+        title: const Text('Smart Flashcards'),
       ),
       body: unitsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -79,7 +79,7 @@ class _DailyFlashcardsScreenState extends ConsumerState<DailyFlashcardsScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text('🌟', style: TextStyle(fontSize: 56)),
+                      const SizedBox.shrink(),
                       const SizedBox(height: 12),
                       const Text(
                         'Deck Completed!',
@@ -87,7 +87,7 @@ class _DailyFlashcardsScreenState extends ConsumerState<DailyFlashcardsScreen> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Mastered: $_masteredCount  •  Practice Again: $_reviewAgainCount',
+                        'Mastered: $_masteredCount   Review: $_reviewAgainCount',
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 20),
@@ -101,7 +101,7 @@ class _DailyFlashcardsScreenState extends ConsumerState<DailyFlashcardsScreen> {
                             border: Border.all(color: AppColors.starGold),
                           ),
                           child: Text(
-                            '+ $_earnedXp XP Earned! ⚡',
+                            '+ $_earnedXp XP Earned!',
                             style: const TextStyle(
                               fontWeight: FontWeight.w900,
                               color: AppColors.starGold,
@@ -149,7 +149,7 @@ class _DailyFlashcardsScreenState extends ConsumerState<DailyFlashcardsScreen> {
                       style: const TextStyle(fontWeight: FontWeight.w800),
                     ),
                     Text(
-                      '✅ $_masteredCount   🔄 $_reviewAgainCount',
+                      'Mastered: $_masteredCount   Review: $_reviewAgainCount',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],

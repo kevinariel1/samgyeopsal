@@ -41,7 +41,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('🎉', style: TextStyle(fontSize: 54)),
+            const SizedBox.shrink(),
             const SizedBox(height: 12),
             const Text(
               'Lesson Mastered!',
@@ -92,7 +92,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
               ),
               child: Row(
                 children: [
-                  const Text('💡', style: TextStyle(fontSize: 24)),
+                  const SizedBox.shrink(),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(

@@ -1,12 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
+/// App Theme conforming to design-system/learn-korean/MASTER.md:
+/// - Typography: Noto Sans KR for crisp Hangeul and Latin glyphs with high legibility.
+/// - Bento Cards: 24dp standard radius, 1.5px subtle border, elevation 0.
+/// - Buttons: 54dp height, 20dp radius with tactile feedback.
 class AppTheme {
+  static TextTheme _buildTextTheme(Color primaryText, Color secondaryText) {
+    final baseTheme = GoogleFonts.notoSansKrTextTheme();
+    return baseTheme.copyWith(
+      displayLarge: GoogleFonts.notoSansKr(
+        fontSize: 32,
+        fontWeight: FontWeight.w900,
+        color: primaryText,
+        height: 1.2,
+      ),
+      headlineMedium: GoogleFonts.notoSansKr(
+        fontSize: 22,
+        fontWeight: FontWeight.w800,
+        color: primaryText,
+        height: 1.3,
+      ),
+      titleMedium: GoogleFonts.notoSansKr(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: primaryText,
+        height: 1.35,
+      ),
+      bodyLarge: GoogleFonts.notoSansKr(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: primaryText,
+        height: 1.45,
+      ),
+      bodyMedium: GoogleFonts.notoSansKr(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: secondaryText,
+        height: 1.4,
+      ),
+      labelSmall: GoogleFonts.notoSansKr(
+        fontSize: 11,
+        fontWeight: FontWeight.w800,
+        color: secondaryText,
+        letterSpacing: 0.5,
+      ),
+    );
+  }
+
   static ThemeData get lightTheme {
+    final textTheme = _buildTextTheme(
+      AppColors.lightTextPrimary,
+      AppColors.lightTextSecondary,
+    );
+
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
       scaffoldBackgroundColor: AppColors.lightBg,
+      fontFamily: GoogleFonts.notoSansKr().fontFamily,
+      textTheme: textTheme,
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         onPrimary: Colors.white,
@@ -34,66 +88,44 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          textStyle: const TextStyle(
+          textStyle: GoogleFonts.notoSansKr(
             fontSize: 18,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w800,
           ),
         ),
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
         foregroundColor: AppColors.lightTextPrimary,
-        titleTextStyle: TextStyle(
+        titleTextStyle: GoogleFonts.notoSansKr(
           color: AppColors.lightTextPrimary,
           fontSize: 20,
           fontWeight: FontWeight.w800,
-        ),
-      ),
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.w900,
-          color: AppColors.lightTextPrimary,
-        ),
-        headlineMedium: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.w800,
-          color: AppColors.lightTextPrimary,
-        ),
-        titleMedium: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w700,
-          color: AppColors.lightTextPrimary,
-        ),
-        bodyLarge: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: AppColors.lightTextPrimary,
-          height: 1.4,
-        ),
-        bodyMedium: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-          color: AppColors.lightTextSecondary,
-          height: 1.4,
         ),
       ),
     );
   }
 
   static ThemeData get darkTheme {
+    final textTheme = _buildTextTheme(
+      AppColors.darkTextPrimary,
+      AppColors.darkTextSecondary,
+    );
+
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       scaffoldBackgroundColor: AppColors.darkBg,
+      fontFamily: GoogleFonts.notoSansKr().fontFamily,
+      textTheme: textTheme,
       colorScheme: const ColorScheme.dark(
         primary: AppColors.primary,
         onPrimary: Colors.white,
-        primaryContainer: Color(0xFF4A2525),
+        primaryContainer: Color(0xFF0369A1),
         secondary: AppColors.secondary,
-        onSecondary: Colors.black,
+        onSecondary: Colors.white,
         surface: AppColors.darkCard,
         onSurface: AppColors.darkTextPrimary,
         error: AppColors.error,
@@ -115,50 +147,21 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          textStyle: const TextStyle(
+          textStyle: GoogleFonts.notoSansKr(
             fontSize: 18,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w800,
           ),
         ),
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
         foregroundColor: AppColors.darkTextPrimary,
-        titleTextStyle: TextStyle(
+        titleTextStyle: GoogleFonts.notoSansKr(
           color: AppColors.darkTextPrimary,
           fontSize: 20,
           fontWeight: FontWeight.w800,
-        ),
-      ),
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.w900,
-          color: AppColors.darkTextPrimary,
-        ),
-        headlineMedium: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.w800,
-          color: AppColors.darkTextPrimary,
-        ),
-        titleMedium: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w700,
-          color: AppColors.darkTextPrimary,
-        ),
-        bodyLarge: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: AppColors.darkTextPrimary,
-          height: 1.4,
-        ),
-        bodyMedium: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-          color: AppColors.darkTextSecondary,
-          height: 1.4,
         ),
       ),
     );

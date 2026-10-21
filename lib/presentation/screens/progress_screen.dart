@@ -13,7 +13,7 @@ class ProgressScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Learning Journey 🌟'),
+        title: const Text('My Learning Journey'),
       ),
       body: progressAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -31,11 +31,7 @@ class ProgressScreen extends ConsumerWidget {
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [AppColors.accentPurple, Color(0xFF6C5CE7)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
+                    color: AppColors.primary,
                     borderRadius: BorderRadius.circular(28),
                   ),
                   child: Column(
@@ -43,7 +39,7 @@ class ProgressScreen extends ConsumerWidget {
                       const CircleAvatar(
                         radius: 36,
                         backgroundColor: Colors.white,
-                        child: Text('👑', style: TextStyle(fontSize: 36)),
+                        child: SizedBox.shrink(),
                       ),
                       const SizedBox(height: 12),
                       Text(
@@ -202,7 +198,7 @@ class ProgressScreen extends ConsumerWidget {
                 const SizedBox(height: 28),
                 // Achievement Badges Showcase
                 Text(
-                  'Achievement Badges 🏅',
+                  'Achievement Badges',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w900,
                   ),
@@ -217,49 +213,49 @@ class ProgressScreen extends ConsumerWidget {
                   childAspectRatio: 1.55,
                   children: [
                     _BadgeCard(
-                      emoji: '🐣',
+                      emoji: '',
                       title: 'First Step',
                       subtitle: 'Finish 1st Lesson',
                       unlocked: progress.completedLessonsCount >= 1,
                     ),
                     _BadgeCard(
-                      emoji: '🧩',
+                      emoji: '',
                       title: 'Block Builder',
                       subtitle: 'Solve a Syllable Puzzle',
                       unlocked: progress.hasBadge('badge_syllable_architect'),
                     ),
                     _BadgeCard(
-                      emoji: '🎧',
+                      emoji: '',
                       title: 'Ear Detective',
                       subtitle: 'Spot a Minimal Pair',
                       unlocked: progress.hasBadge('badge_ear_detective'),
                     ),
                     _BadgeCard(
-                      emoji: '✍️',
+                      emoji: '',
                       title: 'Calligrapher',
                       subtitle: 'Verify in Studio',
                       unlocked: progress.hasBadge('badge_calligraphy_artist'),
                     ),
                     _BadgeCard(
-                      emoji: '⚡',
+                      emoji: '',
                       title: 'Speed Matcher',
                       subtitle: 'Clear a Match Board',
                       unlocked: progress.hasBadge('badge_speed_matcher'),
                     ),
                     _BadgeCard(
-                      emoji: '🃏',
+                      emoji: '',
                       title: 'Deck Master',
                       subtitle: 'Finish a Flashcard Set',
                       unlocked: progress.hasBadge('badge_flashcard_master') || progress.hasBadge('badge_flashcard_perfect'),
                     ),
                     _BadgeCard(
-                      emoji: '🎯',
+                      emoji: '',
                       title: 'Flawless Recall',
                       subtitle: '100% on Flashcards',
                       unlocked: progress.hasBadge('badge_flashcard_perfect'),
                     ),
                     _BadgeCard(
-                      emoji: '🎓',
+                      emoji: '',
                       title: 'Hangul Master',
                       subtitle: 'Pass 8+ Units',
                       unlocked: progress.passedUnitsCount >= 8,
@@ -420,7 +416,7 @@ class _BadgeCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  unlocked ? subtitle : '🔒 $subtitle',
+                  subtitle,
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,

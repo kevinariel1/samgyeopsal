@@ -62,15 +62,15 @@ void main() {
     await tester.tap(find.text('Practice'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Practice Hub 🎮'), findsOneWidget);
-    expect(find.text('Build the Hangul 🧩'), findsOneWidget);
-    expect(find.text('Sound Detective 🎧'), findsOneWidget);
+    expect(find.text('Practice Hub'), findsOneWidget);
+    expect(find.text('Build the Hangul'), findsOneWidget);
+    expect(find.text('Sound Detective'), findsOneWidget);
 
     await tester.drag(find.byType(ListView).last, const Offset(0, -500));
     await tester.pumpAndSettle();
 
-    expect(find.text('Speed Match ⚡'), findsOneWidget);
-    expect(find.text('Smart Flashcards 🃏'), findsOneWidget);
+    expect(find.text('Speed Match'), findsOneWidget);
+    expect(find.text('Smart Flashcards'), findsOneWidget);
   });
 
   testWidgets('HangulBuilderScreen composes syllables in Workshop and awards XP & badge in Challenge mode',
@@ -146,7 +146,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('Sound Detective 🎧'), findsOneWidget);
+    expect(find.text('Sound Detective'), findsOneWidget);
     expect(find.text('Tap to Listen to the Mystery Sound'), findsOneWidget);
 
     // First round target is index 1 ('카')
@@ -177,7 +177,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('Achievement Badges 🏅'), findsOneWidget);
+    expect(find.text('Achievement Badges'), findsOneWidget);
     expect(find.text('Block Builder'), findsOneWidget);
     expect(find.text('Ear Detective'), findsOneWidget);
   });
@@ -201,7 +201,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('Writing Studio ✍️'), findsOneWidget);
+    expect(find.text('Writing Studio'), findsOneWidget);
     expect(find.text('Write "ㄱ" with your finger!'), findsOneWidget);
 
     // Switch group to Basic Vowels
@@ -230,7 +230,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('Speed Match ⚡'), findsOneWidget);
+    expect(find.text('Speed Match'), findsOneWidget);
     expect(find.text('Matched: 0 / 6'), findsOneWidget);
     expect(find.text('Moves: 0'), findsOneWidget);
   });

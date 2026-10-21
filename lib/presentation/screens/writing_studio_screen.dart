@@ -32,7 +32,7 @@ class _WritingStudioScreenState extends ConsumerState<WritingStudioScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Writing Studio ✍️'),
+        title: const Text('Writing Studio'),
         actions: [
           Row(
             children: [

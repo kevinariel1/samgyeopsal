@@ -80,14 +80,7 @@ class _StoryViewerWidgetState extends State<StoryViewerWidget> {
           Container(
             height: 140,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.primaryContainer.withOpacity(0.6),
-                  AppColors.secondaryContainer.withOpacity(0.6),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+              color: AppColors.primaryContainer,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Stack(
