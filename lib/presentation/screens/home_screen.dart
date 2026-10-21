@@ -50,9 +50,13 @@ class HomeScreen extends ConsumerWidget {
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: AppColors.primary,
-                        image: const DecorationImage(
-                          image: AssetImage('assets/images/banner_background.png'),
+                        image: DecorationImage(
+                          image: const AssetImage('assets/images/banner_background.png'),
                           fit: BoxFit.cover,
+                          colorFilter: ColorFilter.mode(
+                            Colors.black.withOpacity(0.25),
+                            BlendMode.darken,
+                          ),
                         ),
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: [
@@ -67,8 +71,8 @@ class HomeScreen extends ConsumerWidget {
                         children: [
                           Image.asset(
                             'assets/images/mascot_cat_banner_clean.png',
-                            width: 90,
-                            height: 90,
+                            width: 68,
+                            height: 68,
                             fit: BoxFit.contain,
                           ),
                           const SizedBox(width: 16),
