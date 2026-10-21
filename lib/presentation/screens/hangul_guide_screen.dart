@@ -86,6 +86,12 @@ class _HangulGuideScreenState extends ConsumerState<HangulGuideScreen>
     'ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
   ];
   static const List<String> matrixVowels = ['ㅏ', 'ㅑ', 'ㅓ', 'ㅕ', 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ', 'ㅣ'];
+  static const List<String> matrixConsonantRomanizations = [
+    'g', 'n', 'd', 'r', 'm', 'b', 's', '', 'j', 'ch', 'k', 't', 'p', 'h'
+  ];
+  static const List<String> matrixVowelRomanizations = [
+    'a', 'ya', 'eo', 'yeo', 'o', 'yo', 'u', 'yu', 'eu', 'i'
+  ];
 
   @override
   void initState() {
@@ -344,7 +350,7 @@ class _HangulGuideScreenState extends ConsumerState<HangulGuideScreen>
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.all(16),
               child: Table(
-                defaultColumnWidth: const FixedColumnWidth(54),
+                defaultColumnWidth: const FixedColumnWidth(58),
                 border: TableBorder.all(
                   color: theme.dividerColor.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(12),
@@ -408,21 +414,37 @@ class _HangulGuideScreenState extends ConsumerState<HangulGuideScreen>
                                   (cIdx * 21 * 28) +
                                   (vowelIndices[vIdx] * 28);
                               final String syllable = String.fromCharCode(unicode);
+                              final String romanization =
+                                  '${matrixConsonantRomanizations[cIdx]}${matrixVowelRomanizations[vIdx]}';
 
                               return InkWell(
                                 onTap: () => _speak(syllable),
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(vertical: 10),
                                   alignment: Alignment.center,
-                                  child: Text(
-                                    syllable,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        syllable,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        romanization,
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w600,
+                                          color: theme.hintColor,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              );
+                                  ),
+                                );
                             },
                           ),
                         ],
