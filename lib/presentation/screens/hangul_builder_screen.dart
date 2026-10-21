@@ -155,7 +155,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '가',
       romanization: 'ga',
-      meaningHint: 'Means "Go!" (ㄱ + ㅏ)',
+      meaningHint: 'Means "Go!"',
       chosungIdx: 0,
       jungsungIdx: 0,
       jongsungIdx: 0,
@@ -163,7 +163,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '나',
       romanization: 'na',
-      meaningHint: 'Means "I / Me" (ㄴ + ㅏ)',
+      meaningHint: 'Means "I / Me"',
       chosungIdx: 1,
       jungsungIdx: 0,
       jongsungIdx: 0,
@@ -179,7 +179,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '물',
       romanization: 'mul',
-      meaningHint: 'Means "Water"  (Uses Batchim ㄹ!)',
+      meaningHint: 'Means "Water"',
       chosungIdx: 4,
       jungsungIdx: 3,
       jongsungIdx: 4,
@@ -187,7 +187,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '밥',
       romanization: 'bap',
-      meaningHint: 'Means "Cooked Rice"  (Uses Batchim ㅂ!)',
+      meaningHint: 'Means "Cooked Rice"',
       chosungIdx: 5,
       jungsungIdx: 0,
       jongsungIdx: 6,
@@ -195,7 +195,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '산',
       romanization: 'san',
-      meaningHint: 'Means "Mountain"  (Uses Batchim ㄴ!)',
+      meaningHint: 'Means "Mountain"',
       chosungIdx: 6,
       jungsungIdx: 0,
       jongsungIdx: 2,
@@ -203,7 +203,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '곰',
       romanization: 'gom',
-      meaningHint: 'Means "Bear"  (ㄱ + ㅗ + ㅁ)',
+      meaningHint: 'Means "Bear"',
       chosungIdx: 0,
       jungsungIdx: 2,
       jongsungIdx: 5,
@@ -211,7 +211,7 @@ class _HangulBuilderScreenState extends ConsumerState<HangulBuilderScreen>
     SyllableChallenge(
       targetSyllable: '빵',
       romanization: 'ppang',
-      meaningHint: 'Means "Bread"  (Twin ㅃ + ㅏ + ㅇ)',
+      meaningHint: 'Means "Bread"',
       chosungIdx: 16,
       jungsungIdx: 0,
       jongsungIdx: 8,
